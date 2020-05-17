@@ -4,7 +4,9 @@
     Author     : maste
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
+        <% ArrayList<Object> lista_Productos = new ArrayList<>();%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -30,5 +32,20 @@
                 <li clas="carrito"><a href="carritoDeCompras.jsp">Ver tu carrito de compras</a></li>
             </ul>
         </nav>
+        <main>
+            <% 
+        for(Object o:lista_Productos){
+            
+        
+        %>
+        <div class=""> <!--Se debe mostrar el nombre, precio-->
+            <h2><%=%></h2>
+            <p><%=%></p>
+            <p><%=%></p>
+            <p><a href="VerDetalldeProdcuto.jsp?id='<%=%>'">Ver Producto</a></p>
+        </div>
+        
+        <%}%>
+        </main>
     </body>
 </html>

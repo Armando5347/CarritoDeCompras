@@ -13,6 +13,6 @@
         <link rel="stylesheet" href="estilos.css">
     </head>
     <body>
-        <h1>Historial de <%=%></h1>
+        <h1>Historial de compras de <%=%></h1>
     </body>
 </html>

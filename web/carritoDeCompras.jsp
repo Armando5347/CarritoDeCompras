@@ -9,11 +9,12 @@
 <%--Aquise debe traer un arrayList de todos los productos--%>
 <%
     ArrayList<Object> lista_Productos = new ArrayList<>();
+                                        //Aquí iria un metodo como obtenerProductosDelCarrito(id_carrito || id_cliente)
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Su Carrito de compras</title>
+        <title>Sus Papeles en su Carrito de compras</title>
     </head>
     <body>
         <h1></h1>
@@ -25,7 +26,10 @@
         <div class="">
             <h2><%=%></h2>
             <p><%=%></p>
+            <p><%=%></p>
+            <p><a href="AgregarPapelAlCarrito?id='<%=%>'">Agregar al carrito de compras</a> || <a href="ComprarPoducto"></a></p>
         </div>
+        
         <%}%>
     </body>
 </html>
