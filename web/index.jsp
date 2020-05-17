@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pagina principal</title>
@@ -15,13 +15,19 @@
     <body>
         <header><h1>¡Papelilandia!</h1>
             <div class="img_izquierda"><img src="img/papel.png"></div>
-            <div class="derecho"><input  class="boton_link" type="button" value="Registrarse" onclick=""> <input type="button" class="boton_link" value="Iniciar Sesión" onclick=""></div>
+            <% HttpSession sesion_actual = request.getSession();
+                if(sesion_actual==null){ %>
+            <div class="derecho"><a href="InicioSesion.jsp">Iniciar Sesion.</a> || <a href="Registro.jsp">Registrarse.</a></div>
+            <%}else{%>
+            <div class="derecho"><a href="Cerrar_Sesion">Cerrar Sesion.</a> || <a href="Registro.jsp">Registrarse.</a></div>
+            <%}%>
         </header>
         <nav>
             <a href="index.jsp"><img src="papel.png"></a>
             <ul>
                 <li><a href="historial.jsp">Historial</a></li>
                 <li><a href="editarUser.jsp">Sesion de usuario</a></li>
+                <li clas="carrito"><a href="carritoDeCompras.jsp">Ver tu carrito de compras</a></li>
             </ul>
         </nav>
     </body>

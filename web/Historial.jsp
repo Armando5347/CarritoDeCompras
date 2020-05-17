@@ -4,15 +4,15 @@
     Author     : maste
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>-Historial de compras</title>
+        <title>Historial de compras</title>
         <link rel="stylesheet" href="estilos.css">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Historial de <%=%></h1>
     </body>
 </html>

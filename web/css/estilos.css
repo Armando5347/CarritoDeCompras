@@ -10,5 +10,14 @@ and open the template in the editor.
 
 
 .boton_link{
-    
+    border-radius: 20px;
+}
+a{
+    text-decoration: none;
+}
+li{
+    float: left;
+}
+.carrito{
+    list-style-image: url(../img/)
 }

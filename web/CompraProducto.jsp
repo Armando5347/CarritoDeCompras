@@ -16,6 +16,6 @@
         <link rel="stylesheet" href="estilos.css">
     </head>
     <body>
-        <h1>>%=nombre_papel%></h1>
+        <h1><%=nombre_papel%></h1>
     </body>
 </html>
