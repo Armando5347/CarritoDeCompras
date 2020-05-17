@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>-Historial de compras</title>
+        <link rel="stylesheet" href="estilos.css">
     </head>
     <body>
         <h1>Hello World!</h1>

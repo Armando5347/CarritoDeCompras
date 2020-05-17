@@ -1,6 +1,6 @@
 <%-- 
-    Document   : GuardarProductos
-    Created on : 16/05/2020, 07:34:38 PM
+    Document   : formaDePago
+    Created on : 16/05/2020, 08:57:07 PM
     Author     : maste
 --%>
 
@@ -9,8 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Administrador -Registrar Productos-</title>
-        <link rel="stylesheet" href="estilos.css">
+        <title>Ingrese su forma de pago.</title>
     </head>
     <body>
         <h1>Hello World!</h1>
