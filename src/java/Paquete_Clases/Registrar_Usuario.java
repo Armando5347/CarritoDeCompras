@@ -35,6 +35,7 @@ public class Registrar_Usuario extends HttpServlet {
             String nombre = request.getParameter("nombre");
             String appat = request.getParameter("apmat");
             String apmat = request.getParameter("appat");
+            String fecha_nac = request.getParameter("fecha_nac");
             String username = request.getParameter("username");
             String password = request.getParameter("pass");
             String ver_pass = request.getParameter("ver_pass");

@@ -6,7 +6,8 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
-        <% ArrayList<Object> lista_Productos = new ArrayList<>();%>
+        <% ArrayList<Object> lista_Productos = new ArrayList<>();
+        %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -17,7 +18,9 @@
     <body>
         <header><h1>¡Papelilandia!</h1>
             <div class="img_izquierda"><img src="img/papel.png"></div>
-            <% HttpSession sesion_actual = request.getSession();
+            <% 
+                
+                HttpSession sesion_actual = request.getSession();
                 if(sesion_actual==null){ %>
             <div class="derecho"><a href="InicioSesion.jsp">Iniciar Sesion.</a> || <a href="Registro.jsp">Registrarse.</a></div>
             <%}else{%>
