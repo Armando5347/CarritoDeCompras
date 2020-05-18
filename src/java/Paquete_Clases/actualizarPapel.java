@@ -11,13 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author maste
  */
-public class IniciarSesion extends HttpServlet {
+public class actualizarPapel extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,27 +29,24 @@ public class IniciarSesion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        double new_precio = Double.parseDouble(request.getParameter("precio"));
+        int new_stock = Integer.parseInt(request.getParameter("stock"));
+        int id_maestra = 0;
+        if(DPapel.actualizarPrecioStock(new_precio, new_stock, id_maestra)){
+            response.sendRedirect("index.jsp");
+        }else{
+            response.sendRedirect("error.jsp");
+        }
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("username");
-            String password = request.getParameter("pass");
-            Cliente something = Cliente.IniciarSesionCliente(username, password); //Esto se reemplazara por el usuario
-            if(something != null){
-                HttpSession sesion_usuario_creada = request.getSession(true);
-                sesion_usuario_creada.setAttribute("usuario", something);
-                response.sendRedirect("index.jsp");
-            }else{
-                response.sendError(0, "No se encotntro ese cliente");
-                response.sendRedirect("InicioSesion.jsp");
-            }
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet IniciarSesion</title>");            
+            out.println("<title>Servlet actualizarPapel</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet IniciarSesion at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet actualizarPapel at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -92,7 +88,7 @@ public class IniciarSesion extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Servlet encargado de iniciar la sesión del usuario";
+        return "Short description";
     }// </editor-fold>
 
 }
