@@ -11,18 +11,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de usuarios</title>
         <link rel="stylesheet" href="estilos.css">
+        <script src="js/validarEntradas.js"></script>
     </head>
     <body>
         <h1>Ingrese los datos solicitados para crear su cuenta</h1>
         <form name="formulario_Registro" method="post" action="Registrar_Usuario">
             <div class="">
                 Nombre: <input type="text" name="nombre">
-                Apellido paterno: <input type="text" name="appat">
-                Apellido Materno: <input type="text" name="apmat">
-                <!--Lo que sea para la direccion-->
-                Usuario: <input type="text" name="username">
-                Contraseña: <input type="password" name="pass">
-                Verificar Contraseña: <input type="password" name="ver_pass">
+                Apellido paterno: <input type="text" name="appat" onclick="return noTecleesNumeros(ev)" onchange="return noNumeros(this)">
+                Apellido Materno: <input type="text" name="apmat" onclick="return noTecleesNumeros(ev)" onchange="return noNumeros(this)">
+                Fecha nacimiento: <input type="date" name="fecha_nac">
+                Telefono fijo: <input type="number" name="telefono">
+                Telefono Celular: <input type="number" name="celular">
+                Usuario: <input type="text" name="username"  onchange="return soloNumerosYletras()(this)">
+                Contraseña: <input type="password" name="pass" onchange="return soloNumerosYletras()(this)">
+                Verificar Contraseña: <input type="password" name="ver_pass" onchange="return soloNumerosYletras()(this)">
             </div>
             <div class="">
                 <input type="submit" value="Registrarse"> | | <input type="reset" value="Vaciar Campos.">

@@ -32,12 +32,20 @@ public class Registrar_Usuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             boolean registro_exitoso = false;
-            String nombre = request.getParameter("nombre");
-            String appat = request.getParameter("apmat");
-            String apmat = request.getParameter("appat");
-            String username = request.getParameter("username");
-            String password = request.getParameter("pass");
-            String ver_pass = request.getParameter("ver_pass");
+            String nombre_cli = request.getParameter("nombre");
+            String appat_cli = request.getParameter("apmat");
+            String apmat_cli = request.getParameter("appat");
+            String fecha_nac_cli = request.getParameter("fecha_nac");
+            //Meter validación de fecha//
+            int telefono_cli = Integer.parseInt(request.getParameter("telefono"));
+            int celular_cli = Integer.parseInt(request.getParameter("celular"));
+            String username_cli = request.getParameter("username");
+            String password_cli = request.getParameter("pass");
+            String ver_pass_cli = request.getParameter("ver_pass");
+            
+            Cliente nuevo_cliente = new Cliente(telefono_cli, celular_cli, nombre_cli, appat_cli, apmat_cli, username_cli, ver_pass_cli,fecha_nac_cli
+            );
+            registro_exitoso = Cliente.registrarCliente(nuevo_cliente); 
             if(registro_exitoso){
                 response.sendRedirect("IniciarSesion.jsp");
             }else{

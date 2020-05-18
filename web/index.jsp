@@ -6,7 +6,8 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
-<!--<% /*ArrayList<Object> lista_Productos = new ArrayList<>();*/%>-->
+<% ArrayList<Object> lista_Productos = new ArrayList<>();
+%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -25,7 +26,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
         <link rel="stylesheet" href="css/estilos.css">
     </head>
-    <body>
+    <body> 
         <div class="container-fluid">
             <header class="d-flex">
                 <div class="col-md-8 d-flex centrar">

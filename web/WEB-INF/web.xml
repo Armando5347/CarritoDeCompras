@@ -12,6 +12,10 @@
         <servlet-name>Cerrar_Sesion</servlet-name>
         <servlet-class>Paquete_Clases.Cerrar_Sesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>actualizarPapel</servlet-name>
+        <servlet-class>Paquete_Clases.actualizarPapel</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>Cerrar_Sesion</servlet-name>
         <url-pattern>/Cerrar_Sesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>actualizarPapel</servlet-name>
+        <url-pattern>/actualizarPapel</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -13,5 +13,10 @@
     </head>
     <body>
         <h1>Actualizar Prdocuto</h1>
+        <form method="post" action="actualizarPapel">
+            Precio: <input name="precio" type="number"> <br>
+            Stock:  <input name="stock" type="number">  <br>
+            <input type="submit" value="Actualizar">
+        </form>
     </body>
 </html>

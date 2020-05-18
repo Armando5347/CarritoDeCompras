@@ -17,7 +17,18 @@ function noNumeros(input){
     sirve = !patron_numeritos.test(contenido);
     return sirve;
 }
-
+function soloNumerosYletras(input){
+    var contenido = input.value;
+    var sirve = false;
+    sirve = verMaximoCaracteres(contenido, 20); //20 de manera temporal
+    if(!sirve){
+        alert("Campo "+contenido.name+" es deamsiado largo");
+        return false;
+    }
+    var patron_numeritos = /[A-Za-z0-9]/;
+    sirve = patron_numeritos.test(contenido);
+    return sirve;
+}
 function noTecleesNumeros(e){
    var teclado = (document.all)?e.keyCode:e.which;
     if(teclado == 8) return true;
