@@ -15,17 +15,19 @@ import java.sql.SQLException;
 
 public class Conexion {
     public static Connection obtenerConexion() throws SQLException{
+        Connection con = null;
         try {
-            Connection con = null;
                     Class.forName("com.mysql.jdbc.Driver");
                     String user = "root";
                     String password = "n0m3l0";
-                    String url = "jdbc:mysql://localhost:3306/carritoDeCompras";
+                    String url = "jdbc:mysql://localhost:3306/mydb";
                     con =DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException ex) {
             System.out.println("Falló la clase");
+        }finally{
+            return con;
         }
-        return con;    
+            
         
     }
 }

@@ -21,6 +21,8 @@
                 Apellido paterno: <input type="text" name="appat" onclick="return noTecleesNumeros(ev)" onchange="return noNumeros(this)">
                 Apellido Materno: <input type="text" name="apmat" onclick="return noTecleesNumeros(ev)" onchange="return noNumeros(this)">
                 Fecha nacimiento: <input type="date" name="fecha_nac">
+                Telefono fijo: <input type="number" name="telefono">
+                Telefono Celular: <input type="number" name="celular">
                 Usuario: <input type="text" name="username"  onchange="return soloNumerosYletras()(this)">
                 Contraseña: <input type="password" name="pass" onchange="return soloNumerosYletras()(this)">
                 Verificar Contraseña: <input type="password" name="ver_pass" onchange="return soloNumerosYletras()(this)">
