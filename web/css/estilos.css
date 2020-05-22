@@ -8,16 +8,45 @@ and open the template in the editor.
     Author     : maste
 */
 
-
+*{
+    padding: 0;
+    margin: 0;
+}
 .boton_link{
     border-radius: 20px;
 }
 a{
     text-decoration: none;
+    padding: 0;
 }
 li{
     float: left;
 }
 .carrito{
     list-style-image: url(../img/)
+}
+
+img{
+    max-width: 100%;
+}
+
+main{
+    margin-top: 0.5rem;
+}
+
+.centrar-derecha{
+    justify-content:flex-end;
+    align-items: center;
+}
+
+.centrar{
+    align-items: center;
+}
+
+nav ul li{
+    margin-right: 0.2rem;
+}
+
+a .col-md-2 img{
+    padding-left: 0;
 }
