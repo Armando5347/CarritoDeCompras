@@ -16,6 +16,10 @@
         <servlet-name>actualizarPapel</servlet-name>
         <servlet-class>Paquete_Clases.actualizarPapel</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>registrarPapel</servlet-name>
+        <servlet-class>Paquete_Clases.registrarPapel</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>actualizarPapel</servlet-name>
         <url-pattern>/actualizarPapel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registrarPapel</servlet-name>
+        <url-pattern>/registrarPapel</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
