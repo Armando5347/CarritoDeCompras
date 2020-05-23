@@ -42,6 +42,7 @@ public class Entradas {
         
         Pattern patronStrings = Pattern.compile("/[A-Za-z]/");
         
+        
         Matcher esStr = patronStrings.matcher(stringTestear);
         
         return esStr.matches();

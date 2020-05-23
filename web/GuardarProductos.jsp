@@ -21,31 +21,26 @@
                 <div>Stock inicial: <input type="number" name="stock" onchange="return quieroNumerosEntero(this)" onclick="return quieroTeclearNumerosEnteros(ev)"></div>
                 <div>Precio: <input type="number" name="precio" onchange="return quieroNumeros(this, true)" onclick="return quieroTeclearNumeros(ev, true)"></div>
                 
-                <div>Material: <select  onchange="return noDefault(this)">
+                <div>Material: <select name="material" onchange="return noDefault(this)">
                         <option>Seleccione alguna opción</option>
                         <option>Celulosa</option>
                         <option>Fibra vegetal</option>
                     </select>
                 </div>
-                <div>Aroma: <select  onchange="return noDefault(this)">
+                <div>Aroma: <select name="aroma" onchange="return noDefault(this)">
                         <option>Seleccione alguna opción</option>
                         <option>Sin Aroma</option>
                         <option>Almendras</option>
                     </select>
                 </div>
-                <div>Tipo de papel: <select  onchange="return noDefault(this)">
+                <div>Tipo de papel: <select name="tipo_papel" onchange="return noDefault(this)">
                         <option>Seleccione alguna opción</option>
                         <option>Residencial o Convencional</option>
                         <option>Institucional o Industrial</option>
                     </select>
                 </div>
-                <div>Material: <select  onchange="return noDefault(this)">
-                        <option>Seleccione alguna opción</option>
-                        <option>Celulosa</option>
-                        <option>Fibra vegetal</option>
-                    </select>
-                </div>
-                <div>Hojas por rollo: <select  onchange="return noDefault(this)">
+                
+                <div>Hojas por rollo: <select name="hojasRollo" onchange="return noDefault(this)">
                         <option>Seleccione alguna opción</option>
                         <option>180</option>
                         <option>200</option>
@@ -55,23 +50,23 @@
                         <option>500</option>
                     </select>
                 </div>
-                <div>Tipo de hojas: <select  onchange="return noDefault(this)">
+                <div>Tipo de hojas: <select name="tipo_hojas" onchange="return noDefault(this)">
                         <option>Seleccione alguna opción</option>
                         <option>Hoja doble</option>
                         <option>Hoja triple</option>
                         <option>Hoja cuadruple</option>
                     </select>
                 </div>
-                <div>Rolos incluidos: <select  onchange="return noDefault(this)">
+                <div>Rolos incluidos: <select name="rollos" onchange="return noDefault(this)">
                         <option>Seleccione alguna opción</option>
-                        <option>4 Rollos</option>
-                        <option>12 Rollos</option>
-                        <option>18 Rollos</option>
-                        <option>24 Rollos</option>
-                        <option>32 Rollos</option>
+                        <option>4</option>
+                        <option>12</option>
+                        <option>18</option>
+                        <option>24</option>
+                        <option>32</option>
                     </select>
                 </div>
-                <div><input type="submit" value="Registrar pdocuto"> || <input type="reset" value="Reiniciar campos"></div>
+                <div><input type="submit" value="Registrar producto"> || <input type="reset" value="Reiniciar campos"></div>
             </form>
         </main>
         <footer>
