@@ -27,13 +27,13 @@ public class Empleado {
         Empleado em = null;
         try{
             con =Conexion.obtenerConexion();
-            q = "SELECT * FROM Empleado WHERE username_emp = ?  AND pasword_emp = ?";
+            q = "SELECT * FROM Empleado WHERE username_em = ?  AND pasword_em = ?";
             pr = con.prepareStatement(q);
             pr.setString(1, username);
             pr.setString(2, password);
             rs = pr.executeQuery();
             while(rs.next()){
-                em = new Empleado(rs.getInt("id_emp"), rs.getInt("cel_emp"), rs.getInt("tel_emp"), rs.getInt("CPrivilegioEmpleado"), rs.getString("nombre_emp"), rs.getString("appat_emp"), rs.getString("apmat_emp"), rs.getString("fecha_nacimiento_emp"), rs.getString("username_emp"), rs.getString("password_emp"));
+                em = new Empleado(rs.getInt("id_em"), rs.getInt("cel_em"), rs.getInt("tel_em"), rs.getInt("CPrivilegioEmpleado_ID"), rs.getString("nombre_em"), rs.getString("Appat_em"), rs.getString("Apmat_em"), rs.getString("fecha_nacimiento_em"), rs.getString("username_emp"), rs.getString("password_emp"));
             break;
            }
         }catch(SQLException ex){
@@ -56,7 +56,7 @@ public class Empleado {
         boolean procesoAdecuado = false;
         try{
             con = Conexion.obtenerConexion();
-            q = "DELETE FROM Empleado WHERE id_emp = ?";
+            q = "DELETE FROM Empleado WHERE ID_em = ?";
             pr = con.prepareStatement(q);
             if(pr.executeUpdate()==1){
                 procesoAdecuado = true;

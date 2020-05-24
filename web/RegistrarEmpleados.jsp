@@ -5,7 +5,7 @@
     Author     : maste
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8" session="true" language="java"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -18,7 +18,14 @@
         <h1>Registrar nuevo empleado</h1>
         <main>
             <form method="post" action="Registrar_empleado">
-                <div>Nombre:<input name="nombre" type="text" onclick="return quieroTeclearNumeros(this, false)"></div>
+                <div>Nombre: <input name="nombre" type="text" onchange="return quieroNumeros(this, false)" onclick="return quieroTeclearNumeros(this, false)"></div>
+                <div>Apelido Paterno: <input name="appat" type="text" onchange="return quieroNumeros(this, false)" onclick="return quieroTeclearNumeros(this, false)"></div>
+                <div>Apelido Materno: <input name="apmat" type="text" onchange="return quieroNumeros(this, false)" onclick="return quieroTeclearNumeros(this, false)"></div>
+                <div>Apelido Materno: <input name="apmat" type="text" onchange="return quieroNumeros(this, false)" onclick="return quieroTeclearNumeros(this, false)"></div>
+                
+                
+                
+            
             </form>
         </main>
     </body>

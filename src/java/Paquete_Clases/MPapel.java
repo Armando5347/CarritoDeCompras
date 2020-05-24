@@ -21,6 +21,8 @@ public class MPapel {
     
     
     private int id_MPapel;
+    
+    private String nombre_pap;
 
     public int getId_MPapel() {
         return id_MPapel;
@@ -32,8 +34,10 @@ public class MPapel {
     
     MPapel(){}
     
+    
+    
     public static ArrayList<MPapel> obtenerTodosPapeles(){
-        ArrayList <MPapel> listaPapeles = new ArrayList<MPapel>();
+        ArrayList <MPapel> listaPapeles = new ArrayList<>();
         try{
             con = Conexion.obtenerConexion();
             //Para esto sería buenp un procedimiento almacenado
@@ -58,6 +62,14 @@ public class MPapel {
             }
         }
         return listaPapeles;
+    }
+
+    public String getNombre_pap() {
+        return nombre_pap;
+    }
+
+    public void setNombre_pap(String nombre_pap) {
+        this.nombre_pap = nombre_pap;
     }
     
     

@@ -7,6 +7,7 @@ package Paquete_Clases;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -80,12 +81,18 @@ public class registrarPapel extends HttpServlet {
                 break;
             }
         }
-        id_aroma = CatalogosPapel.devolverIdParaGuardar(aroma, "CAroma");
-        id_material = CatalogosPapel.devolverIdParaGuardar(material, "CMaterial");
-        id_tipo_pal = CatalogosPapel.devolverIdParaGuardar(tipo_papel, "CTipos");
-        id_tipo_hojas = CatalogosPapel.devolverIdParaGuardar(tipo_hojas, "CTipoHojas");
-        id_hojas_rollos = CatalogosPapel.devolverIdParaGuardar(String.valueOf(hojasXrollos), "CHojasxrollo");
-        id_rollos = CatalogosPapel.devolverIdParaGuardar(String.valueOf(rollos), "C");
+        ArrayList valores = new ArrayList(material, tipo_papel, aroma, rollos, tipo_hojas, hojasxrollo);
+        int []lista_ides = new int[6];
+        lista_ides = CatalogosPapel.obtenerIdes(valores);
+        if(lista_ides==null){
+        response.sendRedirect("erros.jsp");
+        }
+        id_material = lista_ides[0];
+        id_tipo_pal = lista_ides[1];
+        id_aroma = lista_ides[2];
+        id_rollos = lista_ides[3];
+        id_tipo_hojas = lista_ides[4];
+        id_hojas_rollos = lista_ides[5];
         
         DPapel dpap = new DPapel(stock_ini, id_aroma, id_material, id_tipo_pal, id_rollos, id_tipo_hojas, id_hojas_rollos, id_rollos);
         
