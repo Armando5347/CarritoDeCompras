@@ -34,14 +34,19 @@ public class IniciarSesion extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String username = request.getParameter("username");
             String password = request.getParameter("pass");
-            Cliente something = Cliente.IniciarSesionCliente(username, password); //Esto se reemplazara por el usuario
-            if(something != null){
+            Cliente posible_cliente = Cliente.IniciarSesionCliente(username, password); //Esto se reemplazara por el usuario
+            if( posible_cliente != null){
                 HttpSession sesion_usuario_creada = request.getSession(true);
-                sesion_usuario_creada.setAttribute("usuario", something);
+                sesion_usuario_creada.setAttribute("usuario", posible_cliente);
+                sesion_usuario_creada.setAttribute("tipo_user", "cliente");
                 response.sendRedirect("index.jsp");
-            }else{
-                response.sendError(0, "No se encotntro ese cliente");
-                response.sendRedirect("InicioSesion.jsp");
+            }
+            Empleado posible_empleado = Empleado.IniciarSesionEmpleado(username, password);
+            if (posible_empleado != null){
+                HttpSession sesion_usuario_creada = request.getSession(true);
+                sesion_usuario_creada.setAttribute("usuario", posible_empleado);
+                sesion_usuario_creada.setAttribute("tipo_user", "empleado");
+                response.sendRedirect("index.jsp");
             }
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");

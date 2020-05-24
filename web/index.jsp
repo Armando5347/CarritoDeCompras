@@ -3,10 +3,11 @@
     Created on : 16/05/2020, 07:37:48 PM
     Author     : maste
 --%>
-
+<%@page import="Paquete_Clases.MPapel"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
-<% ArrayList<Object> lista_Productos = new ArrayList<>();
+<% 
+    ArrayList<MPapel> lista_Productos = new ArrayList<MPapel>();
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -34,7 +35,8 @@
                     <h1>¡Papelilandia!</h1>
                 </div>
                 <% HttpSession sesion_actual = request.getSession();
-                if(sesion_actual==null){ %>
+                    String tipo_user = (String)sesion_actual.getAttribute("tipo_user");
+                if(tipo_user == null){ %>
                 <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
                     <a href="InicioSesion.jsp" class="btn btn-primary btn-sm">Iniciar Sesión</a>
                     <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
