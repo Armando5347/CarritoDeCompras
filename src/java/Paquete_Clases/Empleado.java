@@ -13,17 +13,17 @@ import java.sql.*;
 
 public class Empleado {
     
-    public Connection con;
-    public PreparedStatement pr;
-    public ResultSet rs;
-    public String q;
+    public static Connection con;
+    public static PreparedStatement pr;
+    public static ResultSet rs;
+    public static String q;
     
     private int id_emp, cel_emp, tel_emp, Cprivilegio_id;
     private String nombre_emp, appat_emp, apmat_emp, fecha_nac_emp, username_emo, password_emp;
 
     public Empleado(){}
 
-    public Empleado IniciarSesionEmpleado(String username, String password){
+    public static Empleado IniciarSesionEmpleado(String username, String password){
         Empleado em = null;
         try{
             con =Conexion.obtenerConexion();
@@ -51,6 +51,32 @@ public class Empleado {
 
     return em;
    }
+    
+    public static boolean borrarEmpleado (int id_empleado){
+        boolean procesoAdecuado = false;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "DELETE FROM Empleado WHERE id_emp = ?";
+            pr = con.prepareStatement(q);
+            if(pr.executeUpdate()==1){
+                procesoAdecuado = true;
+            }else{
+                procesoAdecuado = false;
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();;
+            procesoAdecuado = false;
+        }finally{
+            q = "";
+            try{
+                pr.close();
+                con.close();
+            }catch(SQLException e){
+                
+            }
+        }
+        return procesoAdecuado;
+    }
 
     public Empleado(int cel_emp, int tel_emp, int Cprivilegio_id, String nombre_emp, String appat_emp, String apmat_emp, String fecha_nac_emp, String username_emo, String password_emp) {
         this.cel_emp = cel_emp;
@@ -103,6 +129,7 @@ public class Empleado {
     }
 
     public int getCprivilegio_id() {
+       
         return Cprivilegio_id;
     }
 
@@ -160,4 +187,4 @@ public class Empleado {
     
     
 }
-}
+

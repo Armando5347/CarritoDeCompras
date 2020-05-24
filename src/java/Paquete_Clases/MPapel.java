@@ -9,7 +9,16 @@ package Paquete_Clases;
  *
  * @author maste
  */
+import java.sql.*;
+import java.util.ArrayList;
+
 public class MPapel {
+    
+    static Connection con;
+    static PreparedStatement ps;
+    static String q ;
+    static ResultSet rs;
+    
     
     private int id_MPapel;
 
@@ -22,6 +31,34 @@ public class MPapel {
     }
     
     MPapel(){}
+    
+    public static ArrayList<MPapel> obtenerTodosPapeles(){
+        ArrayList <MPapel> listaPapeles = new ArrayList<MPapel>();
+        try{
+            con = Conexion.obtenerConexion();
+            //Para esto sería buenp un procedimiento almacenado
+            q = "nombre_procedimiento_amcacendado";
+            ps = con.prepareStatement(q);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                MPapel papelito = new MPapel();
+                listaPapeles.add(papelito);
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            listaPapeles = null;
+        }finally{
+            q = "";
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            }catch(SQLException e){
+                
+            }
+        }
+        return listaPapeles;
+    }
     
     
     
