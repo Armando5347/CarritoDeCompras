@@ -20,8 +20,16 @@ public class DPapel {
     static PreparedStatement ps = null;
     static String q = "";
     
-    private int id_papel, stock, cAroma_id, cMaterial_id, cCaracteristicas_id, cTipos_id, mPapel_Id, cTipo_hojas_id, cHojasxRollo_id;
+    private int id_papel, stock, cAroma_id, cMaterial_id, cRollosIncluidos_id, cTipos_id, mPapel_Id, cTipo_hojas_id, cHojasxRollo_id;
     private double precio; 
+
+    public int getcRollosIncluidos_id() {
+        return cRollosIncluidos_id;
+    }
+
+    public void setcRollosIncluidos_id(int cRollosIncluidos_id) {
+        this.cRollosIncluidos_id = cRollosIncluidos_id;
+    }
     
     DPapel(){}
     
@@ -29,7 +37,7 @@ public class DPapel {
         boolean guardado = false;
         try{
             con = Conexion.obtenerConexion();
-            q = "INSERT INTO DPapel (Precio, Stock, CMaterial_ID, CTipos_ID, MPapel_ID, Aromas_ID, CCaracteristicas_ID, CTipo_Hojas_ID, CHojasxRollo_ID";
+            q = "INSERT INTO DPapel (Precio, Stock, CMaterial_ID, CTipos_ID, MPapel_ID, Aromas_ID, CRollosIncluidos_ID, CTipo_Hojas_ID, CHojasxRollo_ID";
             q += " VALUES(?,?,?,?,?,?,?,?,?)";
             ps = con.prepareStatement(q);
             ps.setDouble(1, new_detallePapel.getPrecio());
@@ -38,7 +46,7 @@ public class DPapel {
             ps.setInt(4, new_detallePapel.getcTipos_id());
             ps.setInt(5, new_detallePapel.getmPapel_Id());
             ps.setInt(6, new_detallePapel.getcAroma_id());
-            ps.setInt(7, new_detallePapel.getcCaracteristicas_id());
+            ps.setInt(7, new_detallePapel.getcRollosIncluidos_id());
             ps.setInt(8, new_detallePapel.getcTipo_hojas_id());
             ps.setInt(9, new_detallePapel.getcHojasxRollo_id());
             if(ps.executeUpdate()==1){
@@ -71,7 +79,7 @@ public class DPapel {
                 rs.getInt("ID"),
                 rs.getInt("Stock"),
                 rs.getInt("Aromas_ID"),
-                rs.getInt("CCaracteristicas_ID"),
+                rs.getInt("CRollosIncuidos_ID"),
                 rs.getInt("CTipos_ID"),
                 rs.getInt("MPapel_ID"),        
                 rs.getInt("CTipo_hojas_ID"),
@@ -159,11 +167,11 @@ public class DPapel {
     }
     
 
-    public DPapel(int id_papel, int stock, int cAroma_id, int cCaracteristicas_id, int cTipos_id, int mPapel_Id, int cTipo_hojas_id, int cHojasxRollo_id, double precio) {
+    public DPapel(int id_papel, int stock, int cAroma_id, int cRollosIncluidos_id, int cTipos_id, int mPapel_Id, int cTipo_hojas_id, int cHojasxRollo_id, double precio) {
         this.id_papel = id_papel;
         this.stock = stock;
         this.cAroma_id = cAroma_id;
-        this.cCaracteristicas_id = cCaracteristicas_id;
+        this.cRollosIncluidos_id = cRollosIncluidos_id;
         this.cTipos_id = cTipos_id;
         this.mPapel_Id = mPapel_Id;
         this.cTipo_hojas_id = cTipo_hojas_id;
@@ -173,10 +181,10 @@ public class DPapel {
     
     
 
-    public DPapel(int stock, int cAroma_id, int cCaracteristicas_id, int cTipos_id, int mPapel_Id, int cTipo_hojas_id, int cHojasxRollo_id, double precio) {
+    public DPapel(int stock, int cAroma_id, int cRollosIncluidos_id, int cTipos_id, int mPapel_Id, int cTipo_hojas_id, int cHojasxRollo_id, double precio) {
         this.stock = stock;
         this.cAroma_id = cAroma_id;
-        this.cCaracteristicas_id = cCaracteristicas_id;
+        this.cRollosIncluidos_id = cRollosIncluidos_id;
         this.cTipos_id = cTipos_id;
         this.mPapel_Id = mPapel_Id;
         this.cTipo_hojas_id = cTipo_hojas_id;
@@ -208,13 +216,6 @@ public class DPapel {
         this.cAroma_id = cAroma_id;
     }
 
-    public int getcCaracteristicas_id() {
-        return cCaracteristicas_id;
-    }
-
-    public void setcCaracteristicas_id(int cCaracteristicas_id) {
-        this.cCaracteristicas_id = cCaracteristicas_id;
-    }
 
     public int getcTipos_id() {
         return cTipos_id;
