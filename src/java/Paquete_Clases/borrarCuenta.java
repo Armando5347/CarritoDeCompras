@@ -11,13 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author maste
  */
-public class IniciarSesion extends HttpServlet {
+public class borrarCuenta extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,37 +31,14 @@ public class IniciarSesion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("nombre_usuario");
-            String password = request.getParameter("pass");
-            if((!Entradas.formatoUser(password))||(!Entradas.formatoUser(username))) response.sendRedirect("error.jsp");
-            
-            Cliente posible_cliente = Cliente.IniciarSesionCliente(username, password); //Esto se reemplazara por el usuario
-            System.out.println(posible_cliente);
-            if(posible_cliente != null){
-                HttpSession sesion_usuario_creada = request.getSession(true);
-                sesion_usuario_creada.setAttribute("usuario", posible_cliente);
-                sesion_usuario_creada.setAttribute("tipo_user", "cliente");
-                response.sendRedirect("index.jsp");
-            }
-            Empleado posible_empleado = Empleado.IniciarSesionEmpleado(username, password);
-            if (posible_empleado != null){
-                HttpSession sesion_usuario_creada = request.getSession(true);
-                sesion_usuario_creada.setAttribute("usuario", posible_empleado);
-                sesion_usuario_creada.setAttribute("tipo_user", "empleado");
-                response.sendRedirect("index.jsp");
-            }
-            
-            if(posible_cliente == null && posible_empleado == null){
-                response.sendRedirect("InicioSesion.jsp");
-            }
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet IniciarSesion</title>");            
+            out.println("<title>Servlet borrarCuenta</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1> Un saludo </h1>");
+            out.println("<h1>Servlet borrarCuenta at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -104,7 +80,7 @@ public class IniciarSesion extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Servlet encargado de iniciar la sesión del usuario";
+        return "Short description";
     }// </editor-fold>
 
 }

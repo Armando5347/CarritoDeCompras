@@ -59,4 +59,22 @@ public class Entradas {
         return estaCorrecto.matches();
         
     }
+
+    static boolean esNumeroEntero(long long_testear) {
+        if(long_testear < 0) return false;
+        
+        String expresion_regular = "/[0-9]/";
+        String intConvertido = String.valueOf(long_testear);
+        Pattern patron_enteros = Pattern.compile(expresion_regular);
+        Matcher esEntero = patron_enteros.matcher(intConvertido);
+        
+        return esEntero.matches();
+    }
+    static boolean esDate(String fecha_nac_testear) {
+        if(fecha_nac_testear.isEmpty()) return false;
+        
+        Pattern patron_fecha = Pattern.compile("/^[0-9]{4}\\-[0-9]{1,2}\\-[0-9]{1,2}$/");
+        Matcher esDate = patron_fecha.matcher(fecha_nac_testear);
+        return esDate.matches();
+    }
 }

@@ -78,3 +78,21 @@ function noDefault(select){
 function verMaximoCaracteres(contenido, maxCaracteres){
     return (contenido.length>maxCaracteres)?false:true;
 }
+
+function switchCampos(id_camp){
+    var campoActivar = document.getElementById(id_camp);
+    campoActivar.readOnly = campoActivar.readOnly==false ? true : false;
+    if(campoActivar.readOnly==false){
+        campoActivar.style.border = "5px solid black";
+        campoActivar.style.background = "beige";
+    }else{
+        campoActivar.style.border = "2px solid black";
+        campoActivar.style.background = "white";
+    }
+}
+
+function esFecha(input){
+    var patron_fechas = /^[0-9]{4}\\-[0-9]{1,2}\\-[0-9]{1,2}$/;
+    
+    return patron_fechas.test(input.value);
+}

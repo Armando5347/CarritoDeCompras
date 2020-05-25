@@ -63,7 +63,39 @@ public class Cliente {
         this.pass_cli = pass_cli;
     }
 
-    
+    public static boolean actualizarCliente(Cliente nuevos_parametros){
+        boolean actualizacionRealizada = false;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "UPDATE CLIENTE SET tel_cli = ?, cel_cli = ?, nombre_cli = ?, appat_cli = ?, apmat_cli = ?, username_cli = ?, password_cli = ? WHERE ID_cli = ?";
+            ps = con.prepareStatement(q);
+            ps.setInt(1, nuevos_parametros.getTel_cli());
+            ps.setLong(2, nuevos_parametros.getCel_cli());
+            ps.setString(3, nuevos_parametros.getNombre_cli());
+            ps.setString(4, nuevos_parametros.getAppat_cli());
+            ps.setString(5, nuevos_parametros.getApmat_cli());
+            ps.setString(6, nuevos_parametros.getUsername_cli());
+            ps.setString(7, nuevos_parametros.getPass_cli());
+            ps.setInt(8, nuevos_parametros.getId_cli());
+            if(ps.executeUpdate()==1){
+                actualizacionRealizada = false;
+            }
+        }catch(SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error SQL");
+            actualizacionRealizada = false;
+        }finally{
+            try{
+                q= "";
+                rs.close();
+                ps.close();
+                con.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return actualizacionRealizada;
+    }
     
     public static Cliente IniciarSesionCliente(String username, String password){
         Cliente cliente_a_ingresar = null;

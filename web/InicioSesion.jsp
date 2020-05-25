@@ -13,10 +13,11 @@
         <link rel="stylesheet" href="estilos.css">
     </head>
     <body>
+        <script src="js/validarEntradas.js"></script>
         <!--Nav o lo que se va a poner que aún no c-->
         <form name="formularioInicioSesión" method="post" action="IniciarSesion">
-            Nombre de Usuario: <input type="text" name="nombre_usuario"> <br>
-            Contraseña: <input type="password" name="pass">
+            Nombre de Usuario: <input type="text" name="nombre_usuario" onchange="return soloNumerosYletras(this)"> <br>
+            Contraseña: <input type="password" name="pass" onchange="return soloNumerosYletras(this)">
             <input type="submit" value="Iniciar Sesión"><input type="reset" value="Vaciar Campos">
             <br>
             Si no tiene una cuenta, cree una pulsando <a href="Registro.jsp"><strong>aquí</strong></a>

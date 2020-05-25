@@ -31,7 +31,8 @@ public class Registrar_Usuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            boolean registro_exitoso = false;
+            boolean registro_exitosoCli = false;
+            boolean validaciones[] = new boolean[10];
             String nombre_cli = request.getParameter("nombre");
             String appat_cli = request.getParameter("apmat");
             String apmat_cli = request.getParameter("appat");
@@ -42,11 +43,28 @@ public class Registrar_Usuario extends HttpServlet {
             String username_cli = request.getParameter("username");
             String password_cli = request.getParameter("pass");
             String ver_pass_cli = request.getParameter("ver_pass");
+            //Ahova validamos
+            validaciones[0] = Entradas.esString(nombre_cli);
+            validaciones[1] = Entradas.esString(appat_cli);
+            validaciones[2] = Entradas.esString(apmat_cli);
+            validaciones[3] = Entradas.esDate(fecha_nac_cli);
+            validaciones[4] = Entradas.esNumeroEntero(telefono_cli);
+            validaciones[5] = Entradas.esNumeroEntero(celular_cli);
+            validaciones[6] = Entradas.formatoUser(username_cli);
+            validaciones[7] = Entradas.formatoUser(password_cli);
+            validaciones[8] = Entradas.formatoUser(ver_pass_cli);
+            if(password_cli.equals(ver_pass_cli)) validaciones[10]= true;
+            else validaciones[10] = false;
             
-            Cliente nuevo_cliente = new Cliente(telefono_cli, celular_cli, nombre_cli, appat_cli, apmat_cli, username_cli, ver_pass_cli,fecha_nac_cli
-            );
-            registro_exitoso = Cliente.registrarCliente(nuevo_cliente); 
-            if(registro_exitoso){
+            for(boolean bool: validaciones){
+                if(!bool){
+                    response.sendRedirect("registro.jsp");
+                }
+            }
+            
+            Cliente nuevo_cliente = new Cliente(telefono_cli, celular_cli, nombre_cli, appat_cli, apmat_cli, username_cli, password_cli,fecha_nac_cli);
+            registro_exitosoCli = Cliente.registrarCliente(nuevo_cliente); 
+            if(registro_exitosoCli){
                 response.sendRedirect("InicioSesion.jsp");
             }else{
                 response.sendRedirect("Registro.jsp");
