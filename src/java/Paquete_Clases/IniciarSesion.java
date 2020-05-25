@@ -32,10 +32,11 @@ public class IniciarSesion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("username");
+            String username = request.getParameter("nombre_usuario");
             String password = request.getParameter("pass");
             Cliente posible_cliente = Cliente.IniciarSesionCliente(username, password); //Esto se reemplazara por el usuario
-            if( posible_cliente != null){
+            System.out.println(posible_cliente);
+            if(posible_cliente != null){
                 HttpSession sesion_usuario_creada = request.getSession(true);
                 sesion_usuario_creada.setAttribute("usuario", posible_cliente);
                 sesion_usuario_creada.setAttribute("tipo_user", "cliente");
@@ -48,6 +49,10 @@ public class IniciarSesion extends HttpServlet {
                 sesion_usuario_creada.setAttribute("tipo_user", "empleado");
                 response.sendRedirect("index.jsp");
             }
+            
+            if(posible_cliente == null && posible_empleado == null){
+                response.sendRedirect("InicioSesion.jsp");
+            }
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -55,7 +60,7 @@ public class IniciarSesion extends HttpServlet {
             out.println("<title>Servlet IniciarSesion</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet IniciarSesion at " + request.getContextPath() + "</h1>");
+            out.println("<h1> Un saludo </h1>");
             out.println("</body>");
             out.println("</html>");
         }

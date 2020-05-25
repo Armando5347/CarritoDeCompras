@@ -38,7 +38,7 @@ public class Registrar_Usuario extends HttpServlet {
             String fecha_nac_cli = request.getParameter("fecha_nac");
             //Meter validación de fecha//
             int telefono_cli = Integer.parseInt(request.getParameter("telefono"));
-            long celular_cli = Long.getLong(request.getParameter("celular"));
+            long celular_cli = Long.parseLong(request.getParameter("celular"));
             String username_cli = request.getParameter("username");
             String password_cli = request.getParameter("pass");
             String ver_pass_cli = request.getParameter("ver_pass");
@@ -47,7 +47,7 @@ public class Registrar_Usuario extends HttpServlet {
             );
             registro_exitoso = Cliente.registrarCliente(nuevo_cliente); 
             if(registro_exitoso){
-                response.sendRedirect("IniciarSesion.jsp");
+                response.sendRedirect("InicioSesion.jsp");
             }else{
                 response.sendRedirect("Registro.jsp");
             }

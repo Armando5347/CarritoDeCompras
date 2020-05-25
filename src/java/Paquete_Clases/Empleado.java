@@ -18,7 +18,8 @@ public class Empleado {
     public static ResultSet rs;
     public static String q;
     
-    private int id_emp, cel_emp, tel_emp, Cprivilegio_id;
+    private int id_emp, tel_emp, Cprivilegio_id;
+    private long cel_emp;
     private String nombre_emp, appat_emp, apmat_emp, fecha_nac_emp, username_emo, password_emp;
 
     public Empleado(){}
@@ -33,9 +34,19 @@ public class Empleado {
             pr.setString(2, password);
             rs = pr.executeQuery();
             while(rs.next()){
-                em = new Empleado(rs.getInt("id_em"), rs.getInt("cel_em"), rs.getInt("tel_em"), rs.getInt("CPrivilegioEmpleado_ID"), rs.getString("nombre_em"), rs.getString("Appat_em"), rs.getString("Apmat_em"), rs.getString("fecha_nacimiento_em"), rs.getString("username_emp"), rs.getString("password_emp"));
-            break;
-           }
+                em = new Empleado(
+                        rs.getInt("id_em"), 
+                        rs.getLong("cel_em"), 
+                        rs.getInt("tel_em"), 
+                        rs.getInt("CPrivilegioEmpleado_ID"), 
+                        rs.getString("nombre_em"), 
+                        rs.getString("Appat_em"), 
+                        rs.getString("Apmat_em"), 
+                        rs.getString("fecha_nacimiento_em"), 
+                        rs.getString("username_emp"), 
+                        rs.getString("password_emp"));
+                break;
+            }
         }catch(SQLException ex){
             em = null;
         }finally{
@@ -45,7 +56,10 @@ public class Empleado {
                 pr.close();
                 con.close();
             }catch(SQLException e){
-                
+                e.printStackTrace();
+                e.getMessage();
+            }catch(NullPointerException en){
+                System.out.println("Error al cerrar o no hay algo qeu cerrar por parte de Empleado");
             }
         }
 
@@ -78,7 +92,7 @@ public class Empleado {
         return procesoAdecuado;
     }
 
-    public Empleado(int cel_emp, int tel_emp, int Cprivilegio_id, String nombre_emp, String appat_emp, String apmat_emp, String fecha_nac_emp, String username_emo, String password_emp) {
+    public Empleado(long cel_emp, int tel_emp, int Cprivilegio_id, String nombre_emp, String appat_emp, String apmat_emp, String fecha_nac_emp, String username_emo, String password_emp) {
         this.cel_emp = cel_emp;
         this.tel_emp = tel_emp;
         this.Cprivilegio_id = Cprivilegio_id;
@@ -90,7 +104,7 @@ public class Empleado {
         this.password_emp = password_emp;
     }
 
-    public Empleado(int id_emp, int cel_emp, int tel_emp, int Cprivilegio_id, String nombre_emp, String appat_emp, String apmat_emp, String fecha_nac_emp, String username_emo, String password_emp) {
+    public Empleado(int id_emp, long cel_emp, int tel_emp, int Cprivilegio_id, String nombre_emp, String appat_emp, String apmat_emp, String fecha_nac_emp, String username_emp, String password_emp) {
         this.id_emp = id_emp;
         this.cel_emp = cel_emp;
         this.tel_emp = tel_emp;
@@ -99,7 +113,7 @@ public class Empleado {
         this.appat_emp = appat_emp;
         this.apmat_emp = apmat_emp;
         this.fecha_nac_emp = fecha_nac_emp;
-        this.username_emo = username_emo;
+        this.username_emo = username_emp;
         this.password_emp = password_emp;
     }
     
@@ -112,11 +126,11 @@ public class Empleado {
         this.id_emp = id_emp;
     }
 
-    public int getCel_emp() {
+    public long getCel_emp() {
         return cel_emp;
     }
 
-    public void setCel_emp(int cel_emp) {
+    public void setCel_emp(long cel_emp) {
         this.cel_emp = cel_emp;
     }
 
