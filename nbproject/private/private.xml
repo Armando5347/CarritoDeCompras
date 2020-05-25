@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/Paquete_Clases/CatalogosPapel.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>31</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/DPapel.java</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/CatalogosPapel.java</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/GuardarProductos.jsp</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/MPapel.java</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/registrarPapel.java</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/index.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/editarUser.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/Entradas.java</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/borrarCuenta.java</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/actualizar_cliente.java</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/Empleado.java</file>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/js/validarEntradas.js</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/InicioSesion.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/Cliente.java</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/RegistrarEmpleados.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/IniciarSesion.java</file>
         </group>
     </open-files>
 </project-private>

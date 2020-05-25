@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +32,51 @@ public class borrarCuenta extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            boolean proceso_adecuado = false;
+            HttpSession  sesion_usuario_a_borrar = request.getSession();
+            String tipo_usuario = (String)sesion_usuario_a_borrar.getAttribute("tipo_usuario");
+            if (tipo_usuario == null || tipo_usuario.isEmpty()) response.sendRedirect("error.jsp");
+            else if(tipo_usuario.equals("cliente")){
+                Cliente cli = (Cliente)sesion_usuario_a_borrar.getAttribute("usuario");
+                int id = cli.getId_cli();
+                proceso_adecuado = Cliente.BorrarCliente(id);
+                if(proceso_adecuado){
+                    sesion_usuario_a_borrar.setAttribute("usuario", null);
+                    sesion_usuario_a_borrar.setAttribute("tipo_user", null);
+                    sesion_usuario_a_borrar.invalidate();
+                    response.sendRedirect("IncioSesion.jsp");
+                }else{
+                    response.sendRedirect("error.jsp");
+                }
+            }
+            else if(tipo_usuario.equals("empleado")){
+                Empleado emp = (Empleado)sesion_usuario_a_borrar.getAttribute("usuario");
+                int id_priv = emp.getCprivilegio_id();
+                if((id_priv != 2) && (id_priv != 3)) response.sendRedirect("error.jsp");
+                int id_borrar = 0;
+                try{
+                    id_borrar = Integer.parseInt(request.getParameter("id")); //Aquí esto por que el gerente v apulsar un link para hacer estó
+                }catch(Exception e){
+                    response.sendRedirect("error.jsp");
+                }
+                proceso_adecuado = Empleado.despedirEmpleado(id_borrar);
+                if(proceso_adecuado){
+                    sesion_usuario_a_borrar.setAttribute("usuario", null);
+                    sesion_usuario_a_borrar.setAttribute("tipo_user", null);
+                    sesion_usuario_a_borrar.invalidate();
+                    response.sendRedirect("ListaEmpleado.jsp");
+                }else{
+                    response.sendRedirect("error.jsp");
+                }
+            }
+            if(proceso_adecuado){
+                sesion_usuario_a_borrar.setAttribute("usuario", null);
+                sesion_usuario_a_borrar.setAttribute("tipo_user", null);
+                sesion_usuario_a_borrar.invalidate();
+                response.sendRedirect("IncioSesion.jsp");
+            }else{
+                response.sendRedirect("error.jsp");
+            }
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

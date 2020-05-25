@@ -22,6 +22,42 @@ public class Empleado {
     private long cel_emp;
     private String nombre_emp, appat_emp, apmat_emp, fecha_nac_emp, username_emo, password_emp;
 
+    public static boolean contratarEmpleado(Empleado nuevo_em){
+        boolean contratado = false;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "INSERT INTO Empleado (nombre_em, appat_em, apmat_em, fecha_nacimiento_em, tel_em, cel_em, CPrivilegioEmpleado_ID, username_em, password_em)"+
+                    "VALUES (?,?,?,?,?,?,?,?,?)";
+            pr = con.prepareStatement(q);
+            pr.setString(1,nuevo_em.getNombre_emp());
+            pr.setString(2,nuevo_em.getAppat_emp());
+            pr.setString(3,nuevo_em.getApmat_emp());
+            pr.setString(4,nuevo_em.getFecha_nac_emp());
+            pr.setInt(5,nuevo_em.getTel_emp());
+            pr.setLong(6,nuevo_em.getCel_emp());
+            pr.setInt(7,nuevo_em.getCprivilegio_id());
+            pr.setString(8,nuevo_em.getUsername_emo());
+            pr.setString(9,nuevo_em.getPassword_emp());
+            if(pr.executeUpdate()==1){
+                contratado = true;
+            }
+        }catch(SQLException ex){
+            contratado = false;
+        }finally{
+            q = "";
+            try{
+                pr.close();
+                con.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+                e.getMessage();
+            }catch(NullPointerException en){
+                System.out.println("Error al cerrar o no hay algo que cerrar por parte de Empleado");
+            }
+        }
+        return contratado;
+    }
+    
     public static boolean actualizarEmpleado(Empleado con_nuevos_datos) {
         boolean actualizacion = false;
         try{
@@ -132,31 +168,7 @@ public class Empleado {
     return em;
    }
     
-    public static boolean borrarEmpleado (int id_empleado){
-        boolean procesoAdecuado = false;
-        try{
-            con = Conexion.obtenerConexion();
-            q = "DELETE FROM Empleado WHERE ID_em = ?";
-            pr = con.prepareStatement(q);
-            if(pr.executeUpdate()==1){
-                procesoAdecuado = true;
-            }else{
-                procesoAdecuado = false;
-            }
-        }catch(SQLException ex){
-            ex.printStackTrace();;
-            procesoAdecuado = false;
-        }finally{
-            q = "";
-            try{
-                pr.close();
-                con.close();
-            }catch(SQLException e){
-                
-            }
-        }
-        return procesoAdecuado;
-    }
+   
 
     public Empleado(long cel_emp, int tel_emp, int Cprivilegio_id, String nombre_emp, String appat_emp, String apmat_emp, String fecha_nac_emp, String username_emo, String password_emp) {
         this.cel_emp = cel_emp;

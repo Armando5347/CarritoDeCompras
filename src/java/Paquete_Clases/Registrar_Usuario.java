@@ -32,28 +32,49 @@ public class Registrar_Usuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             boolean registro_exitosoCli = false;
+            boolean esEmpleado = false;
+            String privilegio = "";
+            try{
+                privilegio = request.getParameter("puesto");
+                if(privilegio.isEmpty()||privilegio.equalsIgnoreCase("Puestos a seleccionar")){
+                    esEmpleado = false;
+                }else{
+                    esEmpleado = true;
+                }
+            }catch(NullPointerException noEsta){
+                esEmpleado = false;
+            }
             boolean validaciones[] = new boolean[10];
-            String nombre_cli = request.getParameter("nombre");
-            String appat_cli = request.getParameter("apmat");
-            String apmat_cli = request.getParameter("appat");
-            String fecha_nac_cli = request.getParameter("fecha_nac");
-            //Meter validación de fecha//
-            int telefono_cli = Integer.parseInt(request.getParameter("telefono"));
-            long celular_cli = Long.parseLong(request.getParameter("celular"));
-            String username_cli = request.getParameter("username");
-            String password_cli = request.getParameter("pass");
-            String ver_pass_cli = request.getParameter("ver_pass");
+            String nombre = request.getParameter("nombre");
+            String appat = request.getParameter("apmat");
+            String apmat = request.getParameter("appat");
+            String fecha_nac = request.getParameter("fecha_nac");
+            int telefono = 0;
+            long celular = 0;
+            try{
+                telefono = Integer.parseInt(request.getParameter("telefono"));
+            }catch(Exception e){
+                validaciones[4] = false;
+            }
+            try{
+                celular = Long.parseLong(request.getParameter("celular"));
+            }catch(Exception e){
+                validaciones[5] = false;
+            }
+            String username = request.getParameter("username");
+            String password = request.getParameter("pass");
+            String ver_pass = request.getParameter("ver_pass");
             //Ahova validamos
-            validaciones[0] = Entradas.esString(nombre_cli);
-            validaciones[1] = Entradas.esString(appat_cli);
-            validaciones[2] = Entradas.esString(apmat_cli);
-            validaciones[3] = Entradas.esDate(fecha_nac_cli);
-            validaciones[4] = Entradas.esNumeroEntero(telefono_cli);
-            validaciones[5] = Entradas.esNumeroEntero(celular_cli);
-            validaciones[6] = Entradas.formatoUser(username_cli);
-            validaciones[7] = Entradas.formatoUser(password_cli);
-            validaciones[8] = Entradas.formatoUser(ver_pass_cli);
-            if(password_cli.equals(ver_pass_cli)) validaciones[10]= true;
+            validaciones[0] = Entradas.esString(nombre);
+            validaciones[1] = Entradas.esString(appat);
+            validaciones[2] = Entradas.esString(apmat);
+            validaciones[3] = Entradas.esDate(fecha_nac);
+            validaciones[4] = Entradas.esNumeroEntero(telefono);
+            validaciones[5] = Entradas.esNumeroEntero(celular);
+            validaciones[6] = Entradas.formatoUser(username);
+            validaciones[7] = Entradas.formatoUser(password);
+            validaciones[8] = Entradas.formatoUser(ver_pass);
+            if(password.equals(ver_pass)) validaciones[10]= true;
             else validaciones[10] = false;
             
             for(boolean bool: validaciones){
@@ -61,8 +82,28 @@ public class Registrar_Usuario extends HttpServlet {
                     response.sendRedirect("registro.jsp");
                 }
             }
-            
-            Cliente nuevo_cliente = new Cliente(telefono_cli, celular_cli, nombre_cli, appat_cli, apmat_cli, username_cli, password_cli,fecha_nac_cli);
+            if(esEmpleado){
+                int priv = 0;
+                switch(privilegio){
+                    case "Empleado":
+                        priv = 1;
+                        break;
+                    case "Gerente":
+                        priv = 2;
+                        break;
+                    case "Admin":
+                        priv = 3;
+                        break;
+                }
+                Empleado newEmp = new Empleado(celular, telefono, priv, nombre, appat, apmat, fecha_nac, username, password);
+                registro_exitosoCli = Empleado.contratarEmpleado(newEmp);
+                if(registro_exitosoCli){
+                response.sendRedirect("InicioSesion.jsp");
+            }else{
+                response.sendRedirect("RegistrarEmpleados.jsp");
+            }
+            }
+            Cliente nuevo_cliente = new Cliente(telefono, celular, nombre, appat, apmat, username, password,fecha_nac);
             registro_exitosoCli = Cliente.registrarCliente(nuevo_cliente); 
             if(registro_exitosoCli){
                 response.sendRedirect("InicioSesion.jsp");
