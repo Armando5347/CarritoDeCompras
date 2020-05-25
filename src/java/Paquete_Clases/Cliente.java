@@ -67,16 +67,17 @@ public class Cliente {
         boolean actualizacionRealizada = false;
         try{
             con = Conexion.obtenerConexion();
-            q = "UPDATE CLIENTE SET tel_cli = ?, cel_cli = ?, nombre_cli = ?, appat_cli = ?, apmat_cli = ?, username_cli = ?, password_cli = ? WHERE ID_cli = ?";
+            q = "UPDATE CLIENTE SET tel_cli = ?, cel_cli = ?, nombre_cli = ?, appat_cli = ?, apmat_cli = ?, fecha_nacimiento_cli = ?,username_cli = ?, password_cli = ? WHERE ID_cli = ?";
             ps = con.prepareStatement(q);
             ps.setInt(1, nuevos_parametros.getTel_cli());
             ps.setLong(2, nuevos_parametros.getCel_cli());
             ps.setString(3, nuevos_parametros.getNombre_cli());
             ps.setString(4, nuevos_parametros.getAppat_cli());
             ps.setString(5, nuevos_parametros.getApmat_cli());
-            ps.setString(6, nuevos_parametros.getUsername_cli());
-            ps.setString(7, nuevos_parametros.getPass_cli());
-            ps.setInt(8, nuevos_parametros.getId_cli());
+            ps.setString(6, nuevos_parametros.getFecha_nacimiento_cli());
+            ps.setString(7, nuevos_parametros.getUsername_cli());
+            ps.setString(8, nuevos_parametros.getPass_cli());
+            ps.setInt(9, nuevos_parametros.getId_cli());
             if(ps.executeUpdate()==1){
                 actualizacionRealizada = false;
             }
@@ -95,6 +96,35 @@ public class Cliente {
             }
         }
         return actualizacionRealizada;
+    }
+    
+    public static boolean BorrarCliente(int id_cli){
+        
+        boolean cliente_borrado = false;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "DELETE FROM Cliente WHERE ID_cli = ?";
+            ps = con.prepareStatement(q);
+            ps.setInt(1,id_cli);
+            if (ps.executeUpdate()==1){
+                cliente_borrado = true;
+            }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error SQL");
+            cliente_borrado = false;
+        }finally{
+            try{
+                q="";
+                ps.close();
+                con.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }catch(NullPointerException en){
+                System.out.println("Error al cerrar o no hay algo qeu cerrar por parte del Cliente");
+            }
+        }
+        return cliente_borrado;
     }
     
     public static Cliente IniciarSesionCliente(String username, String password){

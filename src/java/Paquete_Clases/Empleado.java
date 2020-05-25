@@ -22,6 +22,72 @@ public class Empleado {
     private long cel_emp;
     private String nombre_emp, appat_emp, apmat_emp, fecha_nac_emp, username_emo, password_emp;
 
+    public static boolean actualizarEmpleado(Empleado con_nuevos_datos) {
+        boolean actualizacion = false;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "UPDATE CLIENTE SET tel_em = ?, cel_em = ?, CPrivilegioEmpleado_ID = ?, nombre_em = ?, appat_em = ?, apmat_em = ?, fecha_nacimiento_em, username_em = ?, password_em = ? WHERE ID_em = ?";
+            pr = con.prepareStatement(q);
+            pr.setInt(1, con_nuevos_datos.getTel_emp());
+            pr.setLong(2, con_nuevos_datos.getCel_emp());
+            pr.setInt(3, con_nuevos_datos.getCprivilegio_id());
+            pr.setString(4, con_nuevos_datos.getNombre_emp());
+            pr.setString(5, con_nuevos_datos.getAppat_emp());
+            pr.setString(6, con_nuevos_datos.getAppat_emp());
+            pr.setString(7, con_nuevos_datos.getFecha_nac_emp());
+            pr.setString(8, con_nuevos_datos.getUsername_emo());
+            pr.setString(9, con_nuevos_datos.getPassword_emp());
+            pr.setInt(10, con_nuevos_datos.getId_emp());
+            if(pr.executeUpdate()==1){
+                actualizacion = true;
+            }
+        }catch(SQLException ex){
+            actualizacion = false;
+        }finally{
+            q = "";
+            try{
+                pr.close();
+                con.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+                e.getMessage();
+            }catch(NullPointerException en){
+                System.out.println("Error al cerrar o no hay algo qeu cerrar por parte de Empleado");
+            }
+        }
+        return actualizacion;
+    }
+    
+    public static boolean despedirEmpleado(int id_em){
+        boolean borro_adecuado = false;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "DELETE FROM Empleado WHERE ID_em = ?";
+            pr = con.prepareStatement(q);
+            pr.setInt(1, id_em);
+            if(pr.executeUpdate()==1){
+                borro_adecuado = true;
+            }
+        }catch(SQLException ex){
+            borro_adecuado = false;
+        }finally{
+            q = "";
+            try{
+                pr.close();
+                con.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+                e.getMessage();
+            }catch(NullPointerException en){
+                System.out.println("Error al cerrar o no hay algo qeu cerrar por parte de Empleado");
+            }
+        }
+        return borro_adecuado;
+    
+    }
+    
+    
+
     public Empleado(){}
 
     public static Empleado IniciarSesionEmpleado(String username, String password){
