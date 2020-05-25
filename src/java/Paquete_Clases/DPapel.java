@@ -83,10 +83,11 @@ public class DPapel {
             rs = ps.executeQuery();
             while(rs.next()){
                 DPapel papel = new DPapel(
-                rs.getInt("ID"),
+                rs.getInt("ID_dp"),
                 rs.getInt("Stock"),
+                rs.getInt("CMaterial_ID"),
                 rs.getInt("Aromas_ID"),
-                rs.getInt("CRollosIncuidos_ID"),
+                rs.getInt("CRollosIncluidos_ID"),
                 rs.getInt("CTipos_ID"),       
                 rs.getInt("CTipo_hojas_ID"),
                 rs.getInt("CHojasxRollo_ID"),
@@ -118,10 +119,11 @@ public class DPapel {
             rs = ps.executeQuery();
             while(rs.next()){
                 detalleMostrar = new DPapel(
-                rs.getInt("ID"),
+                rs.getInt("ID_dp"),
                 rs.getInt("Stock"),
+                rs.getInt("CMaterial_ID"),
                 rs.getInt("Aromas_ID"),
-                rs.getInt("CRollosIncuidos_ID"),
+                rs.getInt("CRollosIncluidos_ID"),
                 rs.getInt("CTipos_ID"),       
                 rs.getInt("CTipo_hojas_ID"),
                 rs.getInt("CHojasxRollo_ID"),
@@ -172,9 +174,10 @@ public class DPapel {
      }
     
 
-    public DPapel(int id_papel, int stock, int cAroma_id, int cRollosIncluidos_id, int cTipos_id, int cTipo_hojas_id, int cHojasxRollo_id, double precio) {
+    public DPapel(int id_papel, int stock, int cMaterial_id, int cAroma_id, int cRollosIncluidos_id, int cTipos_id, int cTipo_hojas_id, int cHojasxRollo_id, double precio) {
         this.id_papel = id_papel;
         this.stock = stock;
+        this.cMaterial_id = cMaterial_id;
         this.cAroma_id = cAroma_id;
         this.cRollosIncluidos_id = cRollosIncluidos_id;
         this.cTipos_id = cTipos_id;
@@ -185,8 +188,9 @@ public class DPapel {
     
     
 
-    public DPapel(int stock, int cAroma_id, int cRollosIncluidos_id, int cTipos_id, int cTipo_hojas_id, int cHojasxRollo_id, double precio) {
+    public DPapel(int stock, int cMaterial_id, int cAroma_id, int cRollosIncluidos_id, int cTipos_id, int cTipo_hojas_id, int cHojasxRollo_id, double precio) {
         this.stock = stock;
+        this.cMaterial_id = cMaterial_id;
         this.cAroma_id = cAroma_id;
         this.cRollosIncluidos_id = cRollosIncluidos_id;
         this.cTipos_id = cTipos_id;

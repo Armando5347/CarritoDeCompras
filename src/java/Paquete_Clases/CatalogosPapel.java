@@ -14,50 +14,50 @@ import java.util.ArrayList;
 
 public class CatalogosPapel {
     
-    /**
-     *
-     * @param ides que son los valores de las ides que se guardan en la tabla de empleado, en el orde de material, tipo, aroma, rollos, tipo_hoja y hojasxrollo
-     * @return valores[], que son las traducciones de los ides de los valores, en el orden de material, tipo, aroma, rollos, tipo_hojas y hojasxrollo
-     */
-    public static ArrayList obtenerValores(int ides[]){
+   
+    public static ArrayList obtenerValores(int id_mat, int id_tip, int id_ar, int id_roll, int id_th,int id_hr){
         ArrayList valores = new ArrayList();
-        if(ides.length!=6){
-            return null; //Ya que no se peude operar con esto
-        }
         Connection con = null;
-        PreparedStatement ps = null;
+        CallableStatement cs = null;
         ResultSet rs = null;
         try{
             con = Conexion.obtenerConexion();
-            String q = "CALL traducirIdesCatalogosCarrito(?,?,?,?,?,?)";
-            ps = con.prepareStatement(q);
-            ps.setInt(1, ides[0]);
-            ps.setInt(2, ides[1]);
-            ps.setInt(3, ides[2]);
-            ps.setInt(4, ides[3]);
-            ps.setInt(5, ides[4]);
-            ps.setInt(6, ides[5]);
-            rs = ps.executeQuery();
-            while(rs.next()){
+            String q = "{CALL traducirIdesCatalogosCarrito(?,?,?,?,?,?)}";
+            cs = con.prepareCall(q);
+            cs.setInt(1, id_mat);
+            cs.setInt(2, id_tip);
+            cs.setInt(3, id_ar);
+            cs.setInt(4, id_roll);
+            cs.setInt(5, id_th);
+            cs.setInt(6, id_hr);
+            rs = cs.executeQuery();
+            if(rs.next()){
                 valores.add(rs.getString("material"));
                 valores.add(rs.getString("Tipos"));
                 valores.add(rs.getString("Aroma"));
                 valores.add(rs.getString("rollos"));
                 valores.add(rs.getString("tipo_hojas"));
                 valores.add(rs.getString("no_hojas"));
+            }
+            else System.out.println("No encontre nada");
+            while(rs.next()){
+                System.out.println("Aquí hay algo:"+ rs.getString("material"));
                 break;
             }
         } catch (SQLException ex) {
+            System.out.println("Nulo por el esecuele");
+            ex.printStackTrace();
             return null;
         }finally{
             try{
                 rs.close();
-                ps.close();
+                cs.close();
                 con.close();
             } catch (SQLException ex) {
                 System.out.println("No se cerraron bien");
             }
         }
+        System.out.println(valores);
         return valores;
     }
     
@@ -67,20 +67,20 @@ public class CatalogosPapel {
             return null;
         }
         Connection con = null;
-        PreparedStatement ps = null;
+        CallableStatement cs = null;
         ResultSet rs = null;
         try{
             con = Conexion.obtenerConexion();
-            String q = "CALL traducirValoresCatalogosCarrito(?,?,?,?,?,?)";
-            ps = con.prepareStatement(q);
-            ps.setString(1, (String)valores.get(0));
-            ps.setString(2, (String)valores.get(1));
-            ps.setString(3, (String)valores.get(2));
-            ps.setInt(4, (int)valores.get(3));
-            ps.setString(5, (String)valores.get(4));
-            ps.setInt(6, (int)valores.get(5));
+            String q = "{CALL traducirValoresCatalogosCarrito(?,?,?,?,?,?)}";
+            cs = con.prepareCall(q);
+            cs.setString(1, (String)valores.get(0));
+            cs.setString(2, (String)valores.get(1));
+            cs.setString(3, (String)valores.get(2));
+            cs.setInt(4, Integer.parseInt((String)valores.get(3)));
+            cs.setString(5, (String)valores.get(4));
+            cs.setInt(6, Integer.parseInt((String)valores.get(5)));
             
-            rs = ps.executeQuery();
+            rs = cs.executeQuery();
             while(rs.next()){
                 ides[0] = rs.getInt(1);
                 ides[1] = rs.getInt(2);
@@ -95,7 +95,7 @@ public class CatalogosPapel {
         }finally{
             try{
                 rs.close();
-                ps.close();
+                cs.close();
                 con.close();
             } catch (SQLException ex) {
                 System.out.println("No se cerraron bien");

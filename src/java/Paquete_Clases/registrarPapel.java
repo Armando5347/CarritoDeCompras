@@ -100,7 +100,7 @@ public class registrarPapel extends HttpServlet {
         id_tipo_hojas = lista_ides[4];
         id_hojas_rollos = lista_ides[5];
         
-        DPapel dpap = new DPapel(stock_ini, id_aroma, id_material, id_tipo_pal, id_rollos, id_tipo_hojas, id_hojas_rollos, id_rollos);
+        DPapel dpap = new DPapel(stock_ini, id_material,  id_aroma, id_rollos, id_tipo_pal,  id_tipo_hojas, id_hojas_rollos, precio);
         
         procesoAdecuado = MPapel.guardarNuevoPapel(nombre_pap, dpap);
         

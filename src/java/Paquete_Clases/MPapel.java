@@ -11,6 +11,8 @@ package Paquete_Clases;
  */
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MPapel {
     
@@ -60,7 +62,8 @@ public class MPapel {
             ps = con.prepareStatement(q);
             rs = ps.executeQuery();
             while(rs.next()){
-                MPapel papelito = new MPapel(rs.getInt("ID_mp"),rs.getInt("id_dp"),rs.getString("Nombre_producto"));
+                MPapel papelito;
+                papelito = new MPapel(rs.getInt("ID_mp"),rs.getInt("id_DPapel"),rs.getString("Nombre_producto"));
                 listaPapeles.add(papelito);
             }
         }catch(SQLException ex){
@@ -84,11 +87,11 @@ public class MPapel {
         try{
             con = Conexion.obtenerConexion();
             //Para esto sería buenp un procedimiento almacenado
-            q = "Select * from DPapel";
+            q = "Select * from MPapel";
             ps = con.prepareStatement(q);
             rs = ps.executeQuery();
             while(rs.next()){
-                papel_mostrar = new MPapel(rs.getInt("ID_mp"),rs.getInt("id_dp"),rs.getString("Nombre_producto"));
+                papel_mostrar = new MPapel(rs.getInt("ID_mp"),rs.getInt("id_DPapel"),rs.getString("Nombre_producto"));
                 break;
             }
         }catch(SQLException ex){
@@ -138,7 +141,27 @@ public class MPapel {
         return guardadoExitoso;
     }
     
-
+    public static boolean borrarPapel(int id_mp_delete){
+        boolean borro = false;
+        try{
+            con = Conexion.obtenerConexion();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            borro = false;
+        }finally{
+            q = "";
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            }catch(SQLException e){
+                
+            }
+        }
+        return borro;
+    }
+    
+    
     public String getNombre_pap() {
         return nombre_pap;
     }

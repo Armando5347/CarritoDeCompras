@@ -18,14 +18,14 @@
         <form name="formulario_Registro" method="post" action="Registrar_Usuario">
             <div class="">
                 Nombre: <input type="text" name="nombre">
-                Apellido paterno: <input type="text" name="appat" onclick="return noTecleesNumeros(ev)" onchange="return noNumeros(this)">
-                Apellido Materno: <input type="text" name="apmat" onclick="return noTecleesNumeros(ev)" onchange="return noNumeros(this)">
+                Apellido paterno: <input type="text" name="appat" onclick="return quieroTeclearNumeros(ev,false)" onchange="return quieroNumeros(this,false)">
+                Apellido Materno: <input type="text" name="apmat" onclick="return quieroTeclearNumeros(ev,false)" onchange="return quieroNumeros(this,false)">
                 Fecha nacimiento: <input type="date" name="fecha_nac">
-                Telefono fijo: <input type="number" name="telefono">
-                Telefono Celular: <input type="number" name="celular">
-                Usuario: <input type="text" name="username"  onchange="return soloNumerosYletras()(this)">
-                Contraseña: <input type="password" name="pass" onchange="return soloNumerosYletras()(this)">
-                Verificar Contraseña: <input type="password" name="ver_pass" onchange="return soloNumerosYletras()(this)">
+                Telefono fijo: <input type="number" name="telefono" onclick="return quieroTeclearNumeros(ev,true)" onchange="return quieroNumeros(this,true)">
+                Telefono Celular: <input type="number" name="celular" onclick="return quieroTeclearNumeros(ev,true)" onchange="return quieroNumeros(this,true)">
+                Usuario: <input type="text" name="username"  onchange="return soloNumerosYletras(this)">
+                Contraseña: <input type="password" name="pass" onchange="return soloNumerosYletras(this)">
+                Verificar Contraseña: <input type="password" name="ver_pass" onchange="return soloNumerosYletras(this)">
             </div>
             <div class="">
                 <input type="submit" value="Registrarse"> | | <input type="reset" value="Vaciar Campos.">

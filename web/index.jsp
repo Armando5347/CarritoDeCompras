@@ -8,8 +8,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
 <% 
-    ArrayList<MPapel> lista_Productos = new ArrayList<>();
-    ArratList<DPapel> detalles_Productos = new ArrayList<>();
+    ArrayList<MPapel> lista_Productos = new ArrayList<MPapel>();
+    ArrayList<DPapel> detalles_Productos = new ArrayList<DPapel>();
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -53,7 +53,7 @@
             <nav>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a href="historial.jsp" class="nav-link">Historial</a>
+                        <a href="Historial.jsp" class="nav-link">Historial</a>
                     </li>
                     <li class="nav-item">
                         <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
@@ -72,9 +72,7 @@
             lista_Productos = MPapel.obtenerPapelesVista();
             detalles_Productos = DPapel.obtenerTodosDetallesPapel();
             //Pos si las dudas
-            if(lista_Productos.size()!=detalles_Productos.size()){
-                response.sendRedirect("error.jsp");
-            }
+            
             //Un for clasico para poder trabajar adecuadamente
         for(int i=0;i<lista_Productos.size();i++){
             MPapel mp = lista_Productos.get(i);
@@ -87,7 +85,7 @@
                 <img src="img/papel.png">
                 <h6><%=mp.getNombre_pap()%></h6>
                 <p><%=dp.getPrecio()%></p>
-                <p><a href="VerDetalldeProdcuto.jsp?id='<%=mp.getId_MPapel()%>'">Ver Producto</a></p>
+                <p><a href="VerDetalleProdcuto.jsp?id=<%=mp.getId_MPapel()%>">Ver Producto</a></p>
             </div>
         </div>
         

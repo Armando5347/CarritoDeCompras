@@ -56,7 +56,7 @@ function quieroTeclearNumeros(e, boolean){
     
 }
 
-function quieroTeclearNumeros(e){
+function quieroTeclearNumerosEnteros(e){
    var teclado = (document.all)?e.keyCode:e.which;
     if(teclado == 8) return true;
     var patron = /[0-9]/;
