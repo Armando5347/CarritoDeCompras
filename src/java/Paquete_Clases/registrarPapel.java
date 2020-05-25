@@ -81,11 +81,17 @@ public class registrarPapel extends HttpServlet {
                 break;
             }
         }
-        ArrayList valores = new ArrayList(material, tipo_papel, aroma, rollos, tipo_hojas, hojasxrollo);
+        ArrayList valores = new ArrayList();
+        valores.add(material);
+        valores.add(tipo_papel);
+        valores.add(aroma);
+        valores.add(rollos);
+        valores.add(tipo_hojas);
+        valores.add(hojasXrollos);
         int []lista_ides = new int[6];
         lista_ides = CatalogosPapel.obtenerIdes(valores);
         if(lista_ides==null){
-        response.sendRedirect("erros.jsp");
+            response.sendRedirect("error.jsp");
         }
         id_material = lista_ides[0];
         id_tipo_pal = lista_ides[1];
@@ -96,6 +102,13 @@ public class registrarPapel extends HttpServlet {
         
         DPapel dpap = new DPapel(stock_ini, id_aroma, id_material, id_tipo_pal, id_rollos, id_tipo_hojas, id_hojas_rollos, id_rollos);
         
+        procesoAdecuado = MPapel.guardarNuevoPapel(nombre_pap, dpap);
+        
+        if(procesoAdecuado){
+            response.sendRedirect("index.jsp");
+        }else{
+            response.sendRedirect("error.jsp");
+        }
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {

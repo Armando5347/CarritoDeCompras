@@ -3,11 +3,13 @@
     Created on : 16/05/2020, 07:37:48 PM
     Author     : maste
 --%>
+<%@page import="Paquete_Clases.DPapel"%>
 <%@page import="Paquete_Clases.MPapel"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
 <% 
-    ArrayList<MPapel> lista_Productos = new ArrayList<MPapel>();
+    ArrayList<MPapel> lista_Productos = new ArrayList<>();
+    ArratList<DPapel> detalles_Productos = new ArrayList<>();
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -65,24 +67,32 @@
             <main class="row container">
         <% 
             /*Tuve que comentar las lineas de codigo por que no podia trabajar
-        for(Object o:lista_Productos){
-            
-        */
+            no hay pex equis de
+            */
+            lista_Productos = MPapel.obtenerPapelesVista();
+            detalles_Productos = DPapel.obtenerTodosDetallesPapel();
+            //Pos si las dudas
+            if(lista_Productos.size()!=detalles_Productos.size()){
+                response.sendRedirect("error.jsp");
+            }
+            //Un for clasico para poder trabajar adecuadamente
+        for(int i=0;i<lista_Productos.size();i++){
+            MPapel mp = lista_Productos.get(i);
+            DPapel dp = detalles_Productos.get(i);
         %>
         <!--Se debe mostrar el nombre, precio-->
         
         <div class="card col-md-2">
             <div class="card-body">
                 <img src="img/papel.png">
-                <h6>Nombre del producto</h6>
-                <p></p>
-                <p></p>
-                <p><a href="VerDetalldeProdcuto.jsp?id=''">Ver Producto</a></p>
+                <h6><%=mp.getNombre_pap()%></h6>
+                <p><%=dp.getPrecio()%></p>
+                <p><a href="VerDetalldeProdcuto.jsp?id='<%=mp.getId_MPapel()%>'">Ver Producto</a></p>
             </div>
         </div>
         
         
-        <%/*}*/%>
+        <%}%>
         </main>
     </body>
 </html>
