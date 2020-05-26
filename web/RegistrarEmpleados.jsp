@@ -1,4 +1,3 @@
-}
 <%-- 
     Document   : RegistrarEmpleados
     Created on : 24/05/2020, 02:42:26 AM
@@ -28,7 +27,7 @@
                 <div>Contraseña: <input type="password" name="pass" onchange="return soloNumerosYletras(this)"></div>
                     <div>Verificar Contraseña: <input type="password" name="ver_pass" onchange="return soloNumerosYletras(this)"></div>
                 
-                <div>Asignar puesto: <select name="puesto">
+                <div>Asignar puesto: <select name="puesto" readOnly="readonly">
                             <option>Puestos a seleccionar<option>
                             <option>Empleado</option>
                             <option>Gerente</option>

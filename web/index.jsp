@@ -3,6 +3,7 @@
     Created on : 16/05/2020, 07:37:48 PM
     Author     : maste
 --%>
+<%@page import="Paquete_Clases.Empleado"%>
 <%@page import="Paquete_Clases.DPapel"%>
 <%@page import="Paquete_Clases.MPapel"%>
 <%@page import="java.util.ArrayList"%>
@@ -43,12 +44,35 @@
                     <a href="InicioSesion.jsp" class="btn btn-primary btn-sm">Iniciar Sesión</a>
                     <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
                 </div>
-                <%}else{%>
+                <%}else if(tipo_user == "cliente"){
+                %>
                 <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
                     <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
                     <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
                 </div>
-                <%}%>
+                <%}else if(tipo_user == "empleado"){
+                int privilegio =((Empleado)sesion_actual.getAttribute("usuario")).getCprivilegio_id();
+                if(privilegio == 1){
+                %>
+                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
+                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
+                    <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
+                </div>
+                <%}else if(privilegio == 2){
+                %>
+                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
+                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
+                    <a href="RegistrarEmpleados.jsp" class="btn btn-primary btn-sm">Registrar nuevo Empleado</a>
+                    <a href="listaEmpleados.jsp" class="btn btn-primary btn-sm">Ver empleados</a>
+                </div>
+                <%}else if(privilegio == 3){
+                %>
+                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
+                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
+                    <a href="RegistrarEmpleados.jsp" class="btn btn-primary btn-sm">Registrar nuevo Empleado</a>
+                    <a href="listaEmpleados.jsp" class="btn btn-primary btn-sm">Ver empleados</a>
+                    <a href="listaClientes.jsp" class="btn btn-primary btn-sm">Ver clientes</a>
+                </div>
             </header>
             <nav>
                 <ul class="nav nav-tabs">

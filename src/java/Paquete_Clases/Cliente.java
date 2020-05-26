@@ -10,6 +10,7 @@ package Paquete_Clases;
  * @author maste
  */
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,6 +49,42 @@ public class Cliente {
             }
             
             return registro;
+        }
+    }
+    
+    public static ArrayList<Cliente> obtenerClientes(){
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        try{
+            con = Conexion.obtenerConexion();
+            q = "SELECT * FROM Cliente";
+            ps = con.prepareStatement(q);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Cliente cli = new Cliente(
+                        rs.getInt("ID_cli"),
+                        rs.getInt("tel_cli"),
+                        rs.getLong("cel_cli"),
+                        rs.getString("nombre_cli"),
+                        rs.getString("appat_cli"),
+                        rs.getString("apmat_cli"),
+                        rs.getString("fecha_nacimiento_cli"),
+                        rs.getString("username_cli"),
+                        rs.getString("password_cli"));
+                clientes.add(cli);
+            }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+            ex.getMessage();
+            clientes = null;
+        }finally{
+            try{
+                con.close();
+                ps.close();
+            } catch (SQLException ex) {
+                ex.getMessage();
+            }
+            
+            return clientes;
         }
     }
 

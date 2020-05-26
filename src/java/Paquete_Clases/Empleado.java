@@ -10,7 +10,7 @@ package Paquete_Clases;
  * @author maste
  */
 import java.sql.*;
-
+import java.util.ArrayList;
 public class Empleado {
     
     public static Connection con;
@@ -22,6 +22,47 @@ public class Empleado {
     private long cel_emp;
     private String nombre_emp, appat_emp, apmat_emp, fecha_nac_emp, username_emo, password_emp;
 
+    public static ArrayList<Empleado> mostrarEmpleados(int id_priv){
+        ArrayList empleados = new ArrayList();
+        if(id_priv == 1) return null;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "SELECT * FORM Empleado where CPrivilegio_Empleado_ID <= ?";
+            pr = con.prepareStatement(q);
+            pr.setInt(1, id_priv);
+            rs = pr.executeQuery();
+            while(rs.next()){
+                Empleado emp = new Empleado(
+                        rs.getInt("ID_em"),
+                        rs.getLong("cel_em"),
+                        rs.getInt("tel_em"),
+                        rs.getInt("CPrivilegio_Empleado_ID"),
+                        rs.getString("nombre_em"),
+                        rs.getString("appat_em"),
+                        rs.getString("apmat_em"),
+                        rs.getString("fecha_nacimiento_em"),
+                        rs.getString("username_em"),
+                        rs.getString("password_em"));
+                empleados.add(emp);
+            }
+        }catch(SQLException ex){
+            empleados = null;
+        }finally{
+            q = "";
+            try{
+                rs.close();
+                pr.close();
+                con.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+                e.getMessage();
+            }catch(NullPointerException en){
+                System.out.println("Error al cerrar o no hay algo que cerrar por parte de Empleado");
+            }
+        }
+        return empleados;
+    }
+    
     public static boolean contratarEmpleado(Empleado nuevo_em){
         boolean contratado = false;
         try{
@@ -193,6 +234,38 @@ public class Empleado {
         this.fecha_nac_emp = fecha_nac_emp;
         this.username_emo = username_emp;
         this.password_emp = password_emp;
+    }
+    
+    public static String traducirIdePriv(int id_traducir){
+        String privilegio = "";
+        try{
+            con = Conexion.obtenerConexion();
+            q = "Select tipo_privilegio FROM CPrivilegio_Empleado WHERE ID = ?";
+            pr = con.prepareStatement(q);
+            pr.setInt(1, id_traducir);
+            rs = pr.executeQuery();
+            while(rs.next()){
+                privilegio = rs.getString("tipo_privilegio");
+                break;
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            privilegio = null;
+        }finally{
+            q = "";
+            try{
+                rs.close();
+                pr.close();
+                con.close();
+            }catch(SQLException e){
+                
+                e.getMessage();
+            }catch(NullPointerException en){
+                System.out.println("Error al cerrar o no hay algo qeu cerrar por parte de Empleado");
+            }
+        }
+
+    return privilegio;
     }
     
     
