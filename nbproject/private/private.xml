@@ -12,14 +12,20 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/CatalogosPapel.java</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/GuardarProductos.jsp</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/editarUser.jsp</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/Entradas.java</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/index.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/DCarritoCompras.java</file>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/listaEmpleados.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/borrarCuenta.java</file>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/Empleado.java</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/actualizar_cliente.java</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/listaProductosAdmin.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/carritoDeCompras.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/listaClientes.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/Cliente.java</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/IniciarSesion.java</file>
+            <file>file:/C:/Users/familia/Desktop/Velox/Trabajo%20final/CarritoDeCompras/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/familia/Desktop/Velox/Trabajo%20final/CarritoDeCompras/src/java/Paquete_Clases/Cerrar_Sesion.java</file>
+            <file>file:/C:/Users/familia/Desktop/Velox/Trabajo%20final/CarritoDeCompras/web/index.jsp</file>
+            <file>file:/C:/Users/familia/Desktop/Velox/Trabajo%20final/CarritoDeCompras/src/java/Paquete_Clases/IniciarSesion.java</file>
+            <file>file:/C:/Users/familia/Desktop/Velox/Trabajo%20final/CarritoDeCompras/src/java/Paquete_Clases/Empleado.java</file>
         </group>
     </open-files>
 </project-private>
