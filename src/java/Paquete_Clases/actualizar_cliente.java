@@ -11,12 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author maste
  */
-public class Registrar_Usuario extends HttpServlet {
+public class actualizar_cliente extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,105 +33,79 @@ public class Registrar_Usuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             boolean progreso_alterado = false;
-            boolean esEmpleado = false;
             String redirect = "";
-            String privilegio = "";
-            try{
-                privilegio = request.getParameter("puesto");
-                if(privilegio.isEmpty()||privilegio.equalsIgnoreCase("Puestos a seleccionar") || privilegio == null){
-                    esEmpleado = false;
-                }else{
-                    esEmpleado = true;
-                }
-            }catch(NullPointerException noEsta){
-                esEmpleado = false;
-            }
-            System.out.println(esEmpleado);
-            boolean validaciones[] = new boolean[10];
+            boolean validaciones[] =  new boolean[8];
             String nombre = request.getParameter("nombre");
-            String appat = request.getParameter("apmat");
-            String apmat = request.getParameter("appat");
-            String fecha_nac = request.getParameter("fecha_nac");
-            int telefono = 0;
-            long celular = 0;
+            String appat = request.getParameter("appat");
+            String apmat = request.getParameter("apmat");
+            String fecha_naci = request.getParameter("fecha_nac");
+            int tel = 0;
+            long cel = 0;
             try{
-                telefono = Integer.parseInt(request.getParameter("telefono"));
+                tel = Integer.parseInt(request.getParameter("tel"));
             }catch(Exception e){
                 validaciones[4] = false;
             }
             try{
-                celular = Long.parseLong(request.getParameter("celular"));
+                 cel = Integer.parseInt(request.getParameter("cel"));
             }catch(Exception e){
                 validaciones[5] = false;
             }
             String username = request.getParameter("username");
-            String password = request.getParameter("pass");
-            String ver_pass = request.getParameter("ver_pass");
-            //Ahova validamos
+            String pass = request.getParameter("pass");
+            
             validaciones[0] = Entradas.esString(nombre);
             validaciones[1] = Entradas.esString(appat);
             validaciones[2] = Entradas.esString(apmat);
-            validaciones[3] = Entradas.esDate(fecha_nac);
-            validaciones[4] = Entradas.esNumeroEntero(telefono);
-            validaciones[5] = Entradas.esNumeroEntero(celular);
+            validaciones[3] = Entradas.esDate(fecha_naci);
+            validaciones[4] = Entradas.esNumeroEntero(tel);
+            validaciones[5] = Entradas.esNumeroEntero(cel);
             validaciones[6] = Entradas.formatoUser(username);
-            validaciones[7] = Entradas.formatoUser(password);
-            validaciones[8] = Entradas.formatoUser(ver_pass);
-            if(password.equals(ver_pass)) validaciones[9]= true;
-            else validaciones[9] = false;
+            validaciones[7] = Entradas.formatoUser(pass);
             int i = 0;
-            for(boolean bool: validaciones){
-                i+=1;
+            for (boolean bool:validaciones){
+                i ++;
                 if(!bool){
-                    System.out.println("Boolean " + i + " " + bool);
+                    System.out.println("Boolean "+i+bool);
+                    redirect = "editarUser.jsp";
                     progreso_alterado = true;
-                    if(esEmpleado){
-                        redirect = "RegistrarEmpleados.jsp";
-                    }else{
-                        redirect = "Registro.jsp";
-                    }
-                    
                 }
             }
             if(!progreso_alterado){
-                if(esEmpleado){
-                    int priv = 0;
-                    switch(privilegio){
-                        case "Empleado":
-                            priv = 1;
-                            break;
-                        case "Gerente":
-                            priv = 2;
-                            break;
-                        case "Admin":
-                            priv = 3;
-                            break;
-                    }
-                    Empleado newEmp = new Empleado(celular, telefono, priv, nombre, appat, apmat, fecha_nac, username, password);
-                    if(Empleado.contratarEmpleado(newEmp)){
-                        redirect = "InicioSesion.jsp";
-                    }else{
-                        redirect = "RegistrarEmpleados.jsp";
-                    }
+                HttpSession sesion_a_cambiar = request.getSession();
+                String tipo_user = (String)sesion_a_cambiar.getAttribute("tipo_user");
+                if(tipo_user.equals("cliente")){
+                   Cliente  cliente_como_estaba = (Cliente)sesion_a_cambiar.getAttribute("usuario");
+                   int id = cliente_como_estaba.getId_cli();
+                   Cliente cliente_alterado = new Cliente(id, tel, cel, nombre, appat, apmat, fecha_naci, username, pass);
+                   if(Cliente.actualizarCliente(cliente_alterado)){
+                       sesion_a_cambiar.setAttribute("usuario", cliente_alterado);
+                       redirect = "editarUser.jsp";
+                   }else{
+                       redirect = "error.jsp";
+                   }
                 }else{
-                    Cliente nuevo_cliente = new Cliente(telefono, celular, nombre, appat, apmat, username, password,fecha_nac);
-                    if(Cliente.registrarCliente(nuevo_cliente) ){
-                        redirect = "InicioSesion.jsp";
-                    }else{
-                        redirect = "Registro.jsp";
-                    }
+                     Empleado empleado_como_estaba = (Empleado)sesion_a_cambiar.getAttribute("usuario");
+                   int id = empleado_como_estaba.getId_emp();
+                   int privilegio = empleado_como_estaba.getCprivilegio_id();
+                   Empleado empleado_alterado = new Empleado(id, cel, tel, privilegio, nombre, appat, apmat, fecha_naci, username, pass);
+                   if(Empleado.actualizarEmpleado(empleado_alterado)){
+                       sesion_a_cambiar.setAttribute("usuario", empleado_alterado);
+                       redirect = "editarUser.jsp";
+                   }else{
+                       redirect = "error.jsp";
+                   }
                 }
             }
             response.sendRedirect(redirect);
-            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Registrar_Usuario</title>");            
+            out.println("<title>Servlet actualizar_cliente</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Registrar_Usuario at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet actualizar_cliente at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

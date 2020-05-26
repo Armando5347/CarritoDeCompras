@@ -11,111 +11,97 @@ package Paquete_Clases;
  */
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CatalogosPapel {
     
-    public static String obtenerValorIdCatalogo(int id_catalogo, String catalogo_buscado){
+   
+    public static ArrayList obtenerValores(int id_mat, int id_tip, int id_ar, int id_roll, int id_th,int id_hr){
+        ArrayList valores = new ArrayList();
         Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        String retorno = "";
-        try{
-            con = Conexion.obtenerConexion();
-            String q = "SELECT * FROM ? WHERE id=?";
-            ps = con.prepareStatement(q);
-            ps.setInt(2, id_catalogo);
-            ps.setString(1, catalogo_buscado);
-            rs = ps.executeQuery();
-            switch(catalogo_buscado){
-                case "CMaterial":
-                    retorno = rs.getString("Material");
-                    break;
-                case "CTipos":
-                    retorno = rs.getString("Tipos");
-                    break;
-                case "CAromas":
-                    retorno = rs.getString("aroma");
-                    break;
-                case "CCaracteristicas":
-                    retorno = rs.getString("caraceristicas");
-                    break;
-                case "CTipo_hojas":
-                    retorno = rs.getString("tipo_hojas");
-                    break;
-                case "CHojasxRollo":
-                    retorno = rs.getString("no_hojas");
-                    break;
-                default:
-                    retorno = "No encontrado";
-                    break;
-            }
-        } catch (SQLException ex) {
-            retorno = "No encontrado";
-        }finally{
-            try{
-                rs.close();
-                ps.close();
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println("No se cerraron bien");
-            }
-        }
-        return retorno;
-    }
-    
-    public static int devolverIdParaGuardar(String valor, String catalogo){
-        int id=0;
-        Connection con = null;
-        PreparedStatement ps = null;
+        CallableStatement cs = null;
         ResultSet rs = null;
         try{
             con = Conexion.obtenerConexion();
-            String q = "SELECT ID FROM ? WHERE id=?";
-            switch(catalogo){
-                case "CMaterial":
-                    q += "Material = ?";
-                    break;
-                case "CTipos":
-                    q += "Tipos = ?";
-                    break;
-                case "CAromas":
-                     q += "aroma = ?";
-                    break;
-                case "CCaracteristicas":
-                     q += "caraceristicas = ?";
-                    break;
-                case "CTipo_hojas":
-                     q += "tipo_hojas = ?";
-                    break;
-                case "CHojasxRollo":
-                     q += "no_hojas = ?";
-                    break;
-                default:
-                    id = 0;
-                    break;
+            String q = "{CALL traducirIdesCatalogosCarrito(?,?,?,?,?,?)}";
+            cs = con.prepareCall(q);
+            cs.setInt(1, id_mat);
+            cs.setInt(2, id_tip);
+            cs.setInt(3, id_ar);
+            cs.setInt(4, id_roll);
+            cs.setInt(5, id_th);
+            cs.setInt(6, id_hr);
+            rs = cs.executeQuery();
+            if(rs.next()){
+                valores.add(rs.getString("material"));
+                valores.add(rs.getString("Tipos"));
+                valores.add(rs.getString("Aroma"));
+                valores.add(rs.getString("rollos"));
+                valores.add(rs.getString("tipo_hojas"));
+                valores.add(rs.getString("no_hojas"));
             }
-            ps = con.prepareStatement(q);
-            ps.setString(1,catalogo);
-            ps.setString(2, valor);
-            rs = ps.executeQuery();
+            else System.out.println("No encontre nada");
             while(rs.next()){
-                id = rs.getInt("ID");
+                System.out.println("Aquí hay algo:"+ rs.getString("material"));
                 break;
             }
         } catch (SQLException ex) {
-            id=0;
+            System.out.println("Nulo por el esecuele");
+            ex.printStackTrace();
+            return null;
         }finally{
             try{
                 rs.close();
-                ps.close();
+                cs.close();
                 con.close();
             } catch (SQLException ex) {
                 System.out.println("No se cerraron bien");
             }
         }
-        return id;
+        System.out.println(valores);
+        return valores;
+    }
+    
+    public static int[] obtenerIdes(ArrayList valores){
+        int ides[] = new int[6];
+        if(valores.size()!=6){
+            return null;
+        }
+        Connection con = null;
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try{
+            con = Conexion.obtenerConexion();
+            String q = "{CALL traducirValoresCatalogosCarrito(?,?,?,?,?,?)}";
+            cs = con.prepareCall(q);
+            cs.setString(1, (String)valores.get(0));
+            cs.setString(2, (String)valores.get(1));
+            cs.setString(3, (String)valores.get(2));
+            cs.setInt(4, Integer.parseInt((String)valores.get(3)));
+            cs.setString(5, (String)valores.get(4));
+            cs.setInt(6, Integer.parseInt((String)valores.get(5)));
+            
+            rs = cs.executeQuery();
+            while(rs.next()){
+                ides[0] = rs.getInt(1);
+                ides[1] = rs.getInt(2);
+                ides[2] = rs.getInt(3);
+                ides[3] = rs.getInt(4);
+                ides[4] = rs.getInt(5);
+                ides[5] = rs.getInt(6);
+                break;
+            }
+        } catch (SQLException ex) {
+            ides=null;
+        }finally{
+            try{
+                rs.close();
+                cs.close();
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println("No se cerraron bien");
+            }
+        }
+        return ides;
     }
     
 }

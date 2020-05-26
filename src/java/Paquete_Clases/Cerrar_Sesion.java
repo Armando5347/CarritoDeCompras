@@ -34,8 +34,11 @@ public class Cerrar_Sesion extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession sesion_a_cerrar = request.getSession();
             sesion_a_cerrar.setAttribute("usuario",null);
+            sesion_a_cerrar.setAttribute("tipo_user",null);
             sesion_a_cerrar.invalidate();
             response.sendRedirect("InicioSesion.jsp");
+            
+            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

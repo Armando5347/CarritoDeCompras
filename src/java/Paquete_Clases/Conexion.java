@@ -20,7 +20,7 @@ public class Conexion {
                     Class.forName("com.mysql.jdbc.Driver");
                     String user = "root";
                     String password = "n0m3l0";
-                    String url = "jdbc:mysql://localhost:3306/mydb";
+                    String url = "jdbc:mysql://localhost:3306/carritocompras";
                     con =DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException ex) {
             System.out.println("Falló la clase");

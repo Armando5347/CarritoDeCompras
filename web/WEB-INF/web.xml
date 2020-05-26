@@ -16,6 +16,18 @@
         <servlet-name>actualizarPapel</servlet-name>
         <servlet-class>Paquete_Clases.actualizarPapel</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>registrarPapel</servlet-name>
+        <servlet-class>Paquete_Clases.registrarPapel</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>actualizar_cliente</servlet-name>
+        <servlet-class>Paquete_Clases.actualizar_cliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>borrarCuenta</servlet-name>
+        <servlet-class>Paquete_Clases.borrarCuenta</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>actualizarPapel</servlet-name>
         <url-pattern>/actualizarPapel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registrarPapel</servlet-name>
+        <url-pattern>/registrarPapel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>actualizar_cliente</servlet-name>
+        <url-pattern>/actualizar_cliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>borrarCuenta</servlet-name>
+        <url-pattern>/borrarCuenta</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
