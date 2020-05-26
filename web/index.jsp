@@ -1,5 +1,5 @@
 <%-- 
-    Document   : nindex
+    Document   : index
     Created on : 16/05/2020, 07:37:48 PM
     Author     : maste
 --%>
@@ -73,6 +73,8 @@
                     <a href="listaEmpleados.jsp" class="btn btn-primary btn-sm">Ver empleados</a>
                     <a href="listaClientes.jsp" class="btn btn-primary btn-sm">Ver clientes</a>
                 </div>
+                <%}
+                }%>
             </header>
             <nav>
                 <ul class="nav nav-tabs">

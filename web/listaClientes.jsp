@@ -32,15 +32,34 @@
     <body>
         <h1>Clientes registrados</h1>
         <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Telefono</th>
+                    <th>Celular</th>
+                    <th>Fecha nacimiento</th>
+                </tr>
+            </thead>
+            <tbody>
             <%
             for(Cliente cli:clientes){
                 %>
-                <div>
-                    <h2><%=cli.getAppat_cli()%> <%=cli.getApmat_cli()%> <%=cli.getNombre_cli()%></h2>
-                    <p></p>
-                    
-                </div> 
+                <tr>
+                    <td><%=cli.getId_cli()%></td>
+                    <td><%=cli.getNombre_cli()%></td>
+                    <td><%=cli.getAppat_cli()%></td>
+                    <td><%=cli.getApmat_cli()%></td>
+                    <td><%=cli.getTel_cli()%></td>
+                    <td><%=cli.getCel_cli()%></td>
+                    <td><%=cli.getFecha_nacimiento_cli()%></td>
+                </tr> 
             <%}%>
+            </tbody>
+        </table>
         </main>
     </body>
 </html>

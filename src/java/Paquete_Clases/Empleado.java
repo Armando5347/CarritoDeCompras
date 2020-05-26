@@ -171,7 +171,7 @@ public class Empleado {
         Empleado em = null;
         try{
             con =Conexion.obtenerConexion();
-            q = "SELECT * FROM Empleado WHERE username_em = ?  AND pasword_em = ?";
+            q = "SELECT * FROM Empleado WHERE username_em = ? AND password_em = ?";
             pr = con.prepareStatement(q);
             pr.setString(1, username);
             pr.setString(2, password);
@@ -181,16 +181,18 @@ public class Empleado {
                         rs.getInt("id_em"), 
                         rs.getLong("cel_em"), 
                         rs.getInt("tel_em"), 
-                        rs.getInt("CPrivilegioEmpleado_ID"), 
+                        rs.getInt("CPrivilegio_Empleado_ID"), 
                         rs.getString("nombre_em"), 
                         rs.getString("Appat_em"), 
                         rs.getString("Apmat_em"), 
                         rs.getString("fecha_nacimiento_em"), 
-                        rs.getString("username_emp"), 
-                        rs.getString("password_emp"));
+                        rs.getString("username_em"), 
+                        rs.getString("password_em"));
                 break;
             }
         }catch(SQLException ex){
+            System.out.println("valio efe");
+            ex.printStackTrace();
             em = null;
         }finally{
             q = "";
@@ -202,7 +204,7 @@ public class Empleado {
                 e.printStackTrace();
                 e.getMessage();
             }catch(NullPointerException en){
-                System.out.println("Error al cerrar o no hay algo qeu cerrar por parte de Empleado");
+                System.out.println("Error al cerrar o no hay algo que cerrar por parte de Empleado");
             }
         }
 

@@ -29,19 +29,43 @@
     <body>
         <h1>Ver empleados</h1>
         <main>
-            <% for(Empleado e:empleados_que_puede_ver){
-                int id_priv_check = e.getCprivilegio_id();
-            String privilegio = Empleado.traducirIdePriv(e.getCprivilegio_id());
-            %>
-            <div>
-                <img src="img/user.png">
-                <h2><%=e.getAppat_emp()%> <%=e.getAppat_emp()%> <%=e.getNombre_emp()%></h2>
-                <p><%=privilegio%></p>
-                <%if(id_priv_check < id_priv ){ %>
-                <p><a href="borrarCuenta?id='<%=id_priv_check%>'">Despedir</a></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido paterno</th>
+                        <th>Apellido materno</th>
+                        <th>Puesto</th>
+                        <th>Telefono</th>
+                        <th>Celular</th>
+                        <th>Fecha nacimiento</th>
+                        <th>Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% for(Empleado e:empleados_que_puede_ver){
+                    int id_priv_check = e.getCprivilegio_id();
+                String privilegio = Empleado.traducirIdePriv(e.getCprivilegio_id());
+                %>
+                <tr>
+                    <td><%=e.getId_emp()%></td>
+                    <td><%=e.getNombre_emp()%></td>
+                    <td><%=e.getAppat_emp()%></td>
+                    <td><%=e.getApmat_emp()%> </td> 
+                    <td><%=privilegio%></td>
+                    <td>Telefono: <%=e.getTel_emp()%></td>
+                    <td>Celular: <%=e.getCel_emp()%></td>
+                    <td>Fecha_nacimiento: </td>
+                    <%if(id_priv_check < id_priv ){ %>
+                    <td><a href="borrarCuenta?id='<%=id_priv_check%>'">Despedir</a></rd>
+                    <%}else{%>
+                    <td>Ninguna</td>
+                    <%}%>
+                </tr>
                 <%}%>
-            </div>
-            <%}%>
+                </tbody>
+            </table>
         </main>
     </body>
 </html>

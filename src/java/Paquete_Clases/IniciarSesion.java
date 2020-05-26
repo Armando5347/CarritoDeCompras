@@ -45,6 +45,7 @@ public class IniciarSesion extends HttpServlet {
                 response.sendRedirect("index.jsp");
             }
             Empleado posible_empleado = Empleado.IniciarSesionEmpleado(username, password);
+            System.out.println(posible_empleado);
             if (posible_empleado != null){
                 HttpSession sesion_usuario_creada = request.getSession(true);
                 sesion_usuario_creada.setAttribute("usuario", posible_empleado);
