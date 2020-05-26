@@ -56,9 +56,9 @@
                     <td><%=privilegio%></td>
                     <td>Telefono: <%=e.getTel_emp()%></td>
                     <td>Celular: <%=e.getCel_emp()%></td>
-                    <td>Fecha_nacimiento: </td>
+                    <td>Fecha_nacimiento: <%=e.getFecha_nac_emp()%> </td>
                     <%if(id_priv_check < id_priv ){ %>
-                    <td><a href="borrarCuenta?id='<%=id_priv_check%>'">Despedir</a></rd>
+                    <td><a href="borrarCuenta?id_b=<%=e.getId_emp()%>">Despedir</a></rd>
                     <%}else{%>
                     <td>Ninguna</td>
                     <%}%>

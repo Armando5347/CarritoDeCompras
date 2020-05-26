@@ -24,10 +24,10 @@
         
         %>
         <div class="">
-            <h2><%=%></h2>
-            <p><%=%></p>
-            <p><%=%></p>
-            <p><a href="AgregarPapelAlCarrito?id='<%=%>'">Agregar al carrito de compras</a> || <a href="ComprarPoducto"></a></p>
+            <h2></h2>
+            <p></p>
+            <p></p>
+            <p><a href="AgregarPapelAlCarrito?id='1'">Agregar al carrito de compras</a> || <a href="ComprarPoducto"></a></p>
         </div>
         
         <%}%>

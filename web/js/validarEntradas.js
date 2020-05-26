@@ -46,8 +46,6 @@ function quieroTeclearNumeros(e, boolean){
     if(teclado == 8) return true;
     var patron = /[0-9]\./;
     var tec=String.fromCharCode(teclado);
-    alert(patron + (patron.test(tec)?" Jala":" No jala"));
-    alert(tec);
     if(boolean){
         return patron.test(tec);    
     }else{
@@ -83,11 +81,10 @@ function switchCampos(id_camp){
     var campoActivar = document.getElementById(id_camp);
     campoActivar.readOnly = campoActivar.readOnly==false ? true : false;
     if(campoActivar.readOnly==false){
-        campoActivar.style.border = "5px solid black";
-        campoActivar.style.background = "beige";
+        campoActivar.style.background = "white";
     }else{
         campoActivar.style.border = "2px solid black";
-        campoActivar.style.background = "white";
+        campoActivar.style.background = "beige";
     }
 }
 

@@ -58,15 +58,15 @@
         <script src="js/validarEntradas.js"></script>
         <h1>Editar cuenta de usuario</h1>
         <main>
-            <form method="post" action="actualizar_Cliente">
-                <div>Nombre: <input type="text" id="nombre" name="nombre" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=nombre%>">  <input type="button" value="Activar Campo" onclick="switchCampos('nombre')"></div>
-                <div>Apellido paterno: <input type="text"  id="appat"  name="appat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=appat%>"> <input type="button" value="Activar Campo" onclick="switchCampos('appat')"></div>
-                <div>Apellido materno: <input type="text" id="apmat" name="apmat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=apmat%>"> <input type="button" value="Activar Campo" onclick="switchCampos('apmat')"></div>
-                <div>Fecha Nacimiento: <input type="text" id="fecha_nac" name="fecha_nac" onchange="return esFecha(this)" value="<%=fecha_n%>"> <input type="button" value="Activar Campo" onclick="switchCampos('fecha_nac')"></div>
-                <div>Telefono fijo: <input type="text" id="apmat" name="apmat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=tel%>"> <input type="button" value="Activar Campo" onclick="switchCampos('apmat')"></div>
-                <div>Número de Celular: <input type="number" id="tel" name="tel" onclick="return quieroTeclearNumeros(this,true)" onchange="return quieroNumeros(this,true)" value="<%=cel%>"> <input type="button" value="Activar Campo" onclick="switchCampos('tel')"></div>
-                <div>Nombre de usuario: <input type="number" id="cel" name="cel" onclick="return quieroTeclearNumeros(this,true)" onchange="return quieroNumeros(this,true)" value="<%=username%>"> <input type="button" value="Activar Campo" onclick="switchCampos('cel')"></div>
-                <div>Contraseña: <input type="password" id="pass" name="pass" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=pass%>"> <input type="button" value="Activar Campo" onclick="switchCampos('pass')"></div>
+            <form method="post" action="actualizar_cliente">
+                <div>Nombre: <input readOnly="true" type="text" id="nombre" name="nombre" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=nombre%>">  <input type="button" value="Activar Campo" onclick="switchCampos('nombre')"></div>
+                <div>Apellido paterno: <input readOnly="true" type="text"  id="appat"  name="appat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=appat%>"> <input type="button" value="Activar Campo" onclick="switchCampos('appat')"></div>
+                <div>Apellido materno: <input readOnly="true" type="text" id="apmat" name="apmat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=apmat%>"> <input type="button" value="Activar Campo" onclick="switchCampos('apmat')"></div>
+                <div>Fecha Nacimiento: <input readOnly="true" type="date" id="fecha_nac" name="fecha_nac" onchange="return esFecha(this)" value="<%=fecha_n%>"> <input type="button" value="Activar Campo" onclick="switchCampos('fecha_nac')"></div>
+                <div>Telefono fijo: <input readOnly="true" type="number" id="tel" name="tel" onclick="return quieroTeclearNumeros(this,true)" onchange="return quieroNumeros(this,true)" value="<%=tel%>"> <input type="button" value="Activar Campo" onclick="switchCampos('tel')"></div>
+                <div>Número de Celular: <input readOnly="true" type="number" id="cel" name="cel" onclick="return quieroTeclearNumeros(this,true)" onchange="return quieroNumeros(this,true)" value="<%=cel%>"> <input type="button" value="Activar Campo" onclick="switchCampos('cel')"></div>
+                <div>Nombre de usuario: <input readOnly="true" type="text" id="username" name="username" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=username%>"> <input type="button" value="Activar Campo" onclick="switchCampos('username')"></div>
+                <div>Contraseña: <input readOnly="true" type="password" id="pass" name="pass" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=pass%>"> <input type="button" value="Activar Campo" onclick="switchCampos('pass')"></div>
                 <div><input type="submit" value="Actualizar Datos"> || <a href="borrarCuenta">Eliminar Cuenta</a></div>
             </form>
         </main>

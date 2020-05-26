@@ -34,28 +34,36 @@ public class IniciarSesion extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String username = request.getParameter("nombre_usuario");
             String password = request.getParameter("pass");
-            if((!Entradas.formatoUser(password))||(!Entradas.formatoUser(username))) response.sendRedirect("error.jsp");
+            String redirect = "";
+            boolean proceso_alterado = false;
+            if((!Entradas.formatoUser(password))||(!Entradas.formatoUser(username))){
+                redirect = "error.jsp";
+                proceso_alterado = true;
+            }
+            if(!proceso_alterado){
+                Cliente posible_cliente = Cliente.IniciarSesionCliente(username, password); //Esto se reemplazara por el usuario
+                System.out.println(posible_cliente);
+                if(null != posible_cliente){
+                    HttpSession sesion_usuario_creada = request.getSession(true);
+                    sesion_usuario_creada.setAttribute("tipo_user", "cliente");
+                    sesion_usuario_creada.setAttribute("usuario", posible_cliente);
+                    redirect = "index.jsp";
+                }
+                Empleado posible_empleado = Empleado.IniciarSesionEmpleado(username, password);
+                if (posible_empleado != null){
+                    HttpSession sesion_usuario_creada = request.getSession(true);
+                    sesion_usuario_creada.setAttribute("tipo_user", "empleado");
+                    sesion_usuario_creada.setAttribute("usuario", posible_empleado);
+                    redirect = "index.jsp";
+                }
+
+
+                if(posible_cliente == null && posible_empleado == null){
+                    redirect= "InicioSesion.jsp";
+                }
+            }
+            response.sendRedirect(redirect);
             
-            Cliente posible_cliente = Cliente.IniciarSesionCliente(username, password); //Esto se reemplazara por el usuario
-            System.out.println(posible_cliente);
-            if(posible_cliente != null){
-                HttpSession sesion_usuario_creada = request.getSession(true);
-                sesion_usuario_creada.setAttribute("usuario", posible_cliente);
-                sesion_usuario_creada.setAttribute("tipo_user", "cliente");
-                response.sendRedirect("index.jsp");
-            }
-            Empleado posible_empleado = Empleado.IniciarSesionEmpleado(username, password);
-            System.out.println(posible_empleado);
-            if (posible_empleado != null){
-                HttpSession sesion_usuario_creada = request.getSession(true);
-                sesion_usuario_creada.setAttribute("usuario", posible_empleado);
-                sesion_usuario_creada.setAttribute("tipo_user", "empleado");
-                response.sendRedirect("index.jsp");
-            }
-            
-            if(posible_cliente == null && posible_empleado == null){
-                response.sendRedirect("InicioSesion.jsp");
-            }
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

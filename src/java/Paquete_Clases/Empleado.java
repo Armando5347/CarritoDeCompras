@@ -24,10 +24,13 @@ public class Empleado {
 
     public static ArrayList<Empleado> mostrarEmpleados(int id_priv){
         ArrayList empleados = new ArrayList();
-        if(id_priv == 1) return null;
+        if(id_priv == 1){
+            System.out.println("Mira, nada, no tienes permisos");
+            return null;
+            }
         try{
             con = Conexion.obtenerConexion();
-            q = "SELECT * FORM Empleado where CPrivilegio_Empleado_ID <= ?";
+            q = "SELECT * FROM Empleado WHERE CPrivilegio_Empleado_ID <= ?";
             pr = con.prepareStatement(q);
             pr.setInt(1, id_priv);
             rs = pr.executeQuery();
@@ -46,6 +49,7 @@ public class Empleado {
                 empleados.add(emp);
             }
         }catch(SQLException ex){
+            ex.printStackTrace();
             empleados = null;
         }finally{
             q = "";
@@ -60,6 +64,7 @@ public class Empleado {
                 System.out.println("Error al cerrar o no hay algo que cerrar por parte de Empleado");
             }
         }
+        if(empleados == null) System.out.println("Mira, nada, no regreso nada");
         return empleados;
     }
     
@@ -67,7 +72,7 @@ public class Empleado {
         boolean contratado = false;
         try{
             con = Conexion.obtenerConexion();
-            q = "INSERT INTO Empleado (nombre_em, appat_em, apmat_em, fecha_nacimiento_em, tel_em, cel_em, CPrivilegioEmpleado_ID, username_em, password_em)"+
+            q = "INSERT INTO Empleado (nombre_em, appat_em, apmat_em, fecha_nacimiento_em, tel_em, cel_em, CPrivilegio_Empleado_ID, username_em, password_em)"+
                     "VALUES (?,?,?,?,?,?,?,?,?)";
             pr = con.prepareStatement(q);
             pr.setString(1,nuevo_em.getNombre_emp());
@@ -83,6 +88,7 @@ public class Empleado {
                 contratado = true;
             }
         }catch(SQLException ex){
+            ex.printStackTrace();
             contratado = false;
         }finally{
             q = "";
@@ -96,6 +102,8 @@ public class Empleado {
                 System.out.println("Error al cerrar o no hay algo que cerrar por parte de Empleado");
             }
         }
+        if(!contratado) System.out.println("Lo llamamos luego");
+        else System.out.println("contratado");
         return contratado;
     }
     
@@ -103,14 +111,14 @@ public class Empleado {
         boolean actualizacion = false;
         try{
             con = Conexion.obtenerConexion();
-            q = "UPDATE CLIENTE SET tel_em = ?, cel_em = ?, CPrivilegioEmpleado_ID = ?, nombre_em = ?, appat_em = ?, apmat_em = ?, fecha_nacimiento_em, username_em = ?, password_em = ? WHERE ID_em = ?";
+            q = "UPDATE Empleado SET tel_em = ?, cel_em = ?, CPrivilegio_Empleado_ID = ?, nombre_em = ?, appat_em = ?, apmat_em = ?, fecha_nacimiento_em = ?, username_em = ?, password_em = ? WHERE ID_em = ?";
             pr = con.prepareStatement(q);
             pr.setInt(1, con_nuevos_datos.getTel_emp());
             pr.setLong(2, con_nuevos_datos.getCel_emp());
             pr.setInt(3, con_nuevos_datos.getCprivilegio_id());
             pr.setString(4, con_nuevos_datos.getNombre_emp());
             pr.setString(5, con_nuevos_datos.getAppat_emp());
-            pr.setString(6, con_nuevos_datos.getAppat_emp());
+            pr.setString(6, con_nuevos_datos.getApmat_emp());
             pr.setString(7, con_nuevos_datos.getFecha_nac_emp());
             pr.setString(8, con_nuevos_datos.getUsername_emo());
             pr.setString(9, con_nuevos_datos.getPassword_emp());
@@ -120,6 +128,7 @@ public class Empleado {
             }
         }catch(SQLException ex){
             actualizacion = false;
+            ex.printStackTrace();
         }finally{
             q = "";
             try{
@@ -132,6 +141,8 @@ public class Empleado {
                 System.out.println("Error al cerrar o no hay algo qeu cerrar por parte de Empleado");
             }
         }
+        if(!actualizacion) System.out.println("No se guardaron los cambios");
+        else System.out.println("Si se guardaron los cambios");
         return actualizacion;
     }
     
@@ -142,10 +153,13 @@ public class Empleado {
             q = "DELETE FROM Empleado WHERE ID_em = ?";
             pr = con.prepareStatement(q);
             pr.setInt(1, id_em);
-            if(pr.executeUpdate()==1){
+            if(pr.executeUpdate() == 1){
                 borro_adecuado = true;
+            }else{
+                System.out.println("No funciono el update");
             }
         }catch(SQLException ex){
+            ex.printStackTrace();
             borro_adecuado = false;
         }finally{
             q = "";
@@ -159,6 +173,7 @@ public class Empleado {
                 System.out.println("Error al cerrar o no hay algo qeu cerrar por parte de Empleado");
             }
         }
+        if(!borro_adecuado) System.out.println("Pues aparentemente no funciono");
         return borro_adecuado;
     
     }
@@ -207,7 +222,7 @@ public class Empleado {
                 System.out.println("Error al cerrar o no hay algo que cerrar por parte de Empleado");
             }
         }
-
+        if(em == null) System.out.println("Mira, nada");
     return em;
    }
     

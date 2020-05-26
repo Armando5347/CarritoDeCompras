@@ -28,14 +28,14 @@
                     <div>Verificar Contraseña: <input type="password" name="ver_pass" onchange="return soloNumerosYletras(this)"></div>
                 
                 <div>Asignar puesto: <select name="puesto" readOnly="readonly">
-                            <option>Puestos a seleccionar<option>
+                            <option>Puestos a seleccionar</option>
                             <option>Empleado</option>
                             <option>Gerente</option>
                             <option>Admin</option>
                         </select>
                 </div>
                 
-                    <div><input type="submit" value="Regitrar"> <input type="reset" value="Reiniciar campos"></div>
+                    <div><input type="submit" value="Registrar"> <input type="reset" value="Reiniciar campos"></div>
             
             </form>
         </main>

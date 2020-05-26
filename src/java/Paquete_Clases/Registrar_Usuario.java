@@ -31,12 +31,13 @@ public class Registrar_Usuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            boolean registro_exitosoCli = false;
+            boolean progreso_alterado = false;
             boolean esEmpleado = false;
+            String redirect = "";
             String privilegio = "";
             try{
                 privilegio = request.getParameter("puesto");
-                if(privilegio.isEmpty()||privilegio.equalsIgnoreCase("Puestos a seleccionar")){
+                if(privilegio.isEmpty()||privilegio.equalsIgnoreCase("Puestos a seleccionar") || privilegio == null){
                     esEmpleado = false;
                 }else{
                     esEmpleado = true;
@@ -44,6 +45,7 @@ public class Registrar_Usuario extends HttpServlet {
             }catch(NullPointerException noEsta){
                 esEmpleado = false;
             }
+            System.out.println(esEmpleado);
             boolean validaciones[] = new boolean[10];
             String nombre = request.getParameter("nombre");
             String appat = request.getParameter("apmat");
@@ -74,42 +76,53 @@ public class Registrar_Usuario extends HttpServlet {
             validaciones[6] = Entradas.formatoUser(username);
             validaciones[7] = Entradas.formatoUser(password);
             validaciones[8] = Entradas.formatoUser(ver_pass);
-            if(password.equals(ver_pass)) validaciones[10]= true;
-            else validaciones[10] = false;
-            
+            if(password.equals(ver_pass)) validaciones[9]= true;
+            else validaciones[9] = false;
+            int i = 0;
             for(boolean bool: validaciones){
+                i+=1;
                 if(!bool){
-                    response.sendRedirect("registro.jsp");
+                    System.out.println("Boolean " + i + " " + bool);
+                    progreso_alterado = true;
+                    if(esEmpleado){
+                        redirect = "RegistrarEmpleados.jsp";
+                    }else{
+                        redirect = "Registro.jsp";
+                    }
+                    
                 }
             }
-            if(esEmpleado){
-                int priv = 0;
-                switch(privilegio){
-                    case "Empleado":
-                        priv = 1;
-                        break;
-                    case "Gerente":
-                        priv = 2;
-                        break;
-                    case "Admin":
-                        priv = 3;
-                        break;
+            if(!progreso_alterado){
+                if(esEmpleado){
+                    int priv = 0;
+                    switch(privilegio){
+                        case "Empleado":
+                            priv = 1;
+                            break;
+                        case "Gerente":
+                            priv = 2;
+                            break;
+                        case "Admin":
+                            priv = 3;
+                            break;
+                    }
+                    Empleado newEmp = new Empleado(celular, telefono, priv, nombre, appat, apmat, fecha_nac, username, password);
+                    if(Empleado.contratarEmpleado(newEmp)){
+                        redirect = "InicioSesion.jsp";
+                    }else{
+                        redirect = "RegistrarEmpleados.jsp";
+                    }
+                }else{
+                    Cliente nuevo_cliente = new Cliente(telefono, celular, nombre, appat, apmat, username, password,fecha_nac);
+                    if(Cliente.registrarCliente(nuevo_cliente) ){
+                        redirect = "InicioSesion.jsp";
+                    }else{
+                        redirect = "Registro.jsp";
+                    }
                 }
-                Empleado newEmp = new Empleado(celular, telefono, priv, nombre, appat, apmat, fecha_nac, username, password);
-                registro_exitosoCli = Empleado.contratarEmpleado(newEmp);
-                if(registro_exitosoCli){
-                response.sendRedirect("InicioSesion.jsp");
-            }else{
-                response.sendRedirect("RegistrarEmpleados.jsp");
             }
-            }
-            Cliente nuevo_cliente = new Cliente(telefono, celular, nombre, appat, apmat, username, password,fecha_nac);
-            registro_exitosoCli = Cliente.registrarCliente(nuevo_cliente); 
-            if(registro_exitosoCli){
-                response.sendRedirect("InicioSesion.jsp");
-            }else{
-                response.sendRedirect("Registro.jsp");
-            }
+            response.sendRedirect(redirect);
+            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

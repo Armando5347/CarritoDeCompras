@@ -84,9 +84,15 @@
                     <li class="nav-item">
                         <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
                     </li>
-                    <li clas="carrito nav-item">
+                    <%if(tipo_user == "empleado"){
+                        int privilegio =((Empleado)sesion_actual.getAttribute("usuario")).getCprivilegio_id();
+                        if(privilegio == 3){%>
+                    <li class="nav-item"><a href='listaProductosAdmin.jsp'>Ver inventario de productos</a></li>
+                    <%}}%>
+                    <li class="carrito nav-item">
                         <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
                     </li>
+                    
                 </ul>
             </nav>
         </div>
