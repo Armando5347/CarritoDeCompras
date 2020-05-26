@@ -94,7 +94,7 @@
                         <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
                     </li>
                     <li clas="carrito nav-item">
-                        <a href=tendencias.jsp" class="nav-link">Ver tendencias</a>
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
                     </li>
                 </ul>
             </nav>
