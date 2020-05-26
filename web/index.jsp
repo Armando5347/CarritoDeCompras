@@ -6,7 +6,7 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
-<% ArrayList<Object> lista_Productos = new ArrayList<>();
+<% //ArrayList<Object> lista_Productos = new ArrayList<>(); voy a omitirlo mientras hago prubeas
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -57,6 +57,9 @@
                     <li clas="carrito nav-item">
                         <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
                     </li>
+                    <li clas="carrito nav-item">
+                        <a href=tendencias.jsp" class="nav-link">Ver tendencias</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -73,7 +76,7 @@
             <div class="card-body">
                 <img src="img/papel.png">
                 <h6>Nombre del producto</h6>
-                <p></p>
+                <p>Precio: </p>
                 <p></p>
                 <p><a href="VerDetalldeProdcuto.jsp?id=''">Ver Producto</a></p>
             </div>
