@@ -1,8 +1,4 @@
-<%-- 
-    Document   : editarUser
-    Created on : 16/05/2020, 08:54:34 PM
-    Author     : maste
---%>
+
 
 <%@page import="Paquete_Clases.Empleado"%>
 <%@page import="Paquete_Clases.Cliente"%>
@@ -19,6 +15,7 @@
     tipo_user = (String)sesion_actual.getAttribute("tipo_user");
     }catch(NullPointerException e){
         tipo_user = "null";
+        response.sendRedirect("InicioSesion.jsp");
     }
     switch(tipo_user){
         case "null":
