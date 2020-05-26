@@ -7,8 +7,6 @@
     Created on : 16/05/2020, 07:37:48 PM
     Author     : Tenorio Aspiros
 --%>
-<%@page import="com.google.gson.Gson"%>
-<%@page import="com.google.gson.JsonObject"%>
 <%@page import="Paquete_Clases.Empleado"%>
 <%@page import="Paquete_Clases.DPapel"%>
 <%@page import="Paquete_Clases.MPapel"%>
@@ -17,25 +15,6 @@
 <% 
     ArrayList<MPapel> lista_Productos = new ArrayList<MPapel>();
     ArrayList<DPapel> detalles_Productos = new ArrayList<DPapel>();
-%>
-
-<%
-Gson gsonObj = new Gson();
-Map<Object,Object> map = null;
-List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
- 
-map = new HashMap<Object,Object>(); map.put("label", "FY07"); map.put("y", 188); list.add(map);
-map = new HashMap<Object,Object>(); map.put("label", "FY08"); map.put("y", 213); list.add(map);
-map = new HashMap<Object,Object>(); map.put("label", "FY09"); map.put("y", 213); list.add(map);
-map = new HashMap<Object,Object>(); map.put("label", "FY10"); map.put("y", 219); list.add(map);
-map = new HashMap<Object,Object>(); map.put("label", "FY11"); map.put("y", 207); list.add(map);
-map = new HashMap<Object,Object>(); map.put("label", "FY12"); map.put("y", 167); list.add(map);
-map = new HashMap<Object,Object>(); map.put("label", "FY13"); map.put("y", 136); list.add(map);
-map = new HashMap<Object,Object>(); map.put("label", "FY14"); map.put("y", 152); list.add(map);
-map = new HashMap<Object,Object>(); map.put("label", "FY15"); map.put("y", 129); list.add(map);
-map = new HashMap<Object,Object>(); map.put("label", "FY16"); map.put("y", 155); list.add(map);
- 
-String dataPoints = gsonObj.toJson(list);
 %>
 
 <!DOCTYPE html>
@@ -55,30 +34,6 @@ String dataPoints = gsonObj.toJson(list);
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
         <link rel="stylesheet" href="css/estilos.css">
-        <script type="text/javascript">
-        window.onload = function() { 
-
-        var chart = new CanvasJS.Chart("chartContainer", {
-                theme: "light2",
-                title: {
-                        text: "Iron Ore Production in India"
-                },
-                axisX: {
-                        title: "Fiscal Year"
-                },
-                axisY: {
-                        title: "Production ( in million tonnes )"
-                },
-                data: [{
-                        type: "line",
-                        yValueFormatString: "#,##0mn tonnes",
-                        dataPoints : <%out.print(dataPoints);%>
-                }]
-        });
-        chart.render();
-
-        }
-        </script>
     </head>
     <body> 
         <div class="container-fluid">
