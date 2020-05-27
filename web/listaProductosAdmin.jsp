@@ -29,12 +29,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Listado de productos</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
     </head>
     <body>
         <h1>Productos registrados en el sistema</h1>
-        <main>
-            <table>
-                <thead>
+        <main class="container-fluid">
+            <table class="container table-responsive table-bordered table-hover">
+                <thead class="bg-primary">
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
@@ -58,7 +68,7 @@
                     <% } %>
                 </tbody>
             </table>
-                <div><a href='GuardarProductos.jsp'>Agregar papeles al almacen</a> || <a href='index.jsp'>Regresar al index</a></div>
+                <div class="text-center"><a href='GuardarProductos.jsp'>Agregar papeles al almacen</a> || <a href='index.jsp'>Regresar al index</a></div>
         </main>
     </body>
 </html>

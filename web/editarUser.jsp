@@ -50,21 +50,85 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Editar información Cuenta</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
     </head>
     <body>
         <script src="js/validarEntradas.js"></script>
-        <h1>Editar cuenta de usuario</h1>
-        <main>
-            <form method="post" action="actualizar_cliente">
-                <div>Nombre: <input readOnly="true" type="text" id="nombre" name="nombre" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=nombre%>">  <input type="button" value="Activar Campo" onclick="switchCampos('nombre')"></div>
-                <div>Apellido paterno: <input readOnly="true" type="text"  id="appat"  name="appat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=appat%>"> <input type="button" value="Activar Campo" onclick="switchCampos('appat')"></div>
-                <div>Apellido materno: <input readOnly="true" type="text" id="apmat" name="apmat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=apmat%>"> <input type="button" value="Activar Campo" onclick="switchCampos('apmat')"></div>
-                <div>Fecha Nacimiento: <input readOnly="true" type="date" id="fecha_nac" name="fecha_nac" onchange="return esFecha(this)" value="<%=fecha_n%>"> <input type="button" value="Activar Campo" onclick="switchCampos('fecha_nac')"></div>
-                <div>Telefono fijo: <input readOnly="true" type="number" id="tel" name="tel" onclick="return quieroTeclearNumeros(this,true)" onchange="return quieroNumeros(this,true)" value="<%=tel%>"> <input type="button" value="Activar Campo" onclick="switchCampos('tel')"></div>
-                <div>Número de Celular: <input readOnly="true" type="number" id="cel" name="cel" onclick="return quieroTeclearNumeros(this,true)" onchange="return quieroNumeros(this,true)" value="<%=cel%>"> <input type="button" value="Activar Campo" onclick="switchCampos('cel')"></div>
-                <div>Nombre de usuario: <input readOnly="true" type="text" id="username" name="username" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=username%>"> <input type="button" value="Activar Campo" onclick="switchCampos('username')"></div>
-                <div>Contraseña: <input readOnly="true" type="password" id="pass" name="pass" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=pass%>"> <input type="button" value="Activar Campo" onclick="switchCampos('pass')"></div>
-                <div><input type="submit" value="Actualizar Datos"> || <a href="borrarCuenta">Eliminar Cuenta</a></div>
+        <h1 class="text-center">Editar cuenta de usuario</h1>
+        <main class="container-fluid">
+            <form method="post" action="actualizar_cliente" class="container">
+                <hr>
+                <div class="input-group">    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Nombre:</span>
+                    </div>
+                    <input readOnly="true" type="text" id="nombre" name="nombre" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=nombre%>">  
+                    <input type="button" value="Activar Campo" onclick="switchCampos('nombre')">
+                </div>
+                    <br>
+                <div class="input-group">    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Apellido paterno:</span>
+                    </div>
+                    <input readOnly="true" type="text"  id="appat"  name="appat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=appat%>">
+                    <input type="button" value="Activar Campo" onclick="switchCampos('appat')"></div>
+                    <br>
+                
+                <div class="input-group">    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Apellido materno:</span>
+                    </div> 
+                    <input readOnly="true" type="text" id="apmat" name="apmat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=apmat%>">
+                    <input type="button" value="Activar Campo" onclick="switchCampos('apmat')"></div>
+                    <br>
+                <div class="input-group">    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Fecha de nacimiento:</span>
+                    </div> 
+                    <input readOnly="true" type="date" id="fecha_nac" name="fecha_nac" onchange="return esFecha(this)" value="<%=fecha_n%>"> 
+                    <input type="button" value="Activar Campo" onclick="switchCampos('fecha_nac')"></div>
+                    <br>
+                <div class="input-group">    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Telefono fijo:</span>
+                    </div>
+                    <input readOnly="true" type="number" id="tel" name="tel" onclick="return quieroTeclearNumeros(this,true)" onchange="return quieroNumeros(this,true)" value="<%=tel%>"> 
+                    <input type="button" value="Activar Campo" onclick="switchCampos('tel')"></div>
+                    <br>
+                <div class="input-group">    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Telefono celular:</span>
+                    </div>
+                    <input readOnly="true" type="number" id="cel" name="cel" onclick="return quieroTeclearNumeros(this,true)" onchange="return quieroNumeros(this,true)" value="<%=cel%>">
+                    <input type="button" value="Activar Campo" onclick="switchCampos('cel')"></div>
+                    <br>
+                <div class="input-group">    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Nombre de usuario:</span>
+                    </div>
+                    <input readOnly="true" type="text" id="username" name="username" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=username%>"> 
+                    <input type="button" value="Activar Campo" onclick="switchCampos('username')"></div>
+                    <br>
+                <div class="input-group">    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Contraseña:</span>
+                    </div>
+                    <input readOnly="true" type="password" id="pass" name="pass" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=pass%>">
+                    <input type="button" value="Activar Campo" onclick="switchCampos('pass')">
+                </div>
+                    <br>
+                
+                <div><input type="submit" class="btn-primary" value="Actualizar Datos"> || <a href="borrarCuenta">Eliminar Cuenta</a> || <a href="index.jsp">Regresar al index.</a></div>
+                
             </form>
         </main>
     </body>

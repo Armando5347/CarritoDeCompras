@@ -47,16 +47,41 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Actualizar info. producto.</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
     </head>
     <body>
-        <h1>Actualizar Producto</h1>
-        <h2><%=papel_act.getNombre_pap()%></h2>
-        <form method="post" action="actualizarPapel">
-            Precio: <input name="precio" type="number" value="<%=detalle_actual.getPrecio()%>"> <br>
-            Stock:  <input name="stock" type="number" value="<%=detalle_actual.getStock()%>">  <br>
-            <input type="hidden" name="id" value="<%=papel_act.getId_dp()%>">
-            <input type="submit" value="Actualizar">
-            <br> <small>Nota: si no se usa el boton de actualizacion, no se aplicaran los cambios</small>
-        </form>
+        <main class="container-fluid">
+            <h1 class="text-center">Actualizar Producto</h1>
+
+            <form method="post" action="actualizarPapel" class="container">
+                <h2 class="text-right"><%=papel_act.getNombre_pap()%></h2>
+                <div class="input-group">    
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Precio</span>
+                        </div>
+                <input name="precio" type="number" value="<%=detalle_actual.getPrecio()%>">
+                </div>
+                <br>
+                <div class="input-group">    
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Stock:</span>
+                        </div>
+                <input name="stock" type="number" value="<%=detalle_actual.getStock()%>">
+                </div>
+                <br>
+                <input type="hidden" name="id" value="<%=papel_act.getId_dp()%>">
+                <input type="submit" value="Actualizar" class="btn-primary">
+                <br> <small>Nota: si no se usa el boton de actualizacion, no se aplicaran los cambios</small>
+            </form>
+        </main>
     </body>
 </html>

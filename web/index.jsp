@@ -29,13 +29,13 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
-        <link rel="stylesheet" href="css/estilos.css">
+       
     </head>
     <body> 
         <div class="container-fluid">
             <header class="d-flex">
                 <div class="col-md-8 d-flex centrar">
-                    <a href="index.jsp" class="col-md-2"><img src="img/papel.png"></a>
+                    <a href="index.jsp" class="col-md-2"><img class="img-fluid" src="img/papel.png"></a>
                     <h1>¡Papelilandia!</h1>
                 </div>
                 <% HttpSession sesion_actual = request.getSession();
@@ -88,12 +88,12 @@
                     <%if(tipo_user == "empleado"){
                         int privilegio =((Empleado)sesion_actual.getAttribute("usuario")).getCprivilegio_id();
                         if(privilegio == 3){%>
-                    <li class="nav-item"><a href='listaProductosAdmin.jsp'>Ver inventario de productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href='listaProductosAdmin.jsp'>Ver inventario de productos</a></li>
                     <%}}%>
                     <li class="carrito nav-item">
                         <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
                     </li>
-                    <li clas="carrito nav-item">
+                    <li class="carrito nav-item">
                         <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
                     </li>
                 </ul>
@@ -117,8 +117,7 @@
         
         <div class="card col-md-2">
             <div class="card-body">
-                <img src="img/papel.png">
-                <p><a href="VerDetalldeProdcuto.jsp?id=''">Ver Producto</a></p>
+                <img src="img/papel.png" class="img-fluid">
                 <h6>Nombre del producto:<%=mp.getNombre_pap()%></h6>
                 <p>Precio:<%=dp.getPrecio()%></p>
                 <p><a href="VerDetalleProdcuto.jsp?id=<%=mp.getId_MPapel()%>">Ver Producto</a></p>

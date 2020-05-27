@@ -21,16 +21,27 @@
     
 %>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>-Lista de empelados-</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
     </head>
     <body>
-        <h1>Ver empleados</h1>
         <main>
-            <table>
-                <thead>
+            <h1>Ver empleados</h1>
+            <hr>
+            <table class="table-responsive container table-bordered table-hover">
+                <thead class="bg-primary">
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
@@ -66,6 +77,8 @@
                 <%}%>
                 </tbody>
             </table>
+                <br>
+                <div class="text-center"><a href='index.jsp'>Regresar al index</a></div>
         </main>
     </body>
 </html>
