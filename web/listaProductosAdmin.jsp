@@ -53,7 +53,7 @@
                         <td><%=mp.getNombre_pap()%></td>
                         <td><%=dp.getPrecio()%></td>
                         <td><%=dp.getStock()%></td>
-                        <td><a href="actualizarProducto.jsp?id='<%=mp.getId_MPapel()%>'">Actualizar precio/stock</a></td>
+                        <td><a href="actualizarProducto.jsp?id=<%=mp.getId_MPapel()%>">Actualizar precio/stock</a></td>
                     </tr>
                     <% } %>
                 </tbody>

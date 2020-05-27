@@ -29,14 +29,27 @@ public class actualizarPapel extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        double new_precio = Double.parseDouble(request.getParameter("precio"));
-        int new_stock = Integer.parseInt(request.getParameter("stock"));
-        int id_maestra = 0;
-        if(DPapel.actualizarPrecioStock(new_precio, new_stock, id_maestra)){
-            response.sendRedirect("index.jsp");
-        }else{
-            response.sendRedirect("error.jsp");
+        String redirect = "";
+        boolean proceso_alterado = false;
+        double new_precio = 0;
+        int new_stock = 0, id_maestra = 0;
+        try{
+            new_precio = Double.parseDouble(request.getParameter("precio"));
+            new_stock = Integer.parseInt(request.getParameter("stock"));
+            id_maestra = 0;
+            id_maestra = Integer.parseInt(request.getParameter("id"));
+        }catch(Exception e){
+            redirect = "error.jsp";
         }
+        
+        if(DPapel.actualizarPrecioStock(new_precio, new_stock, id_maestra)){
+            redirect = "listraProductosAdmin.jsp";
+        }else{
+            System.out.println("No se ejecutó");
+            redirect = "error.jsp";
+        }
+        
+        response.sendRedirect(redirect);
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */

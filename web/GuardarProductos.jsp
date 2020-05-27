@@ -23,20 +23,20 @@
                 
                 <div>Material: <select name="material" onchange="return noDefault(this)">
                         <option>Seleccione alguna opción</option>
-                        <option>Celulosa</option>
-                        <option>Fibra vegetal</option>
+                        <option>CELULOSA</option>
+                        <option>FIBRA VEGETAL</option>
                     </select>
                 </div>
                 <div>Aroma: <select name="aroma" onchange="return noDefault(this)">
                         <option>Seleccione alguna opción</option>
-                        <option>Sin Aroma</option>
-                        <option>Almendras</option>
+                        <option>SIN AROMA</option>
+                        <option>ALMENDRAS</option>
                     </select>
                 </div>
                 <div>Tipo de papel: <select name="tipo_papel" onchange="return noDefault(this)">
                         <option>Seleccione alguna opción</option>
-                        <option>Residencial o Convencional</option>
-                        <option>Institucional o Industrial</option>
+                        <option>Residencial</option>
+                        <option>Institucional</option>
                     </select>
                 </div>
                 
@@ -52,9 +52,9 @@
                 </div>
                 <div>Tipo de hojas: <select name="tipo_hojas" onchange="return noDefault(this)">
                         <option>Seleccione alguna opción</option>
-                        <option>Hoja doble</option>
-                        <option>Hoja triple</option>
-                        <option>Hoja cuadruple</option>
+                        <option>Doble</option>
+                        <option>Triple</option>
+                        <option>Cuadruple</option>
                     </select>
                 </div>
                 <div>Rolos incluidos: <select name="rollos" onchange="return noDefault(this)">

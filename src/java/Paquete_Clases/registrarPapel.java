@@ -32,6 +32,7 @@ public class registrarPapel extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         boolean procesoAdecuado = false;
+        String redirect = "";
         boolean validaciones[] = new boolean[9];
         String nombre_pap, aroma, tipo_papel, tipo_hojas, material;
         int hojasXrollos =0, rollos = 0;
@@ -41,28 +42,36 @@ public class registrarPapel extends HttpServlet {
         nombre_pap = request.getParameter("nombre_papel");
         try{
             stock_ini = Integer.parseInt(request.getParameter("stock"));
+            System.out.println(stock_ini);
         }catch(NumberFormatException ex){
             validaciones[1] = false;
         }
         try{
             precio = Double.parseDouble(request.getParameter("precio"));
+            System.out.println(precio);
         }catch(NumberFormatException ex){
             validaciones[2] = false;
         }
         tipo_papel = request.getParameter("tipo_papel");
+        System.out.println(tipo_papel);
         aroma = request.getParameter("aroma");
+        System.out.println(aroma);
         tipo_hojas = request.getParameter("tipo_hojas");
+        System.out.println(tipo_hojas);
         try{
             hojasXrollos = Integer.parseInt(request.getParameter("hojasRollo"));
+            System.out.println(hojasXrollos);
         }catch(NumberFormatException ex){
             validaciones[5] = false;
         }
         try{
             rollos = Integer.parseInt(request.getParameter("rollos"));
+            System.out.println(rollos);
         }catch(NumberFormatException ex){
             validaciones[6] = false;
         }
         material = request.getParameter("material");
+        System.out.println(material);
         //Ahora validamos por si perosnas feas hacen cosas feas
         validaciones[0] = Entradas.esString(nombre_pap);
         validaciones[1] = Entradas.esNumeroEntero(stock_ini);
@@ -77,7 +86,7 @@ public class registrarPapel extends HttpServlet {
             if(!bool){
                 System.out.println("Ingreso no valido detectado");
                 procesoAdecuado = false;
-                response.sendRedirect("error.jsp");
+                redirect = "GuardarProductos.jsp";
                 break;
             }
         }
@@ -88,10 +97,12 @@ public class registrarPapel extends HttpServlet {
         valores.add(rollos);
         valores.add(tipo_hojas);
         valores.add(hojasXrollos);
+        System.out.println(valores);
         int []lista_ides = new int[6];
         lista_ides = CatalogosPapel.obtenerIdes(valores);
         if(lista_ides==null){
-            response.sendRedirect("error.jsp");
+            System.out.println("NO hay ides");
+            redirect = "error.jsp";
         }
         id_material = lista_ides[0];
         id_tipo_pal = lista_ides[1];
@@ -105,10 +116,12 @@ public class registrarPapel extends HttpServlet {
         procesoAdecuado = MPapel.guardarNuevoPapel(nombre_pap, dpap);
         
         if(procesoAdecuado){
-            response.sendRedirect("index.jsp");
+            redirect = "listaProductosAdmin.jsp";
         }else{
-            response.sendRedirect("error.jsp");
+            redirect = "error.jsp";
         }
+        
+        response.sendRedirect(redirect);
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
