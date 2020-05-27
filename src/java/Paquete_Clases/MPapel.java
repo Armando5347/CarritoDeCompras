@@ -87,8 +87,9 @@ public class MPapel {
         try{
             con = Conexion.obtenerConexion();
             //Para esto sería buenp un procedimiento almacenado
-            q = "Select * from MPapel";
+            q = "Select * from MPapel WHERE ID_mp = ?";
             ps = con.prepareStatement(q);
+            ps.setInt(1, id_mp);
             rs = ps.executeQuery();
             while(rs.next()){
                 papel_mostrar = new MPapel(rs.getInt("ID_mp"),rs.getInt("id_DPapel"),rs.getString("Nombre_producto"));
@@ -106,7 +107,7 @@ public class MPapel {
             }catch(SQLException e){
                 
             }
-        }
+        }if(papel_mostrar == null) System.out.println("No se ejecuto la query"); 
         return papel_mostrar;
     }
     
@@ -114,16 +115,21 @@ public class MPapel {
     public static boolean guardarNuevoPapel(String nombrePapel, DPapel detalle_respectivo){
         boolean guardadoExitoso = false;
         try{
-            int id_dp = 0;
             con = Conexion.obtenerConexion();
-            id_dp = DPapel.guardarNuevoDetallePapel(detalle_respectivo);
-            if(id_dp ==0) return false; //Por que significa que no se guardo, a´si que no podemos proseguir
-            q = "INSERT INTO MPapel (Nombre_producto , id_DPapel) values(?,?)";
+            //Sacamos na nueva instancia
+            q = "SELECT MAX(ID_mp) AS ultimo_menos_uno FROM MPapel";
             ps = con.prepareStatement(q);
-            ps.setString(1, nombrePapel);
-            ps.setInt(2, id_dp);
-            if(ps.executeUpdate()==1){
-                guardadoExitoso = true;
+            rs = ps.executeQuery();
+            if(rs.next()){
+                int ide_ultimo = rs.getInt("ultimo_menos_uno") + 1;
+                q = "INSERT INTO MPapel (Nombre_producto , id_DPapel) values(?,?)";
+                ps = con.prepareStatement(q);
+                ps.setString(1, nombrePapel);
+                ps.setInt(2, ide_ultimo);
+                detalle_respectivo.setId_papel(ide_ultimo);
+                if(ps.executeUpdate()==1){
+                    guardadoExitoso =  DPapel.guardarNuevoDetallePapel(detalle_respectivo);;
+                }
             }
         }catch(SQLException ex){
             ex.printStackTrace();
@@ -135,7 +141,7 @@ public class MPapel {
                 ps.close();
                 con.close();
             }catch(SQLException e){
-                
+                e.printStackTrace();
             }
         }
         return guardadoExitoso;

@@ -20,9 +20,10 @@ public class CatalogosPapel {
         Connection con = null;
         CallableStatement cs = null;
         ResultSet rs = null;
+        String q = "";
         try{
             con = Conexion.obtenerConexion();
-            String q = "{CALL traducirIdesCatalogosCarrito(?,?,?,?,?,?)}";
+            q = "{CALL traducirIdesCatalogosCarrito(?,?,?,?,?,?)}";
             cs = con.prepareCall(q);
             cs.setInt(1, id_mat);
             cs.setInt(2, id_tip);
@@ -49,6 +50,7 @@ public class CatalogosPapel {
             ex.printStackTrace();
             return null;
         }finally{
+            q="";
             try{
                 rs.close();
                 cs.close();
@@ -69,38 +71,48 @@ public class CatalogosPapel {
         Connection con = null;
         CallableStatement cs = null;
         ResultSet rs = null;
+        String q = "";
         try{
             con = Conexion.obtenerConexion();
-            String q = "{CALL traducirValoresCatalogosCarrito(?,?,?,?,?,?)}";
+                q = "{CALL traducirValoresCatalogosCarrito(?,?,?,?,?,?)}";
             cs = con.prepareCall(q);
             cs.setString(1, (String)valores.get(0));
             cs.setString(2, (String)valores.get(1));
             cs.setString(3, (String)valores.get(2));
-            cs.setInt(4, Integer.parseInt((String)valores.get(3)));
+            cs.setInt(4, (int)valores.get(3));
             cs.setString(5, (String)valores.get(4));
-            cs.setInt(6, Integer.parseInt((String)valores.get(5)));
+            cs.setInt(6, (int)valores.get(5));
             
             rs = cs.executeQuery();
-            while(rs.next()){
+            if(rs.next()){
+                System.out.println("Mira, unsas ides");
                 ides[0] = rs.getInt(1);
                 ides[1] = rs.getInt(2);
                 ides[2] = rs.getInt(3);
                 ides[3] = rs.getInt(4);
                 ides[4] = rs.getInt(5);
                 ides[5] = rs.getInt(6);
-                break;
+                System.out.println(ides);
+            }else{
+                System.out.println("No tengo nada que darte");
             }
         } catch (SQLException ex) {
+            ex.printStackTrace();
             ides=null;
         }finally{
+            q = "";
             try{
                 rs.close();
                 cs.close();
                 con.close();
             } catch (SQLException ex) {
+                ex.printStackTrace();
                 System.out.println("No se cerraron bien");
-            }
-        }
+            }catch(NullPointerException ed){
+                     ed.printStackTrace();
+                     System.out.println("efe el rs");
+            }       
+        }if(ides == null) System.out.println("No hay ides");
         return ides;
     }
     
