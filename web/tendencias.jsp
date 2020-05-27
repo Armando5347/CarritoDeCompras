@@ -136,20 +136,22 @@ String dataPoints = gsonObj.toJson(list);
             </nav>
         </div>
         <main class="container justify-content-center">        
-            <div  class="card col-md-12"  style="width: 900px; height: 500px">
-                <div class="card-body" id="semana">
+            <div  class="card col-md-12"  >
+                <div class="card-body" id="semana" style="height: 370px; width: 100%;">
                     
                 </div>
             </div>
             <br>
-            <div class="card col-md-12" style="width: 900px; height: 500px">
-                <div class="card-body" id="mes">
+            <br>
+            <div class="card col-md-12" >
+                <div class="card-body" id="mes" style="height: 370px; width: 100%;">
                     
                 </div>
             </div>
             <br>
-            <div class="card col-md-12" style="width: 900px; height: 500px">
-                <div class="card-body" id="quincena">
+            <br>
+            <div class="card col-md-12">
+                <div class="card-body" id="quincena" style="height: 370px; width: 100%;">
                     
                 </div>
             </div>  
@@ -171,8 +173,81 @@ String dataPoints = gsonObj.toJson(list);
                         text: "Try Zooming and Panning"
                     }
                 ],
+                axisY:{
+                    title: "Numero de ventas",
+                    suffix: " unidades",
+                    includeZero: false
+                },
+                axisX: {
+                    title: "Semanas"
+                },
                 data: [{
                     type: "line",
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    dataPoints: <%out.print(dataPoints);%>
+                }]
+            });
+            chart.render();
+        });
+     </script>
+         <script type="text/javascript">
+
+        $(function () {
+            var chart = new CanvasJS.Chart("mes", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Tendencias de papel por semana"
+                },
+                subtitles: [
+                    {
+                        text: "Try Zooming and Panning"
+                    }
+                ],
+                axisY:{
+                    title: "Numero de ventas",
+                    suffix: " unidades",
+                    includeZero: false
+                },
+                axisX: {
+                    title: "Meses"
+                },
+                data: [{
+                    type: "line",
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    dataPoints: <%out.print(dataPoints);%>
+                }]
+            });
+            chart.render();
+        });
+     </script>
+         <script type="text/javascript">
+
+        $(function () {
+            var chart = new CanvasJS.Chart("quincena", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Tendencias de papel por semana"
+                },
+                subtitles: [
+                    {
+                        text: "Try Zooming and Panning"
+                    }
+                ],
+                axisY:{
+                    title: "Numero de ventas",
+                    suffix: " unidades",
+                    includeZero: false
+                },
+                axisX: {
+                    title: "Quincenas"
+                },
+                data: [{
+                    type: "line",
+                    toolTipContent: "<b>y</b>: {y}%",
                     dataPoints: <%out.print(dataPoints);%>
                 }]
             });
