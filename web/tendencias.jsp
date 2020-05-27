@@ -103,22 +103,105 @@
                 </ul>
             </nav>
         </div>
-        <main class="row container">        
-            <div id="semana" class="card col-md-4">
+        <main class="container justify-content-center">        
+            <div id="semana" class="card col-md-11"  style="width: 900px; height: 500px">
                 <div class="card-body">
                     
                 </div>
             </div>
-            <div id="mes" class="card col-md-4">
+            <div id="mes" class="card col-md-11" style="width: 900px; height: 500px">
                 <div class="card-body">
                     
                 </div>
             </div>  
-            <div id="quincena" class="card col-md-4">
+            <div id="quincena" class="card col-md-11" style="width: 900px; height: 500px">
                 <div class="card-body">
                     
                 </div>
             </div>  
         </main>
     </body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Semana', 'Elite', 'Petalo'],
+          ['1',  1000,      400],
+          ['2',  1170,      460],
+          ['3',  660,       1120],
+          ['4',  1030,      540],
+          ['5',  10300,      1540],
+          ['6',  103330,      1540],
+          ['7',  10,      3540]
+        ]);
+
+        var options = {
+          title: 'Tendencias de papael higenico por semana',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('semana'));
+
+        chart.draw(data, options);
+      }
+    </script>
+        <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Mes', 'Elite', 'Petalo'],
+          ['Enero',  100,      400],
+          ['Febrero',  110,      460],
+          ['Marzo',  660,       120],
+          ['Abril',  130,      540],
+          ['Mayo',  1000,      140],
+          ['Junio',  1030,      140],
+          ['julio',  10,      340]
+        ]);
+
+        var options = {
+          title: 'Tendencias de papael higenico por mes',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('mes'));
+
+        chart.draw(data, options);
+      }
+    </script>
+        <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Semana', 'Elite', 'Petalo'],
+          ['1',  1000,      400],
+          ['2',  1170,      460],
+          ['3',  660,       112],
+          ['4',  1030,      540],
+          ['5',  10300,      140],
+          ['6',  103330,      1540],
+          ['7',  10,      3540]
+        ]);
+
+        var options = {
+          title: 'Tendencias de papael higenico por quincena',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('quincena'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
 </html>
