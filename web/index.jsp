@@ -41,13 +41,13 @@
                 <% HttpSession sesion_actual = request.getSession();
                     String tipo_user = (String)sesion_actual.getAttribute("tipo_user");
                 if(tipo_user == null){ %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
+                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right align-middle">
                     <a href="InicioSesion.jsp" class="btn btn-primary btn-sm">Iniciar Sesión</a>
                     <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
                 </div>
                 <%}else if(tipo_user == "cliente"){
                 %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
+                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right align-middle">
                     <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
                     <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
                 </div>
@@ -55,20 +55,20 @@
                 int privilegio =((Empleado)sesion_actual.getAttribute("usuario")).getCprivilegio_id();
                 if(privilegio == 1){
                 %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
+                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right align-middle">
                     <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
                     <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
                 </div>
                 <%}else if(privilegio == 2){
                 %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
+                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right align-middle">
                     <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
                     <a href="RegistrarEmpleados.jsp" class="btn btn-primary btn-sm">Registrar nuevo Empleado</a>
                     <a href="listaEmpleados.jsp" class="btn btn-primary btn-sm">Ver empleados</a>
                 </div>
                 <%}else if(privilegio == 3){
                 %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
+                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right align-middle">
                     <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
                     <a href="RegistrarEmpleados.jsp" class="btn btn-primary btn-sm">Registrar nuevo Empleado</a>
                     <a href="listaEmpleados.jsp" class="btn btn-primary btn-sm">Ver empleados</a>
@@ -99,7 +99,8 @@
                 </ul>
             </nav>
         </div>
-            <main class="row container">
+                    <br>
+            <main class="container card-deck">
         <% 
             /*Tuve que comentar las lineas de codigo por que no podia trabajar
             no hay pex equis de
@@ -115,10 +116,11 @@
         %>
         <!--Se debe mostrar el nombre, precio-->
         
-        <div class="card col-md-4 ">
+        <div class="card col-md-2 border-dark">
             <div class="card-body">
-                <img src="img/papel.png" class="img-fluid card-img">
-                <h6 class="card-title">Nombre del producto: <%=mp.getNombre_pap()%></h6>
+                <img src="img/papel.png" class="card-img">
+                <hr>
+                <h6 class="card-title "><%=mp.getNombre_pap()%></h6>
                 <p class="card-subtitle">Precio: <%=dp.getPrecio()%></p>
                 <p><a class="card-link" href="VerDetalleProdcuto.jsp?id=<%=mp.getId_MPapel()%>">Ver Producto</a></p>
             </div>

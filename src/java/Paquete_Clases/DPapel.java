@@ -22,11 +22,12 @@ public class DPapel {
         boolean retiro_exitoso = false;
         try{
             con = Conexion.obtenerConexion();
-            q = "DELTE FROM DPapel WHERE ID_dp = ?";
+            q = "DELETE FROM DPapel WHERE ID_dp = ?";
             ps = con.prepareStatement(q);
             ps.setInt(1, id_maestra);
             if(ps.executeUpdate()==1){
                 retiro_exitoso = true;
+                System.out.println("C borro DPapel");
             }
         }catch(SQLException ex){
             ex.printStackTrace();

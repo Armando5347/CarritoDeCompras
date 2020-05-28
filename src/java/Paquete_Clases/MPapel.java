@@ -26,10 +26,11 @@ public class MPapel {
         if(DPapel.eliminarDetalle(id_maestra)) return false;
         try{
             con = Conexion.obtenerConexion();
-            q = "DELTE FROM MPapel WHERE ID_mp = ?";
+            q = "DELETE FROM MPapel WHERE ID_mp = ?";
             ps = con.prepareStatement(q);
             ps.setInt(1, id_maestra);
             if(ps.executeUpdate()==1){
+                System.out.println("C borro MPapel");
                 retiro_exitoso = true;
             }
         }catch(SQLException ex){

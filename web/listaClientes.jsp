@@ -43,7 +43,7 @@
         
         <main class="container-fluid" >
             <h1 class="bg-primary text-center container-fluid" >Clientes registrados</h1> <hr>
-            <table class="table-responsive container border-dark table-bordered table-hover w-75">
+            <table class="text-center container border-dark table-bordered table-hover w-75">
                 <thead class="bg-primary">
                     <tr>
                         <th>ID</th>

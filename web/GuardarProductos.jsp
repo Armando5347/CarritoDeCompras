@@ -30,17 +30,17 @@
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Nombre:</span>
-                    </div><input type="text" name="nombre_papel" onchange="return quieroNumeros(this, false)" onclick="return quieroTeclearNumeros(ev, false)"></div>
+                    </div><input type="text" name="nombre_papel" onchange="return quieroNumeros(this, false)" onkeypress="return quieroTeclearNumeros(event, false)"></div>
                 <br>
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Stock Inicial:</span>
-                    </div><input type="number" name="stock" onchange="return quieroNumerosEntero(this)" onclick="return quieroTeclearNumerosEnteros(ev)"></div>
+                    </div><input type="number" name="stock" onchange="return quieroNumerosEnteros(this)" onkeypress="return quieroTeclearNumerosEnteros(event)"></div>
                 <br>
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Precio:</span>
-                    </div><input type="number" name="precio" onchange="return quieroNumeros(this, true)" onclick="return quieroTeclearNumeros(ev, true)"></div>
+                    </div><input type="number" name="precio" onchange="return quieroNumeros(this, true)" onkeypress="return quieroTeclearNumeros(event, true)"></div>
                 <br>
                 <div class="input-group">    
                     <div class="input-group-prepend">
@@ -115,10 +115,11 @@
                         <option>32</option>
                     </select>
                 </div>
-                <div class="btn-group"><input type="submit" value="Registrar producto" class="btn-primary"> || <input type="reset" value="Reiniciar campos" class="btn-secondary"></div>
+                <br>
+                <div class="btn-group"><input type="submit" value="Registrar producto" class="btn-primary">  <input type="reset" value="Reiniciar campos" class="btn-secondary"></div>
                 
             </form>
-            <a href="listaProductosAdmin.jsp">Volver</a>
+            <a href="listaProductosAdmin.jsp" class="btn btn-info">Volver</a>
         </main>
         <footer>
             

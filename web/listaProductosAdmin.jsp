@@ -45,17 +45,17 @@
         <main class="container-fluid">
             <h1 class="bg-primary text-center container-fluid">Productos registrados en el sistema</h1>
             <hr>
-            <table class="container table-responsive table-bordered table-hover w-75">
+            <table class="container table-bordered table-hover w-75">
                 <thead class="bg-primary">
-                    <tr>
+                    <tr class="text-center">
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Precio</th>
                         <th>Stock</th>
-                        <th>Otras opciones</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     <% for(int i = 0; i< productos.size(); i++){
                         MPapel mp = productos.get(i);
                         DPapel dp = detalles.get(i);
@@ -66,8 +66,8 @@
                         <td><%=dp.getPrecio()%></td>
                         <td><%=dp.getStock()%></td>
                         <td>
-                            <a href="actualizarProducto.jsp?id=<%=mp.getId_MPapel()%>">Actualizar precio/stock</a>
-                            <a href="eliminarProducto?id=<%=mp.getId_MPapel()%>">Retirar de la venta</a>
+                            <a href="actualizarProducto.jsp?id=<%=mp.getId_MPapel()%>" class=" btn btn-info">Actualizar precio/stock</a> <br>
+                            <a href="eliminarProducto?id=<%=mp.getId_MPapel()%>" class="btn btn-danger">Retirar de la venta</a>
                         </td>
                     </tr>
                     <% } %>

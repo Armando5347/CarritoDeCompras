@@ -57,30 +57,35 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+        
+        <script src="js/validarEntradas.js"></script>
     </head>
     <body>
         <main class="container-fluid">
             <h1 class="text-center container-fluid bg-primary">Actualizar Producto</h1> <hr>
 
             <form method="post" action="actualizarPapel" class="container was-validated">
-                <h2 class="text-right"><%=papel_act.getNombre_pap()%></h2>
+                <h2 class="text-right bg-info"><%=papel_act.getNombre_pap()%></h2>
                 <div class="input-group">    
                         <div class="input-group-prepend">
                             <span class="input-group-text">Precio</span>
                         </div>
-                <input name="precio" type="number" value="<%=detalle_actual.getPrecio()%>">
+                <input name="precio" type="number" value="<%=detalle_actual.getPrecio()%>" onkeypress="return quieroTeclearNumeros(event,true)" onchange="return quieroNumeros(this,true)">
                 </div>
                 <br>
                 <div class="input-group">    
                         <div class="input-group-prepend">
                             <span class="input-group-text">Stock:</span>
                         </div>
-                <input name="stock" type="number" value="<%=detalle_actual.getStock()%>">
+                <input name="stock" type="number" value="<%=detalle_actual.getStock()%>" onkeypress="return quieroTeclearNumerosEnteros(event)" onchange="return quieroNumerosEnteros(this)">
                 </div>
                 <br>
                 <input type="hidden" name="id" value="<%=papel_act.getId_dp()%>">
                 <input type="submit" value="Actualizar" class="btn-primary">
                 <br> <small>Nota: si no se usa el boton de actualizacion, no se aplicaran los cambios</small>
+                <br>
+                <a href="listaProductosAdimn.jsp" class="btn btn-info">Regresar al listado de productos</a>
+                <br>
             </form>
         </main>
     </body>

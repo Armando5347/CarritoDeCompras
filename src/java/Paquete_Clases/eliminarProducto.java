@@ -35,6 +35,7 @@ public class eliminarProducto extends HttpServlet {
         try{
             id_maestra = Integer.parseInt(request.getParameter("id"));
         }catch(Exception e){
+            System.out.println("error obtencio id");
             redirect = "error.jsp";
             proceso_alterado = true;
         }
@@ -42,6 +43,7 @@ public class eliminarProducto extends HttpServlet {
             if(MPapel.retirarDelPapel(id_maestra)){
                 redirect = "listaProductosAdmin.jsp";
             }else{
+                System.out.println("No se pudo retirar");
                 redirect = "error.jsp";
             }
         }

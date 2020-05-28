@@ -46,7 +46,7 @@
     }
     
 %>
-<html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Editar información Cuenta</title>
@@ -67,12 +67,12 @@
         <main class="container-fluid">
             <h1 class="text-center bg-primary container-fluid">Editar cuenta de usuario</h1> <hr>
             <form method="post" action="actualizar_cliente" class="container was-validated">
-                <hr>
+                
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Nombre:</span>
                     </div>
-                    <input readOnly="true" type="text" id="nombre" name="nombre" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=nombre%>">  
+                    <input readOnly="true" type="text" id="nombre" name="nombre" onkeypress="return quieroTeclearNumeros(event,false)" onchange="return quieroNumeros(this,false)" value="<%=nombre%>">  
                     <input type="button" value="Activar Campo" onclick="switchCampos('nombre')">
                 </div>
                     <br>
@@ -80,7 +80,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Apellido paterno:</span>
                     </div>
-                    <input readOnly="true" type="text"  id="appat"  name="appat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=appat%>">
+                    <input readOnly="true" type="text"  id="appat"  name="appat" onkeypress="return quieroTeclearNumeros(event,false)" onchange="return quieroNumeros(this,false)" value="<%=appat%>">
                     <input type="button" value="Activar Campo" onclick="switchCampos('appat')"></div>
                     <br>
                 
@@ -88,7 +88,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Apellido materno:</span>
                     </div> 
-                    <input readOnly="true" type="text" id="apmat" name="apmat" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=apmat%>">
+                    <input readOnly="true" type="text" id="apmat" name="apmat" onkeypress="return quieroTeclearNumeros(event,false)" onchange="return quieroNumeros(this,false)" value="<%=apmat%>">
                     <input type="button" value="Activar Campo" onclick="switchCampos('apmat')"></div>
                     <br>
                 <div class="input-group">    
@@ -102,33 +102,33 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Telefono fijo:</span>
                     </div>
-                    <input readOnly="true" type="number" id="tel" name="tel" onclick="return quieroTeclearNumeros(this,true)" onchange="return quieroNumeros(this,true)" value="<%=tel%>"> 
+                    <input readOnly="true" type="number" id="tel" name="tel" onkeypress="return quieroTeclearNumerosEnteros(event)" onchange="return quieroNumerosEnteros(this)" value="<%=tel%>"> 
                     <input type="button" value="Activar Campo" onclick="switchCampos('tel')"></div>
                     <br>
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Telefono celular:</span>
                     </div>
-                    <input readOnly="true" type="number" id="cel" name="cel" onclick="return quieroTeclearNumeros(this,true)" onchange="return quieroNumeros(this,true)" value="<%=cel%>">
+                    <input readOnly="true" type="number" id="cel" name="cel" onkeypress="return quieroTeclearNumerosEnteros(event)" onchange="return quieroNumerosEnteros(this)" value="<%=cel%>">
                     <input type="button" value="Activar Campo" onclick="switchCampos('cel')"></div>
                     <br>
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Nombre de usuario:</span>
                     </div>
-                    <input readOnly="true" type="text" id="username" name="username" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=username%>"> 
+                    <input readOnly="true" type="text" id="username" name="username" onkeypress="return quieroTeclearNumeros(event,false)" onchange="return quieroNumeros(this,false)" value="<%=username%>"> 
                     <input type="button" value="Activar Campo" onclick="switchCampos('username')"></div>
                     <br>
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Contraseña:</span>
                     </div>
-                    <input readOnly="true" type="password" id="pass" name="pass" onclick="return quieroTeclearNumeros(this,false)" onchange="return quieroNumeros(this,false)" value="<%=pass%>">
+                    <input readOnly="true" type="password" id="pass" name="pass" onkeypress="return quieroTeclearNumeros(event,false)" onchange="return quieroNumeros(this,false)" value="<%=pass%>">
                     <input type="button" value="Activar Campo" onclick="switchCampos('pass')">
                 </div>
                     <br>
                 
-                <div><input type="submit" class="btn-primary" value="Actualizar Datos"> || <a href="borrarCuenta">Eliminar Cuenta</a> || <a href="index.jsp">Regresar al index.</a></div>
+                <div class="btn-group"><input type="submit" class="btn-primary" value="Actualizar Datos"> || <a href="borrarCuenta" class="btn btn-danger">Eliminar Cuenta</a> || <a href="index.jsp" class="btn btn-info">Regresar al index.</a></div>
                 
             </form>
         </main>

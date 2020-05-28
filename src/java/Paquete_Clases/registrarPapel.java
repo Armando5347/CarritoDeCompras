@@ -104,22 +104,27 @@ public class registrarPapel extends HttpServlet {
             System.out.println("NO hay ides");
             redirect = "error.jsp";
         }
-        id_material = lista_ides[0];
-        id_tipo_pal = lista_ides[1];
-        id_aroma = lista_ides[2];
-        id_rollos = lista_ides[3];
-        id_tipo_hojas = lista_ides[4];
-        id_hojas_rollos = lista_ides[5];
-        
-        DPapel dpap = new DPapel(stock_ini, id_material,  id_aroma, id_rollos, id_tipo_pal,  id_tipo_hojas, id_hojas_rollos, precio);
-        
-        procesoAdecuado = MPapel.guardarNuevoPapel(nombre_pap, dpap);
-        
-        if(procesoAdecuado){
-            redirect = "listaProductosAdmin.jsp";
-        }else{
+        try{
+            id_material = lista_ides[0];
+            id_tipo_pal = lista_ides[1];
+            id_aroma = lista_ides[2];
+            id_rollos = lista_ides[3];
+            id_tipo_hojas = lista_ides[4];
+            id_hojas_rollos = lista_ides[5];
+            
+            DPapel dpap = new DPapel(stock_ini, id_material,  id_aroma, id_rollos, id_tipo_pal,  id_tipo_hojas, id_hojas_rollos, precio);
+       
+            procesoAdecuado = MPapel.guardarNuevoPapel(nombre_pap, dpap);
+
+          if(procesoAdecuado){
+              redirect = "listaProductosAdmin.jsp";
+          }else{
+              redirect = "error.jsp";
+          }
+        }catch(Exception e){
             redirect = "error.jsp";
         }
+        
         
         response.sendRedirect(redirect);
         

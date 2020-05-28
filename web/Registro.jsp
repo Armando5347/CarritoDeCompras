@@ -38,14 +38,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Apellido Paterno:</span>
                     </div>
-                    <input class="form-control" type="text" name="appat" onclick="return quieroTeclearNumeros(ev,false)" onchange="return quieroNumeros(this,false)">
+                    <input class="form-control" type="text" name="appat" onkeypress="return quieroTeclearNumeros(ev,false)" onchange="return quieroNumeros(this,false)">
                 </div>
                 <br>
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Apellido Materno:</span>
                     </div>
-                    <input class="form-control" type="text" name="apmat" onclick="return quieroTeclearNumeros(ev,false)" onchange="return quieroNumeros(this,false)">
+                    <input class="form-control" type="text" name="apmat" onkeypress="return quieroTeclearNumeros(ev,false)" onchange="return quieroNumeros(this,false)">
                 </div>
                 <br>
                 <div class="input-group">    
@@ -59,14 +59,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Telefono fijo:</span>
                     </div>
-                    <input class="form-control" type="number" name="telefono" onclick="return quieroTeclearNumeros(ev,true)" onchange="return quieroNumeros(this,true)">
+                    <input class="form-control" type="number" name="telefono" onkeypress="return quieroTeclearNumeros(ev,true)" onchange="return quieroNumeros(this,true)">
                 </div>
                 <br>  
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Telefono Celular:</span>
                     </div>    
-                    <input  class="form-control" type="number" name="celular" onclick="return quieroTeclearNumeros(ev,true)" onchange="return quieroNumeros(this,true)">
+                    <input  class="form-control" type="number" name="celular" onkeypress="return quieroTeclearNumeros(ev,true)" onchange="return quieroNumeros(this,true)">
                 </div>
                 <br> 
                 <div class="input-group">    
