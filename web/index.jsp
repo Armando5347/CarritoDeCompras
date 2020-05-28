@@ -115,12 +115,12 @@
         %>
         <!--Se debe mostrar el nombre, precio-->
         
-        <div class="card col-md-2">
+        <div class="card col-md-4 ">
             <div class="card-body">
-                <img src="img/papel.png" class="img-fluid">
-                <h6>Nombre del producto:<%=mp.getNombre_pap()%></h6>
-                <p>Precio:<%=dp.getPrecio()%></p>
-                <p><a href="VerDetalleProdcuto.jsp?id=<%=mp.getId_MPapel()%>">Ver Producto</a></p>
+                <img src="img/papel.png" class="img-fluid card-img">
+                <h6 class="card-title">Nombre del producto: <%=mp.getNombre_pap()%></h6>
+                <p class="card-subtitle">Precio: <%=dp.getPrecio()%></p>
+                <p><a class="card-link" href="VerDetalleProdcuto.jsp?id=<%=mp.getId_MPapel()%>">Ver Producto</a></p>
             </div>
         </div>  
         <%}%>

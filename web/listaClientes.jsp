@@ -40,38 +40,39 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
     </head>
     <body>
-        <h1 class="text-center">Clientes registrados</h1>
-        <main class="container">
-        <table class="table-responsive border-dark table-bordered table-hover">
-            <thead class="bg-primary">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Telefono</th>
-                    <th>Celular</th>
-                    <th>Fecha nacimiento</th>
-                </tr>
-            </thead>
-            <tbody>
-            <%
-            for(Cliente cli:clientes){
-                %>
-                <tr>
-                    <td><%=cli.getId_cli()%></td>
-                    <td><%=cli.getNombre_cli()%></td>
-                    <td><%=cli.getAppat_cli()%></td>
-                    <td><%=cli.getApmat_cli()%></td>
-                    <td><%=cli.getTel_cli()%></td>
-                    <td><%=cli.getCel_cli()%></td>
-                    <td><%=cli.getFecha_nacimiento_cli()%></td>
-                </tr> 
-            <%}%>
-            </tbody>
-        </table>
-            <br>
-            <div class="text-center"><a href='index.jsp'>Regresar al index</a></div>
+        
+        <main class="container-fluid" >
+            <h1 class="bg-primary text-center container-fluid" >Clientes registrados</h1> <hr>
+            <table class="table-responsive container border-dark table-bordered table-hover w-75">
+                <thead class="bg-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Telefono</th>
+                        <th>Celular</th>
+                        <th>Fecha nacimiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <%
+                for(Cliente cli:clientes){
+                    %>
+                    <tr>
+                        <td><%=cli.getId_cli()%></td>
+                        <td><%=cli.getNombre_cli()%></td>
+                        <td><%=cli.getAppat_cli()%></td>
+                        <td><%=cli.getApmat_cli()%></td>
+                        <td><%=cli.getTel_cli()%></td>
+                        <td><%=cli.getCel_cli()%></td>
+                        <td><%=cli.getFecha_nacimiento_cli()%></td>
+                    </tr> 
+                <%}%>
+                </tbody>
+            </table>
+                <br>
+                <div class="text-center"><a href='index.jsp'>Regresar al index</a></div>
         </main>
     </body>
 </html>

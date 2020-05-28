@@ -17,6 +17,31 @@ public class DPapel {
     static ResultSet rs = null;
     static PreparedStatement ps = null;
     static String q = "";
+
+    static boolean eliminarDetalle(int id_maestra) {
+        boolean retiro_exitoso = false;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "DELTE FROM DPapel WHERE ID_dp = ?";
+            ps = con.prepareStatement(q);
+            ps.setInt(1, id_maestra);
+            if(ps.executeUpdate()==1){
+                retiro_exitoso = true;
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            retiro_exitoso = false;
+        }finally{
+            q = "";
+            try{
+                ps.close();
+                con.close();
+            }catch(SQLException e){
+                System.out.println("Error al cerrar");
+            }
+        }
+        return retiro_exitoso;
+    }
     
     private int id_papel, stock, cAroma_id, cMaterial_id, cRollosIncluidos_id, cTipos_id, cTipo_hojas_id, cHojasxRollo_id;
     private double precio; 

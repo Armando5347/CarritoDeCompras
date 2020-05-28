@@ -41,16 +41,18 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
     </head>
     <body>
-        <h1>Productos registrados en el sistema</h1>
+        
         <main class="container-fluid">
-            <table class="container table-responsive table-bordered table-hover">
+            <h1 class="bg-primary text-center container-fluid">Productos registrados en el sistema</h1>
+            <hr>
+            <table class="container table-responsive table-bordered table-hover w-75">
                 <thead class="bg-primary">
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Precio</th>
                         <th>Stock</th>
-                        <th>Editar_param</th>
+                        <th>Otras opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,7 +65,10 @@
                         <td><%=mp.getNombre_pap()%></td>
                         <td><%=dp.getPrecio()%></td>
                         <td><%=dp.getStock()%></td>
-                        <td><a href="actualizarProducto.jsp?id=<%=mp.getId_MPapel()%>">Actualizar precio/stock</a></td>
+                        <td>
+                            <a href="actualizarProducto.jsp?id=<%=mp.getId_MPapel()%>">Actualizar precio/stock</a>
+                            <a href="eliminarProducto?id=<%=mp.getId_MPapel()%>">Retirar de la venta</a>
+                        </td>
                     </tr>
                     <% } %>
                 </tbody>

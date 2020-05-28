@@ -63,9 +63,10 @@
     </head>
     <body>
         <script src="js/validarEntradas.js"></script>
-        <h1 class="text-center">Editar cuenta de usuario</h1>
+        
         <main class="container-fluid">
-            <form method="post" action="actualizar_cliente" class="container">
+            <h1 class="text-center bg-primary container-fluid">Editar cuenta de usuario</h1> <hr>
+            <form method="post" action="actualizar_cliente" class="container was-validated">
                 <hr>
                 <div class="input-group">    
                     <div class="input-group-prepend">

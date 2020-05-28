@@ -24,10 +24,10 @@
     <body>
         <script src="js/validarEntradas.js"></script>
         <!--Nav o lo que se va a poner que aún no c-->
-        <main class="container justify-content-center w-50">
-            <h1 class="text-center">Inicio de sesión</h1>
+        <main class="container-fluid justify-content-center">
+            <h1 class="text-center container-fluid bg-primary">Inicio de sesión</h1>
             <hr>
-            <form name="formularioInicioSesión" method="post" action="IniciarSesion" class="text-center">
+            <form name="formularioInicioSesión" method="post" action="IniciarSesion" class="text-center was-validated w-50 container">
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Nombre de Usuario:</span>

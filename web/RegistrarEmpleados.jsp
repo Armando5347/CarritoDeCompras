@@ -23,9 +23,9 @@
     </head>
     <body>
         <script src="js/validarEntradas.js"></script>
-        <h1 class="text-center">Registrar nuevo empleado</h1>
+        <h1 class="text-center bg-primary container-fluid">Registrar nuevo empleado</h1>
         <main class="container-fluid">
-            <form method="post" action="Registrar_Usuario" class="container">
+            <form method="post" action="Registrar_Usuario" class="container was-validated">
                 
                 <div class="input-group">    
                     <div class="input-group-prepend">

@@ -23,10 +23,10 @@
         <script src="js/validarEntradas.js"></script>
     </head>
     <body>
-        <main class="container  w-75">
-            <h1 class="text-center">Ingrese los datos solicitados para crear su cuenta</h1>
+        <main class="container-fluid  ">
+            <h1 class=" bg-primary text-center container-fluid">Ingrese los datos solicitados para crear su cuenta</h1>
             <hr>
-            <form name="formulario_Registro" method="post" action="Registrar_Usuario" class="justify-content-center">
+            <form name="formulario_Registro" method="post" action="Registrar_Usuario" class="justify-content-center container w-75 was-validated">
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Nombre:</span>

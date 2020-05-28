@@ -37,10 +37,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
     </head>
     <body>
-        <main>
-            <h1>Ver empleados</h1>
+        <main class="container-fluid">
+            <h1 class="bg-primary text-center container-fluid">Ver empleados</h1>
             <hr>
-            <table class="table-responsive container table-bordered table-hover">
+            <table class="table-responsive container table-bordered table-hover w-75">
                 <thead class="bg-primary">
                     <tr>
                         <th>Id</th>

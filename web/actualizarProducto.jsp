@@ -60,9 +60,9 @@
     </head>
     <body>
         <main class="container-fluid">
-            <h1 class="text-center">Actualizar Producto</h1>
+            <h1 class="text-center container-fluid bg-primary">Actualizar Producto</h1> <hr>
 
-            <form method="post" action="actualizarPapel" class="container">
+            <form method="post" action="actualizarPapel" class="container was-validated">
                 <h2 class="text-right"><%=papel_act.getNombre_pap()%></h2>
                 <div class="input-group">    
                         <div class="input-group-prepend">

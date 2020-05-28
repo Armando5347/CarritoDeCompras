@@ -21,7 +21,11 @@ function quieroNumeros(input, boolean){
         sirve = patron_numeritos.test(contenido);
     }
    
-    return sirve;
+    if(!sirve){
+        input.setAttibute("class", "form-control invalid-feedback" );
+    }else{
+        input.setAttibute("class", "from-control");
+    }
 }
 function soloNumerosYletras(input){
     var contenido = input.value;
@@ -33,7 +37,11 @@ function soloNumerosYletras(input){
     }
     var patron_numeritos = /[A-Za-z0-9]/;
     sirve = patron_numeritos.test(contenido);
-    return sirve;
+    if(!sirve){
+        input.setAttibute("class", "form-control invalid-feedback" );
+    }else{
+        input.setAttibute("class", "from-control");
+    }
 }
 function quieroNumerosEnteros(input){
     var enterotest = input.value;
@@ -52,6 +60,7 @@ function quieroTeclearNumeros(e, boolean){
         return !patron.test(tec);
     }
     
+    
 }
 
 function quieroTeclearNumerosEnteros(e){
@@ -69,7 +78,11 @@ function noDefault(select){
     var seleccionado = select.options[indice].value;
     if(seleccionado === "Seleccione alguna opción"){
         alert("Debe de seleccionar algún elemento del campo: " +select.name);
+        select.setAttibute("class", "custom-select invalid-feedback");
+    
         return false;
+    }else{
+        select.setAttibute("class", "custom-select");
     }
 }
 

@@ -12,6 +12,16 @@
         <title>-ERROR-</title>
     </head>
     <body>
-        <h1>Ha ocurrido un error</h1>
+        <main container-fluid>
+            <h1 class="bg-danger text-center container-fluid">Ha ocurrido un error</h1>
+            <p class="container justify-content-center border-danger">Se ha producido un error al procesas algúna accion, esto se pudó haber generado por varias razónes, como son:
+                <ul>
+                    <li>Error al validar entradas</li>
+                    <li>Error interno dentor de la base de datos</li>
+                    <li>Se realizó una solicitud no autorizada</li>
+                </ul>
+            
+            </p>
+        </main>
     </body>
 </html>

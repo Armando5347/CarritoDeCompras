@@ -40,13 +40,16 @@ public class actualizarPapel extends HttpServlet {
             id_maestra = Integer.parseInt(request.getParameter("id"));
         }catch(Exception e){
             redirect = "error.jsp";
+            proceso_alterado = true;
         }
-        
-        if(DPapel.actualizarPrecioStock(new_precio, new_stock, id_maestra)){
-            redirect = "listraProductosAdmin.jsp";
-        }else{
-            System.out.println("No se ejecutó");
-            redirect = "error.jsp";
+        if(!proceso_alterado){
+            if(DPapel.actualizarPrecioStock(new_precio, new_stock, id_maestra)){
+                redirect = "listraProductosAdmin.jsp";
+            }else{
+                System.out.println("No se ejecutó");
+                redirect = "error.jsp";
+            }
+
         }
         
         response.sendRedirect(redirect);

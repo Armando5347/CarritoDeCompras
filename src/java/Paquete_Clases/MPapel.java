@@ -21,6 +21,32 @@ public class MPapel {
     static String q ;
     static ResultSet rs;
 
+    static boolean retirarDelPapel(int id_maestra) {
+        boolean retiro_exitoso = false;
+        if(DPapel.eliminarDetalle(id_maestra)) return false;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "DELTE FROM MPapel WHERE ID_mp = ?";
+            ps = con.prepareStatement(q);
+            ps.setInt(1, id_maestra);
+            if(ps.executeUpdate()==1){
+                retiro_exitoso = true;
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            retiro_exitoso = false;
+        }finally{
+            q = "";
+            try{
+                ps.close();
+                con.close();
+            }catch(SQLException e){
+                System.out.println("Error al cerrar");
+            }
+        }
+        return retiro_exitoso;
+    }
+
     public int getId_dp() {
         return id_dp;
     }

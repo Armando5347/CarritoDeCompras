@@ -23,9 +23,10 @@
         <script src="js/validarEntradas.js"></script>
     </head>
     <body>
-        <h1>Registrar un nuevo producto</h1>
+        
         <main class="container-fluid">
-            <form method="post" action="registrarPapel" class="container">
+            <h1 class="bg-primary text-center container-fluid">Registrar un nuevo producto</h1> <hr>
+            <form method="post" action="registrarPapel" class="container was-validated">
                 <div class="input-group">    
                     <div class="input-group-prepend">
                         <span class="input-group-text">Nombre:</span>

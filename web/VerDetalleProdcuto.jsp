@@ -49,9 +49,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
     </head>
     <body>
-        <main class="container float-left">
-            <div class=" float-left w-50">
-                <h1>Nombre: <%=papel_A_detallar.getNombre_pap()%></h1>
+        <main class="container-fluid float-left">
+            <h1 class="bg-primary container-fluid text-center">Visulización dle producto</h1> <hr>
+            <div class="container float-left w-50">
+                <h2>Nombre: <%=papel_A_detallar.getNombre_pap()%></h2>
                 <p>Precio: <b><%=detalle_a_mostrar.getPrecio()%></b></p>
                 <p>Material de elaboracion: <b><%=(String)detalles_catalogos.get(0)%></b></p>
                 <p>Tipo de papel: <b><%=(String)detalles_catalogos.get(1)%></b></p>
