@@ -4,6 +4,8 @@
     Author     : maste
 --%>
 
+<%@page import="Paquete_Clases.DPapel"%>
+<%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" import="java.util.ArrayList" session="true"%>
 <!DOCTYPE html>
 <%--Aquise debe traer un arrayList de todos los productos--%>
@@ -35,8 +37,7 @@
                 <div class="col-md-8 d-flex centrar">
                     <a href="index.jsp" class="col-md-2"><img src="img/papel.png"></a>
                     <h1>¡Papelilandia!</h1>
-                </div>
-                <% HttpSession sesion_actual = request.getSession();
+                </div>                <% HttpSession sesion_actual = request.getSession();
                 if(sesion_actual==null){ %>
                 <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
                     <a href="InicioSesion.jsp" class="btn btn-primary btn-sm">Iniciar Sesión</a>
@@ -81,18 +82,63 @@
         <main>
             <div class="container">
                 <div class="row">
+                    <% if(sesion_actual==null){ %>
+                    <h1>Lo sentimos solo puede facturar cuando haya realizado un inicio de sesion</h1>
+                    <p>Sus compras siguien guardadas pero es necesario realizar un inicoo de sesion</p>
+                    <% }else{ %>
                     <!-- Elementos generados a partir de la lista -->
-                    <section id="items" class="col-sm-8 row"></section>
+                    <section id="items" class="col-sm-8 row">
+                        <%
+                         Cookie cookie = null;
+                         Cookie[] cookies = null;
+                         ArrayList<String> lista_dp = null;
+
+                         // Obtenemos 
+                         cookies = request.getCookies();
+
+                         if( cookies != null ) {
+                            for (int i = 0; i < cookies.length; i++) {
+                               cookie = cookies[i];
+                               if (cookie.getName().equals("ListaProductos")){
+                                   System.out.println(cookie.getValue());
+                                   Object a = cookie.getValue();
+                                   lista_dp = (ArrayList<String>)a;
+                               }else{
+                                   %>
+                                    <h3>Su carrito de compras esta vacio</h3>
+                                   <%
+                                   System.out.println(cookie.getValue());
+                               }
+                            }
+                         } else {
+                            System.out.println("No se encontraron cokies");
+                         }
+                        %>
+                    </section>
                     <!-- Carrito -->
                     <aside class="col-sm-4">
                         <h2>Carrito</h2>
                         <!-- Elementos del carrito -->
-                        <ul id="carrito" class="list-group"></ul>
+                        <ul id="carrito" class="list-group">
+                        <!-- Aqui iran los elementos de pago -->
+                        <%
+                        Iterator lista_dp_i = lista_dp.iterator();
+                        while(lista_dp_i.hasNext()){
+                            String id_producto = lista_dp_i.next().toString();
+                            DPapel papel = new DPapel();
+                            papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
+                        %>
+                        <li class="list-group-item text-right mx-2">Precio:<%= papel.getPrecio() %></li>
+                        <%
+                        }
+                        %>
+                        </ul>
                         <hr>
                         <!-- Precio total -->
                         <p class="text-right">Total: <span id="total"></span>$</p>
                         
                     </aside>
+                    <%}%>
                 </div>
             </div>
         </main>
