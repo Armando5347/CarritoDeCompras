@@ -12,12 +12,20 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/error.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/GuardarProductos.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/editarUser.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/js/validarEntradas.js</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/InicioSesion.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/actualizarProducto.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/RegistrarEmpleados.jsp</file>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/DPapel.java</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/index.jsp</file>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/MPapel.java</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/actualizarPapel.java</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/listaEmpleados.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/registrarPapel.java</file>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/eliminarProducto.java</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/listaClientes.jsp</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/listaProductosAdmin.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/Registro.jsp</file>
         </group>
     </open-files>
 </project-private>
