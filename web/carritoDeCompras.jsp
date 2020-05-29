@@ -4,6 +4,8 @@
     Author     : maste
 --%>
 
+<%@page import="Paquete_Clases.DPapel"%>
+<%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" import="java.util.ArrayList" session="true"%>
 <!DOCTYPE html>
 <%--Aquise debe traer un arrayList de todos los productos--%>
@@ -89,6 +91,7 @@
                         <%
                          Cookie cookie = null;
                          Cookie[] cookies = null;
+                         ArrayList<String> lista_dp = null;
 
                          // Obtenemos 
                          cookies = request.getCookies();
@@ -98,6 +101,8 @@
                                cookie = cookies[i];
                                if (cookie.getName().equals("ListaProductos")){
                                    System.out.println(cookie.getValue());
+                                   Object a = cookie.getValue();
+                                   lista_dp = (ArrayList<String>)a;
                                }else{
                                    %>
                                     <h3>Su carrito de compras esta vacio</h3>
@@ -114,7 +119,20 @@
                     <aside class="col-sm-4">
                         <h2>Carrito</h2>
                         <!-- Elementos del carrito -->
-                        <ul id="carrito" class="list-group"></ul>
+                        <ul id="carrito" class="list-group">
+                        <!-- Aqui iran los elementos de pago -->
+                        <%
+                        Iterator lista_dp_i = lista_dp.iterator();
+                        while(lista_dp_i.hasNext()){
+                            String id_producto = lista_dp_i.next().toString();
+                            DPapel papel = new DPapel();
+                            papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
+                        %>
+                        <li class="list-group-item text-right mx-2">Precio:<%= papel.getPrecio() %></li>
+                        <%
+                        }
+                        %>
+                        </ul>
                         <hr>
                         <!-- Precio total -->
                         <p class="text-right">Total: <span id="total"></span>$</p>
