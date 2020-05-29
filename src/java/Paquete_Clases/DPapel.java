@@ -55,7 +55,7 @@ public class DPapel {
         this.cRollosIncluidos_id = cRollosIncluidos_id;
     }
     
-    DPapel(){}
+    public DPapel(){}
     
     public static boolean guardarNuevoDetallePapel(DPapel new_detallePapel){
         boolean detalle_gud = false;
@@ -286,6 +286,10 @@ public class DPapel {
 
     public void setcMaterial_id(int cMaterial_id) {
         this.cMaterial_id = cMaterial_id;
+    }
+
+    void obtenerDetallePapel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
