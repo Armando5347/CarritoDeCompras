@@ -48,7 +48,7 @@ public class AgregarAlCarrito extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            DPapel dp = DPapel.obtenerDetallePapel(Integer.parseInt(request.getParameter("id")));
+            String dp = request.getParameter("id");
             Cookie cookie = null;
             Cookie[] cookies = null;
             // Obtenemos 
@@ -61,7 +61,7 @@ public class AgregarAlCarrito extends HttpServlet {
                         //Cuando necesitamos añadir un producto al carro y ya esta la cookie
                         System.out.println(cookie.getValue());
                         Object a = cookie.getValue();
-                        ArrayList<DPapel> lista_dp = (ArrayList<DPapel>)a;
+                        ArrayList<String> lista_dp = (ArrayList<String>)a;
                         lista_dp.add(dp);
                         //matamos a la cookie para actualizarla
                         cookies[i].setMaxAge(0);
@@ -82,7 +82,7 @@ public class AgregarAlCarrito extends HttpServlet {
                 } else if (cookies != null && !verificarExistenciaCookie("ListaProductos", cookies)) {
                     //Esto en caso de que hayan cookies pero no la lista
                     System.out.println("No se encontraron cokies");
-                    ArrayList<DPapel> lista_dp = new ArrayList<DPapel>();
+                    ArrayList<String> lista_dp = new ArrayList<String>();
                     lista_dp.add(dp);
                     Cookie co = new Cookie("ListaProductos", lista_dp.toString());
                     co.setMaxAge(60*60*60);
@@ -91,7 +91,7 @@ public class AgregarAlCarrito extends HttpServlet {
                 }else {
                    //En este puento creo que es una buena idea crear las cookies
                    System.out.println("No se encontraron cokies");
-                   ArrayList<DPapel> lista_dp = new ArrayList<DPapel>();
+                   ArrayList<String> lista_dp = new ArrayList<String>();
                    lista_dp.add(dp);
                    Cookie co = new Cookie("ListaProductos", lista_dp.toString());
                    co.setMaxAge(60*60*60);
