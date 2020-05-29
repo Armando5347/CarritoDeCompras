@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 16/05/2020, 07:37:48 PM
-    Author     : maste
+    Author     : maste y tenorio
 --%>
 <%@page import="Paquete_Clases.Empleado"%>
 <%@page import="Paquete_Clases.DPapel"%>

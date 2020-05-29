@@ -35,8 +35,7 @@
                 <div class="col-md-8 d-flex centrar">
                     <a href="index.jsp" class="col-md-2"><img src="img/papel.png"></a>
                     <h1>¡Papelilandia!</h1>
-                </div>
-                <% HttpSession sesion_actual = request.getSession();
+                </div>                <% HttpSession sesion_actual = request.getSession();
                 if(sesion_actual==null){ %>
                 <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
                     <a href="InicioSesion.jsp" class="btn btn-primary btn-sm">Iniciar Sesión</a>
@@ -81,8 +80,36 @@
         <main>
             <div class="container">
                 <div class="row">
+                    <% if(sesion_actual==null){ %>
+                    <h1>Lo sentimos solo puede facturar cuando haya realizado un inicio de sesion</h1>
+                    <p>Sus compras siguien guardadas pero es necesario realizar un inicoo de sesion</p>
+                    <% }else{ %>
                     <!-- Elementos generados a partir de la lista -->
-                    <section id="items" class="col-sm-8 row"></section>
+                    <section id="items" class="col-sm-8 row">
+                        <%
+                         Cookie cookie = null;
+                         Cookie[] cookies = null;
+
+                         // Obtenemos 
+                         cookies = request.getCookies();
+
+                         if( cookies != null ) {
+                            for (int i = 0; i < cookies.length; i++) {
+                               cookie = cookies[i];
+                               if (cookie.getName().equals("ListaProductos")){
+                                   System.out.println(cookie.getValue());
+                               }else{
+                                   %>
+                                    <h3>Su carrito de compras esta vacio</h3>
+                                   <%
+                                   System.out.println(cookie.getValue());
+                               }
+                            }
+                         } else {
+                            System.out.println("No se encontraron cokies");
+                         }
+                        %>
+                    </section>
                     <!-- Carrito -->
                     <aside class="col-sm-4">
                         <h2>Carrito</h2>
@@ -93,6 +120,7 @@
                         <p class="text-right">Total: <span id="total"></span>$</p>
                         
                     </aside>
+                    <%}%>
                 </div>
             </div>
         </main>

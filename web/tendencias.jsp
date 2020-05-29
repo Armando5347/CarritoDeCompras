@@ -159,7 +159,6 @@ String dataPoints = gsonObj.toJson(list);
     </body>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript">
-
         $(function () {
             var chart = new CanvasJS.Chart("semana", {
                 theme: "light2",
@@ -191,14 +190,13 @@ String dataPoints = gsonObj.toJson(list);
         });
      </script>
          <script type="text/javascript">
-
         $(function () {
             var chart = new CanvasJS.Chart("mes", {
                 theme: "light2",
                 zoomEnabled: true,
                 animationEnabled: true,
                 title: {
-                    text: "Tendencias de papel por semana"
+                    text: "Tendencias de papel por mes"
                 },
                 subtitles: [
                     {
@@ -223,14 +221,13 @@ String dataPoints = gsonObj.toJson(list);
         });
      </script>
          <script type="text/javascript">
-
         $(function () {
             var chart = new CanvasJS.Chart("quincena", {
                 theme: "light2",
                 zoomEnabled: true,
                 animationEnabled: true,
                 title: {
-                    text: "Tendencias de papel por semana"
+                    text: "Tendencias de papel por quincena"
                 },
                 subtitles: [
                     {
