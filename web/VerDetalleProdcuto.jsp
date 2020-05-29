@@ -63,7 +63,7 @@
             </div>
         <!--<p><a href="Comprar?id='<%=id%>'">Comprar el Producto</a></p>-->
         <div class="  float-left w-50 align-middle text-center">
-            <a href="AgregarAlCarrito?id='<%=id%>'"><button class="btn-primary">Agregar al carrito</button></a> <hr> <p class="text-center">Ó</p> <hr> <a href="index.jsp">Regresar al index</a>
+            <a href="<%= request.getContextPath() %>/AgregarAlCarrito?id='<%=id%>'"><button class="btn-primary">Agregar al carrito</button></a> <hr> <p class="text-center">Ó</p> <hr> <a href="index.jsp">Regresar al index</a>
         </div>
         </main>
     </body>

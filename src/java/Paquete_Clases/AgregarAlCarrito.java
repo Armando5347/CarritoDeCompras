@@ -6,7 +6,6 @@ package Paquete_Clases;
  * and open the template in the editor.
  */
 
-import Paquete_Clases.DPapel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -108,6 +107,8 @@ public class AgregarAlCarrito extends HttpServlet {
             System.out.println(e.getMessage());
             System.out.println(e.getLocalizedMessage());
             e.printStackTrace();
+        }finally{
+            response.sendRedirect("carritoDeCompras.jsp");
         }
     }
 
