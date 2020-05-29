@@ -33,6 +33,17 @@ public class AgregarAlCarrito extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private boolean verificarExistenciaCookie(String name, Cookie[] cookies){
+        Cookie cookie = null;
+        for (int i = 0; i < cookies.length; i++) {
+            cookie = cookies[i];
+            if (cookie.getName().equals(name)){
+               return true;
+            }
+        }
+        return false;
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -64,14 +75,24 @@ public class AgregarAlCarrito extends HttpServlet {
                         //Lo rompemos por que ya tenemos lo que mas necesitamos
                         break;
                       }else{
+                         //La creamos en el caso en que no exista
                         System.out.println(cookie.getValue());
                       }
                     }
-                } else {
+                } else if (cookies != null && !verificarExistenciaCookie("ListaProductos", cookies)) {
+                    //Esto en caso de que hayan cookies pero no la lista
+                    System.out.println("No se encontraron cokies");
+                    ArrayList<DPapel> lista_dp = new ArrayList<DPapel>();
+                    lista_dp.add(dp);
+                    Cookie co = new Cookie("ListaProductos", lista_dp.toString());
+                    co.setMaxAge(60*60*60);
+                    //Aqui es posible que se cree una paradoja
+                    response.addCookie(co);
+                }else {
                    //En este puento creo que es una buena idea crear las cookies
                    System.out.println("No se encontraron cokies");
                    ArrayList<DPapel> lista_dp = new ArrayList<DPapel>();
-                   
+                   lista_dp.add(dp);
                    Cookie co = new Cookie("ListaProductos", lista_dp.toString());
                    co.setMaxAge(60*60*60);
                    //Aqui es posible que se cree una paradoja
