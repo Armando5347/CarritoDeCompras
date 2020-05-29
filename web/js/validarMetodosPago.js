@@ -7,13 +7,29 @@
 function seleccionMetodo(name_metodo){
     switch(name_metodo){
         case "paypal":
+            var paypal = document.getElementById("paypal");
+            var tarjeta = document.getElementById("tarjeta");
+            var efectivo = document.getElementById("efectivo");
+            paypal.style.opacity = 1;
+            tarjeta.style.opacity = 0;
+            efectivo.style.opacity = 0;
             
             break;
-        case "targeta":
-            
+        case "tarjeta":
+            var paypal = document.getElementById("paypal");
+            var tarjeta = document.getElementById("tarjeta");
+            var efectivo = document.getElementById("efectivo");
+            paypal.style.opacity = 0;
+            tarjeta.style.opacity = 1;
+            efectivo.style.opacity = 0;
             break;
         case "efectivo":
-            
+            var paypal = document.getElementById("paypal");
+            var tarjeta = document.getElementById("tarjeta");
+            var efectivo = document.getElementById("efectivo");
+            paypal.style.opacity = 0;
+            tarjeta.style.opacity = 0;
+            efectivo.style.opacity = 1;
             break;
     }
 }

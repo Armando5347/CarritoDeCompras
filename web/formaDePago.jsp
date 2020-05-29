@@ -27,16 +27,88 @@
     </head>
     <body>
         <main class="container-fluid">
-            <h1 class="container-fluid text-center bg-primary">Ingrese su metodo de pago</h1>
+            <h1 class="container-fluid text-center bg-primary centrar">Ingrese su metodo de pago</h1>
             <hr>
-            <div class=" container btn-group">
-                <div  onclick ="" class="btn btn-info"><img src="img/paypal.jpg" alt="imagen paypal"></div>
-                <div  onclick="" class="btn btn-info"><img src="img/targeta_credito.png" alt="imagen targeta"></div>
-                <div onclick="" class="btn btn-info"><img src="img/targetas-credito.jpg" alt="imagen credito"></div>
+            <div class="container btn-group justify-content-center text-center align-middle">
+                <div  onclick ="seleccionMetodo('paypal')" class="btn btn-info w-25"><img src="img/paypal.jpg" class="img-fluid" alt="imagen paypal"></div>
+                <div  onclick="seleccionMetodo('tarjeta')" class="btn btn-info w-25"><img src="img/targeta_credito.png" class="img-fluid" alt="imagen targeta"></div>
+                <div onclick="seleccionMetodo('efectivo')" class="btn btn-info w-25" ><img src="img/efectivo.png" class="img-fluid" alt="imagen efectivo"></div>
             </div>
-            <div class="invisible" id="paypal"></div>
-            <div class="invisible" id="targeta"></div>
-            <div class="invisible" id="efectivo"></div>
+        <div id="info">Total a pagar: <input type="number" readonly="readonly" name="precio_a_pagar"></div>
+            <div id="metodos">
+                <div class="card centrar w-75" style="opacity: 0;" id="paypal">
+                    <div class="card-header bg-secondary">
+                        <h2 class="card-title">Paypal</h2>
+                    </div>
+                    <form method='post' class="card-body" action='ejecutar_compra'>
+                        <input type="hidden" name="metodo" value="paypal">
+                        <div class="input-group">    
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Nombre de usuario:</span>
+                            </div>
+                            <input type="text" name="username">
+                        </div>
+                        <br>
+                        <div class="input-group">    
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Otra cosa:</span>
+                            </div>
+                            <input type="email" name="cuenta?">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="card centrar w-75" style="opacity: 0;" id="targeta" >
+                    <div class="card-header bg-secondary">
+                        <h2 class="card-title">Tarjeta de credito</h2>
+                    </div>
+                    <form method="post" class="card-body" action='ejecutar_compra'>
+                        <input type="hidden" name="metodo" value="tarjeta">
+                        <div class="input-group">    
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Tarjetas validas:</span>
+                            </div>
+                            <select name="targeta" readonly="true">
+                                <option>Master card</option>
+                                <option>VISA</option>
+                            </select>
+                        </div> <br>
+                        <div class="input-group">    
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Nombre del Propietario:</span>
+                                <input type="text" name="propietario" onkeypress="return quieroTeclearNumerosEnteros(event)" onchange="return quieroNumerosEnteros(this)">
+                            </div>
+                        </div> <br>
+                        <div class="input-group">    
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Codigo tarjeta:</span>
+                            </div>
+                            <input type="number" name="codigo">
+                        </div><br>
+                        <div class="input-group">    
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Inserte los 3 numeros finales</span>
+                            </div>
+                            <input type="password" name="3numeros" onkeypre>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card centrar w-75" style="opacity: 0;" id="efectivo" >
+                    <div class="card-header bg-secondary">
+                        <h2 class="card-title">En efectivo</h2>
+                    </div>
+                    <form method="post" class="card-body" action='ejecutar_compra'>
+                        <input type="hidden" name="metodo" value="efectivo">
+                        <div class="input-group">    
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Algo:</span>
+                            </div>
+                            <input type="" name="">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </main>
        
     </bo
