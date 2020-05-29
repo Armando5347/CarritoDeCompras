@@ -5,6 +5,10 @@
         <servlet-class>Paquete_Clases.IniciarSesion</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AgregarAlCarrito</servlet-name>
+        <servlet-class>Paquete_Clases.AgregarAlCarrito</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Registrar_Usuario</servlet-name>
         <servlet-class>Paquete_Clases.Registrar_Usuario</servlet-class>
     </servlet>
@@ -35,6 +39,10 @@
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarAlCarrito</servlet-name>
+        <url-pattern>/AgregarAlCarrito</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Registrar_Usuario</servlet-name>
