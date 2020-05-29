@@ -28,6 +28,10 @@
         <servlet-name>borrarCuenta</servlet-name>
         <servlet-class>Paquete_Clases.borrarCuenta</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>eliminarProducto</servlet-name>
+        <servlet-class>Paquete_Clases.eliminarProducto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>borrarCuenta</servlet-name>
         <url-pattern>/borrarCuenta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminarProducto</servlet-name>
+        <url-pattern>/eliminarProducto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

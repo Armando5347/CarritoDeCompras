@@ -42,7 +42,6 @@ public class IniciarSesion extends HttpServlet {
             }
             if(!proceso_alterado){
                 Cliente posible_cliente = Cliente.IniciarSesionCliente(username, password); //Esto se reemplazara por el usuario
-                System.out.println(posible_cliente);
                 if(null != posible_cliente){
                     HttpSession sesion_usuario_creada = request.getSession(true);
                     sesion_usuario_creada.setAttribute("tipo_user", "cliente");
@@ -56,7 +55,6 @@ public class IniciarSesion extends HttpServlet {
                     sesion_usuario_creada.setAttribute("usuario", posible_empleado);
                     redirect = "index.jsp";
                 }
-
 
                 if(posible_cliente == null && posible_empleado == null){
                     redirect= "InicioSesion.jsp";

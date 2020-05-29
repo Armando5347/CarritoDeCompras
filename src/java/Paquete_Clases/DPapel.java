@@ -17,6 +17,32 @@ public class DPapel {
     static ResultSet rs = null;
     static PreparedStatement ps = null;
     static String q = "";
+
+    static boolean eliminarDetalle(int id_maestra) {
+        boolean retiro_exitoso = false;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "DELETE FROM DPapel WHERE ID_dp = ?";
+            ps = con.prepareStatement(q);
+            ps.setInt(1, id_maestra);
+            if(ps.executeUpdate()==1){
+                retiro_exitoso = true;
+                System.out.println("C borro DPapel");
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            retiro_exitoso = false;
+        }finally{
+            q = "";
+            try{
+                ps.close();
+                con.close();
+            }catch(SQLException e){
+                System.out.println("Error al cerrar");
+            }
+        }
+        return retiro_exitoso;
+    }
     
     private int id_papel, stock, cAroma_id, cMaterial_id, cRollosIncluidos_id, cTipos_id, cTipo_hojas_id, cHojasxRollo_id;
     private double precio; 
@@ -31,36 +57,29 @@ public class DPapel {
     
     DPapel(){}
     
-    public static int  guardarNuevoDetallePapel(DPapel new_detallePapel){
-        int id_nuevo_detalle = 0;
+    public static boolean guardarNuevoDetallePapel(DPapel new_detallePapel){
+        boolean detalle_gud = false;
         try{
             con = Conexion.obtenerConexion();
-            q = "INSERT INTO DPapel (Precio, Stock, CMaterial_ID, CTipos_ID, Aromas_ID, CRollosIncluidos_ID, CTipo_Hojas_ID, CHojasxRollo_ID";
+            q = "INSERT INTO DPapel (ID_dp, Precio, Stock, CMaterial_ID, CTipos_ID, Aromas_ID, CRollosIncluidos_ID, CTipo_Hojas_ID, CHojasxRollo_ID)";
             q += " VALUES(?,?,?,?,?,?,?,?,?)";
             ps = con.prepareStatement(q);
-            ps.setDouble(1, new_detallePapel.getPrecio());
-            ps.setInt(2, new_detallePapel.getStock());
-            ps.setInt(3, new_detallePapel.getcMaterial_id());
-            ps.setInt(4, new_detallePapel.getcTipos_id());
+            ps.setInt(1,new_detallePapel.getId_papel());
+            ps.setDouble(2, new_detallePapel.getPrecio());
+            ps.setInt(3, new_detallePapel.getStock());
+            ps.setInt(4, new_detallePapel.getcMaterial_id());
+            ps.setInt(5, new_detallePapel.getcTipos_id());
             ps.setInt(6, new_detallePapel.getcAroma_id());
             ps.setInt(7, new_detallePapel.getcRollosIncluidos_id());
             ps.setInt(8, new_detallePapel.getcTipo_hojas_id());
             ps.setInt(9, new_detallePapel.getcHojasxRollo_id());
             if(ps.executeUpdate()==1){
-                q = "SELECT MAX(ID_dp) AS ultimo_registrado from DPapel";
-                ps = con.prepareStatement(q);
-                rs = ps.executeQuery();
-                if(rs.next()){
-                    id_nuevo_detalle = rs.getInt("ultimo_registrado");
-                }else{
-                    id_nuevo_detalle = 0;
-                }
-            }else{
-                id_nuevo_detalle=0;
+                detalle_gud = true;
             }
    
         }catch(Exception ex){
-            id_nuevo_detalle = 0;
+            ex.printStackTrace();
+            detalle_gud = false;
         }finally{
             try{
                 rs.close();
@@ -71,7 +90,7 @@ public class DPapel {
                ex.printStackTrace();
             }
         }
-        return id_nuevo_detalle;
+        return detalle_gud;
     }
     
     public static ArrayList<DPapel> obtenerTodosDetallesPapel(){
@@ -114,8 +133,9 @@ public class DPapel {
         DPapel detalleMostrar = null;
         try{
             con = Conexion.obtenerConexion();
-            q = "SELECT * FROM DPapel where ID_dp";
+            q = "SELECT * FROM DPapel WHERE ID_dp = ?";
             ps = con.prepareStatement(q);
+            ps.setInt(1, id_dp);
             rs = ps.executeQuery();
             while(rs.next()){
                 detalleMostrar = new DPapel(
@@ -143,6 +163,7 @@ public class DPapel {
                 
             }
         }
+        if(detalleMostrar == null) System.out.println("No se ejecuto la query"); 
         return detalleMostrar;
     }
     
@@ -157,13 +178,15 @@ public class DPapel {
             ps.setInt(3, mPapel_id);
             if(ps.executeUpdate()==1){
                 actualizo = true;
+            }else{
+                System.out.println("No se ejecuto el update");
             }
+                    
         } catch (SQLException ex) {
             ex.printStackTrace();
             actualizo = false;
         }finally{
             try {
-                rs.close();
                 ps.close();
                 con.close();
             } catch (SQLException ex) {
