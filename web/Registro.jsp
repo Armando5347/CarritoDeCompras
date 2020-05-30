@@ -4,6 +4,7 @@
     Author     : maste
 --%>
 
+<%@page import="Paquete_Clases.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"  session="true" %>
 <!DOCTYPE html>
 <html lang="es">
@@ -170,7 +171,7 @@
                 </div>
                 <hr>
                 <div class="">
-                    <input class="btn-primary"  type="submit" value="Registrarse"> | | <input type="reset" value="Vaciar Campos." class="btn-secondary">
+                    <input class="btn-primary"  type="submit" value="Registrarse"><input type="reset" value="Vaciar Campos." class="btn-secondary">
                 </div>
             </form>
         </main>
