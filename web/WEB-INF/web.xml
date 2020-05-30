@@ -33,8 +33,13 @@
         <servlet-class>Paquete_Clases.borrarCuenta</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
+        <servlet-name>AgregarAlCarrito</servlet-name>
+        <servlet-class>Paquete_Clases.AgregarAlCarrito</servlet-class>
+=======
         <servlet-name>eliminarProducto</servlet-name>
         <servlet-class>Paquete_Clases.eliminarProducto</servlet-class>
+>>>>>>> 4336761c3499c0ae2067cb842afea7d05e2fda45
     </servlet>
     <servlet>
         <servlet-name>ejecutar_compra</servlet-name>
@@ -73,8 +78,13 @@
         <url-pattern>/borrarCuenta</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
+        <servlet-name>AgregarAlCarrito</servlet-name>
+        <url-pattern>/AgregarAlCarrito</url-pattern>
+=======
         <servlet-name>eliminarProducto</servlet-name>
         <url-pattern>/eliminarProducto</url-pattern>
+>>>>>>> 4336761c3499c0ae2067cb842afea7d05e2fda45
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ejecutar_compra</servlet-name>
