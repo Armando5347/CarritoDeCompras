@@ -5,6 +5,10 @@
         <servlet-class>Paquete_Clases.IniciarSesion</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AgregarAlCarrito</servlet-name>
+        <servlet-class>Paquete_Clases.AgregarAlCarrito</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Registrar_Usuario</servlet-name>
         <servlet-class>Paquete_Clases.Registrar_Usuario</servlet-class>
     </servlet>
@@ -29,12 +33,21 @@
         <servlet-class>Paquete_Clases.borrarCuenta</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>AgregarAlCarrito</servlet-name>
         <servlet-class>Paquete_Clases.AgregarAlCarrito</servlet-class>
+=======
+        <servlet-name>eliminarProducto</servlet-name>
+        <servlet-class>Paquete_Clases.eliminarProducto</servlet-class>
+>>>>>>> 4336761c3499c0ae2067cb842afea7d05e2fda45
     </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarAlCarrito</servlet-name>
+        <url-pattern>/AgregarAlCarrito</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Registrar_Usuario</servlet-name>
@@ -61,8 +74,13 @@
         <url-pattern>/borrarCuenta</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>AgregarAlCarrito</servlet-name>
         <url-pattern>/AgregarAlCarrito</url-pattern>
+=======
+        <servlet-name>eliminarProducto</servlet-name>
+        <url-pattern>/eliminarProducto</url-pattern>
+>>>>>>> 4336761c3499c0ae2067cb842afea7d05e2fda45
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -119,9 +119,11 @@
                         <!-- Elementos del carrito -->
                         <ul id="carrito" class="list-group">
                         <!-- Aqui iran los elementos de pago -->
+                        <%! double total_neto = 0; 
+                            ArrayList<Double> total = new ArrayList<Double>();
+                        %>
                         <%
                         Iterator lista_dp_i = lista_dp.iterator();
-                        ArrayList total = new ArrayList<>();
                         while(lista_dp_i.hasNext()){
                             String id_producto = lista_dp_i.next().toString();
                             DPapel papel = new DPapel();
@@ -135,7 +137,6 @@
                         </ul>
                         <hr>
                         <!-- Precio total -->
-                        <%! double total_neto = 0; %>
                         <%
                         try{
                             Iterator total_i = total.iterator();
@@ -150,7 +151,7 @@
                         }
                         %>
                         <p class="text-right">Total: <span id="total"><%= total_neto %></span>$</p>
-                        <a href="<%= request.getContextPath() %>/Cobrar">Cobrar</a>
+                        <a href="<%= request.getContextPath() %>/Cobrar?total=<%= total_neto %>">Cobrar</a>
                     </aside>
                     <%}%>
                 </div>

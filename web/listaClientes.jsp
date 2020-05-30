@@ -24,42 +24,55 @@
     
 %>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista Clientes</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
     </head>
     <body>
-        <h1>Clientes registrados</h1>
-        <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Telefono</th>
-                    <th>Celular</th>
-                    <th>Fecha nacimiento</th>
-                </tr>
-            </thead>
-            <tbody>
-            <%
-            for(Cliente cli:clientes){
-                %>
-                <tr>
-                    <td><%=cli.getId_cli()%></td>
-                    <td><%=cli.getNombre_cli()%></td>
-                    <td><%=cli.getAppat_cli()%></td>
-                    <td><%=cli.getApmat_cli()%></td>
-                    <td><%=cli.getTel_cli()%></td>
-                    <td><%=cli.getCel_cli()%></td>
-                    <td><%=cli.getFecha_nacimiento_cli()%></td>
-                </tr> 
-            <%}%>
-            </tbody>
-        </table>
+        
+        <main class="container-fluid" >
+            <h1 class="bg-primary text-center container-fluid" >Clientes registrados</h1> <hr>
+            <table class="text-center container border-dark table-bordered table-hover w-75">
+                <thead class="bg-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Telefono</th>
+                        <th>Celular</th>
+                        <th>Fecha nacimiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <%
+                for(Cliente cli:clientes){
+                    %>
+                    <tr>
+                        <td><%=cli.getId_cli()%></td>
+                        <td><%=cli.getNombre_cli()%></td>
+                        <td><%=cli.getAppat_cli()%></td>
+                        <td><%=cli.getApmat_cli()%></td>
+                        <td><%=cli.getTel_cli()%></td>
+                        <td><%=cli.getCel_cli()%></td>
+                        <td><%=cli.getFecha_nacimiento_cli()%></td>
+                    </tr> 
+                <%}%>
+                </tbody>
+            </table>
+                <br>
+                <div class="text-center"><a href='index.jsp'>Regresar al index</a></div>
         </main>
     </body>
 </html>

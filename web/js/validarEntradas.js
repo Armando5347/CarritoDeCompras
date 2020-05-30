@@ -10,7 +10,7 @@ function quieroNumeros(input, boolean){
     var sirve = false;
     sirve = verMaximoCaracteres(contenido, 20); //20 de manera temporal
     if(!sirve){
-        alert("Campo "+contenido.name+" No es valido");
+        alert("Campo "+input.name+" No es valido");
         return false;
     }
     var patron_numeritos = /[0-9]/;
@@ -20,10 +20,14 @@ function quieroNumeros(input, boolean){
         if(contenido < 0 ) return false;
         sirve = patron_numeritos.test(contenido);
     }
-   
+    if(!sirve){
+        alert("Campo "+input.name+" No es valido");
+        input.focus();
+    }
     return sirve;
 }
 function soloNumerosYletras(input){
+    console.log("Validando");
     var contenido = input.value;
     var sirve = false;
     sirve = verMaximoCaracteres(contenido, 20); //20 de manera temporal
@@ -31,9 +35,12 @@ function soloNumerosYletras(input){
         alert("Campo "+contenido.name+" es deamsiado largo");
         return false;
     }
-    var patron_numeritos = /[A-Za-z0-9]/;
+    var patron_numeritos = /^[A-Za-z0-9]$/;
     sirve = patron_numeritos.test(contenido);
-    return sirve;
+    if(!sirve){
+        alert("Fomrato invalido para usuario y/o contraseña");
+        input.focus();
+    }
 }
 function quieroNumerosEnteros(input){
     var enterotest = input.value;
@@ -42,6 +49,7 @@ function quieroNumerosEnteros(input){
 }
 
 function quieroTeclearNumeros(e, boolean){
+    console.log("ver teclado");
    var teclado = (document.all)?e.keyCode:e.which;
     if(teclado == 8) return true;
     var patron = /[0-9]\./;
@@ -52,6 +60,7 @@ function quieroTeclearNumeros(e, boolean){
         return !patron.test(tec);
     }
     
+    
 }
 
 function quieroTeclearNumerosEnteros(e){
@@ -59,17 +68,20 @@ function quieroTeclearNumerosEnteros(e){
     if(teclado == 8) return true;
     var patron = /[0-9]/;
     var tec=String.fromCharCode(teclado);
-    alert("Stock" + (patron.test(tec)?" Valido":" No valido"));
     return patron.test(tec);    
     
 }
 
 function noDefault(select){
+    console.log("Validando");
     var indice = select.selectedIndex;
     var seleccionado = select.options[indice].value;
-    if(seleccionado === "Seleccione alguna opción"){
+    if(seleccionado === "Seleccione alguna opción" || indice===0){
         alert("Debe de seleccionar algún elemento del campo: " +select.name);
+        select.focus();
         return false;
+    }else{
+        return true;
     }
 }
 
@@ -80,12 +92,7 @@ function verMaximoCaracteres(contenido, maxCaracteres){
 function switchCampos(id_camp){
     var campoActivar = document.getElementById(id_camp);
     campoActivar.readOnly = campoActivar.readOnly==false ? true : false;
-    if(campoActivar.readOnly==false){
-        campoActivar.style.background = "white";
-    }else{
-        campoActivar.style.border = "2px solid black";
-        campoActivar.style.background = "beige";
-    }
+    
 }
 
 function esFecha(input){

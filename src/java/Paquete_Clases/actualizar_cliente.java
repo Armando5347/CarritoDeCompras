@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import javax.servlet.http.Cookie;
 /**
  *
  * @author maste
@@ -73,7 +73,12 @@ public class actualizar_cliente extends HttpServlet {
             }
             if(!progreso_alterado){
                 HttpSession sesion_a_cambiar = request.getSession();
-                String tipo_user = (String)sesion_a_cambiar.getAttribute("tipo_user");
+                String tipo_user = "null";
+                try{
+                tipo_user = (String)sesion_a_cambiar.getAttribute("tipo_user");
+                }catch(NullPointerException ed){
+                    tipo_user = "null";
+                }
                 if(tipo_user.equals("cliente")){
                    Cliente  cliente_como_estaba = (Cliente)sesion_a_cambiar.getAttribute("usuario");
                    int id = cliente_como_estaba.getId_cli();
@@ -84,7 +89,7 @@ public class actualizar_cliente extends HttpServlet {
                    }else{
                        redirect = "error.jsp";
                    }
-                }else{
+                }else if(tipo_user.equals("empleado")){
                      Empleado empleado_como_estaba = (Empleado)sesion_a_cambiar.getAttribute("usuario");
                    int id = empleado_como_estaba.getId_emp();
                    int privilegio = empleado_como_estaba.getCprivilegio_id();
@@ -95,6 +100,8 @@ public class actualizar_cliente extends HttpServlet {
                    }else{
                        redirect = "error.jsp";
                    }
+                }else{
+                    redirect = "error.jsp";
                 }
             }
             response.sendRedirect(redirect);

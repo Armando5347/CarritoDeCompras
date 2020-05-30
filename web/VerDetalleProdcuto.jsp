@@ -37,21 +37,34 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Papel: <%=papel_A_detallar.getNombre_pap()%></title>
-        <link rel="stylesheet" href="estilos.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
     </head>
     <body>
-        <main>
-        <h1>Nombre: <%=papel_A_detallar.getNombre_pap()%></h1>
-        <p>Precio: <%=detalle_a_mostrar.getPrecio()%></p>
-        <p>Material de elaboracion: <%=(String)detalles_catalogos.get(0)%></p>
-        <p>Tipo de papel: <%=(String)detalles_catalogos.get(1)%></p>
-        <p>Aroma: <%=(String)detalles_catalogos.get(2)%></p>
-        <p>Rollos Incluidos en el paquete: <%=(String)detalles_catalogos.get(3)%></p>
-        <p>Tipo de hojas: <%=(String)detalles_catalogos.get(4)%></p>
-        <p>Hojas por rollos: <%=(String)detalles_catalogos.get(5)%></p>
-        
+        <main class="container-fluid float-left">
+            <h1 class="bg-primary container-fluid text-center">Visulización dle producto</h1> <hr>
+            <div class="container float-left w-50">
+                <h2>Nombre: <%=papel_A_detallar.getNombre_pap()%></h2>
+                <p>Precio: <b><%=detalle_a_mostrar.getPrecio()%></b></p>
+                <p>Material de elaboracion: <b><%=(String)detalles_catalogos.get(0)%></b></p>
+                <p>Tipo de papel: <b><%=(String)detalles_catalogos.get(1)%></b></p>
+                <p>Aroma: <b><%=(String)detalles_catalogos.get(2)%></b></p>
+                <p>Rollos Incluidos en el paquete: <b><%=(String)detalles_catalogos.get(3)%></b></p>
+                <p>Tipo de hojas: <b><%=(String)detalles_catalogos.get(4)%></b></p>
+                <p>Hojas por rollos: <b><%=(String)detalles_catalogos.get(5)%></b></p>
+            </div>
         <!--<p><a href="Comprar?id='<%=id%>'">Comprar el Producto</a></p>-->
-        <p><a href="AgregarAlCarrito?id='<%=id%>'">Añadir al Carrito</a></p>
+        <div class="  float-left w-50 align-middle text-center">
+            <a href="<%= request.getContextPath() %>/AgregarAlCarrito?id='<%=id%>'"><button class="btn-primary">Agregar al carrito</button></a> <hr> <p class="text-center">Ó</p> <hr> <a href="index.jsp">Regresar al index</a>
+        </div>
         </main>
     </body>
 </html>
