@@ -34,7 +34,7 @@
             );
     %>
 <!DOCTYPE html>
-<html>
+<html lang="es"
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Papel: <%=papel_A_detallar.getNombre_pap()%></title>

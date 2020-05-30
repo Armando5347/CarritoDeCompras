@@ -43,7 +43,7 @@
     <jsp:forward page="<%=redirect%>"></jsp:forward>
     <%}%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Actualizar info. producto.</title>
@@ -166,5 +166,10 @@
                 <br>
             </form>
         </main>
+                <footer class="container-fluid bg-secondary">
+            <small class="contanier font-italic">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
+            </small>
+        </footer>
     </body>
 </html>

@@ -102,15 +102,25 @@
                         <input type="hidden" name="metodo" value="efectivo">
                         <div class="input-group">    
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Algo:</span>
+                                <span class="input-group-text">Ingrese la sucursal de su preferencia:</span>
                             </div>
-                            <input type="text" name="" class="from-control" onkeypress="return (this)" onchange="return (this)">
+                            <select readonly="readonly" name="sucursal">
+                                <option>OXXO</option>
+                                <option>Eleven</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="input-group">    
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Ingrese la dirección de la sucursal:</span>
+                            </div>
+                            <input type="text" name="dir_sucursal" class="from-control" onkeypress="return (this)" onchange="return (this)">
                         </div>
                     </form>
                 </div>
             </div>
         </main><br>
-       <footer class="container-fluid bg-secondary">
+        <footer class="container-fluid bg-secondary">
             <small class="contanier font-italic">
                 Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
             </small>
