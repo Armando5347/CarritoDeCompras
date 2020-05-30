@@ -96,7 +96,12 @@
                     <div class="btn-group"><input type="submit" value="Registrar" class="btn-primary"> <input type="reset" value="Reiniciar campos" class="btn-secondary"></div>
             
             </form>
-            <div><a href='index.jsp'>Regresar al index</a></div>
-        </main>
+            <a href='index.jsp' class="btn btn-info">Regresar al index</a>
+        </main><br>
+        <footer class="container-fluid bg-secondary">
+            <small class="contanier font-italic">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
+            </small>
+        </footer>
     </body>
 </html>

@@ -88,7 +88,7 @@ public class Entradas {
     
     public static boolean formatoUser (String formatoTestear){
         
-        String er = "QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnmáéíóúÁÉÍÚÓ 0123456789";
+        String er = "QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnmáéíóúÁÉÍÚÓ 0123456789_.";
         
         for(int i = 0; i< formatoTestear.length(); i++){
             char verCaracter = formatoTestear.charAt(i);
@@ -130,13 +130,43 @@ public class Entradas {
         }
         return true;
     }
-    static boolean esDate(String fecha_nac_testear) {
-        /*
+    public static boolean esDate(String fecha_nac_testear) {
+        
         if(fecha_nac_testear.isEmpty()) return false;
-        Pattern patron_fecha = Pattern.compile("/^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$/");
+        Pattern patron_fecha = Pattern.compile("^\\d{4}([\\-/.])(0?[1-9]|1[1-2])\\1(3[01]|[12][0-9]|0?[1-9])$");
         Matcher esDate = patron_fecha.matcher(fecha_nac_testear);
         return esDate.matches();
-        */
+        
+    }
+
+    public static boolean esEmail(String email_testear) {
+        if(email_testear.isEmpty()) return false;
+        Pattern patron_email = Pattern.compile("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+        Matcher esEmail = patron_email.matcher(email_testear);
+        
+        return esEmail.matches();
+    }
+
+    static boolean esNumeroEntero(int enteroTestear, int max) {
+        if(enteroTestear < 0) return false;
+        
+        String verPorIteracion = "0123456789";
+        String intConvertido = String.valueOf(enteroTestear);
+        if(intConvertido.length()>max) return false;
+        for (int i = 0; i < intConvertido.length(); i++) {
+            char numero_validar = intConvertido.charAt(i);
+            boolean validado = false;
+            for(int j = 0; j < verPorIteracion.length(); j++){
+                char validador = verPorIteracion.charAt(j);
+                if(validador == numero_validar){
+                    validado = true;
+                    break;
+                }
+            }
+            if(!validado){
+                return false;
+            }
+        }
         return true;
     }
 }

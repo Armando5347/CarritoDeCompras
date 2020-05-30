@@ -36,6 +36,10 @@
         <servlet-name>eliminarProducto</servlet-name>
         <servlet-class>Paquete_Clases.eliminarProducto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ejecutar_compra</servlet-name>
+        <servlet-class>Paquete_Clases.ejecutar_compra</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>eliminarProducto</servlet-name>
         <url-pattern>/eliminarProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ejecutar_compra</servlet-name>
+        <url-pattern>/ejecutar_compra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

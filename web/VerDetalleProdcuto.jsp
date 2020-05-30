@@ -62,9 +62,15 @@
                 <p>Hojas por rollos: <b><%=(String)detalles_catalogos.get(5)%></b></p>
             </div>
         <!--<p><a href="Comprar?id='<%=id%>'">Comprar el Producto</a></p>-->
-        <div class="  float-left w-50 align-middle text-center">
+        <div class=" float-left w-50 align-middle flex text-center">
             <a href="<%= request.getContextPath() %>/AgregarAlCarrito?id='<%=id%>'"><button class="btn-primary">Agregar al carrito</button></a> <hr> <p class="text-center">Ó</p> <hr> <a href="index.jsp">Regresar al index</a>
         </div>
+        <br>
         </main>
+        <footer class="container-fluid bg-secondary">
+            <small class="contanier font-italic">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
+            </small>
+        </footer>
     </body>
 </html>

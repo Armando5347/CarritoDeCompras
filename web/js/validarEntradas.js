@@ -35,10 +35,10 @@ function soloNumerosYletras(input){
         alert("Campo "+contenido.name+" es deamsiado largo");
         return false;
     }
-    var patron_numeritos = /^[A-Za-z0-9]$/;
+    var patron_numeritos = /[A-Za-z0-9\.\_]/;
     sirve = patron_numeritos.test(contenido);
     if(!sirve){
-        alert("Fomrato invalido para usuario y/o contraseña");
+        alert("Formato invalido para usuario y/o contraseña");
         input.focus();
     }
 }
@@ -68,6 +68,9 @@ function quieroTeclearNumerosEnteros(e){
     if(teclado == 8) return true;
     var patron = /[0-9]/;
     var tec=String.fromCharCode(teclado);
+    if(!patron.test(tec)){
+        alert("Ingreso invalido");
+    }
     return patron.test(tec);    
     
 }
@@ -98,5 +101,17 @@ function switchCampos(id_camp){
 function esFecha(input){
     var patron_fechas = /^[0-9]{4}\\-[0-9]{1,2}\\-[0-9]{1,2}$/;
     
+    if(!patron_fechas.test(input.value)){
+        alert("Ingeso de fecha invalido");
+        input.focus()
+    }
     return patron_fechas.test(input.value);
+}
+
+function esCorreo(input){
+    var patron_correos = /^\d{4}([\-/.])(0?[1-9]|1[1-2])\1(3[01]|[12][0-9]|0?[1-9])$/;
+    if(!patron_correos.test(input.value)){
+        alert("Correo invalido");
+    }
+    return patron_correos.test(input.value);
 }
