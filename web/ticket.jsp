@@ -1,33 +1,21 @@
 <%-- 
-    Document   : listaClientes
-    Created on : 25/05/2020, 07:35:56 PM
+    Document   : ticket
+    Created on : 29/05/2020, 10:55:12 PM
     Author     : maste
 --%>
 
 <%@page import="Paquete_Clases.Empleado"%>
-<%@page import="Paquete_Clases.Cliente"%>
-<%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true" language="java"%>
 <%
-    ArrayList <Cliente> clientes = new ArrayList<Cliente>();
     
-    HttpSession sesion_empleado = request.getSession();
-    String tipo_user = (String)sesion_empleado.getAttribute("tipo_user");
-    if(tipo_user != "empleado") response.sendRedirect("error.jsp");
-    Empleado emp = (Empleado) sesion_empleado.getAttribute("usuario");
-    int id_priv = emp.getCprivilegio_id();
-    if(id_priv < 2 ) response.sendRedirect("error.jsp");
-    clientes = Cliente.obtenerClientes();
-    if(clientes == null) response.sendRedirect("error.jsp");
-    
-
     
 %>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista Clientes</title>
+        <title>Ticket de compra</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
         <!-- jQuery library -->
@@ -46,8 +34,8 @@
                     <a href="index.jsp" class="col-md-2"><img class="img-fluid" src="img/papel.png"></a>
                     <h1>¡Papelilandia!</h1>
                 </div>
-                <% 
-                    
+                <% HttpSession sesion_actual = request.getSession();
+                    String tipo_user = (String)sesion_actual.getAttribute("tipo_user");
                 if(tipo_user == null){ %>
                 <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right align-middle">
                     <a href="InicioSesion.jsp" class="btn btn-primary btn-sm flex align-middle">Iniciar Sesión</a>
@@ -119,38 +107,26 @@
                 </ul>
             </nav>
         </div>
-        <main class="container-fluid" >
-            <h1 class="bg-primary text-center container-fluid" >Clientes registrados</h1> <hr>
-            <table class="text-center container border-dark table-bordered table-hover w-75">
-                <thead class="bg-primary">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>Telefono</th>
-                        <th>Celular</th>
-                        <th>Fecha nacimiento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <%
-                for(Cliente cli:clientes){
-                    %>
-                    <tr>
-                        <td><%=cli.getId_cli()%></td>
-                        <td><%=cli.getNombre_cli()%></td>
-                        <td><%=cli.getAppat_cli()%></td>
-                        <td><%=cli.getApmat_cli()%></td>
-                        <td><%=cli.getTel_cli()%></td>
-                        <td><%=cli.getCel_cli()%></td>
-                        <td><%=cli.getFecha_nacimiento_cli()%></td>
-                    </tr> 
-                <%}%>
-                </tbody>
-            </table>
-                <br>
-                <div class="text-center"><a href='index.jsp'>Regresar al index</a></div>
-        </main>
+        <main class="container-fluid">
+            <h1 class="container-fluid bg-primary text-left">Compra realizada con exito!</h1>
+            <hr>
+            <div id="ticket" class="container w-75 border-dark">
+                <h2>Ticket de compra:</h2><br>
+                <article>
+                    <ul class="list-group">
+                        <li class="list-group-item">Nombre del servicio: <input readonly="readonly" class="list-group-item-text" value=""></li>
+                        <li class="list-group-item">Fecha de la Compra: <input readonly="readonly"  class="list-group-item-text" value=""></li>
+                        <li class="list-group-item">Productos Comprados: <input readonly="readonly"  class="list-group-item-text"value=""></li>
+                        <li class="list-group-item">Total a pagar: <input readonly="readonly" class="list-group-item-text" value=""></li>
+                        <li class="list-group-item">Número de Venta: <input readonly="readonly" class="list-group-item-text" value=""></li>
+                    </ul>
+                </article>
+            </div>
+        </main><br>
+        <footer class="container-fluid bg-secondary">
+            <small class="contanier font-italic">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
+            </small>
+        </footer>
     </body>
 </html>

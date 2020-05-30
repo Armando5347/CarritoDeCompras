@@ -36,6 +36,18 @@
         <servlet-name>Cobrar</servlet-name>
         <servlet-class>Paquete_Clases.Cobrar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ejecutar_compra</servlet-name>
+        <servlet-class>Paquete_Clases.ejecutar_compra</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IniciarSesion</servlet-name>
+        <url-pattern>/IniciarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarAlCarrito</servlet-name>
+        <url-pattern>/AgregarAlCarrito</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Registrar_Usuario</servlet-name>
         <url-pattern>/Registrar_Usuario</url-pattern>
@@ -71,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>Cobrar</servlet-name>
         <url-pattern>/Cobrar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ejecutar_compra</servlet-name>
+        <url-pattern>/ejecutar_compra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
