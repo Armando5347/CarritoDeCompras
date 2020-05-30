@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>IniciarSesion</servlet-name>
-        <servlet-class>Paquete_Clases.IniciarSesion</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AgregarAlCarrito</servlet-name>
         <servlet-class>Paquete_Clases.AgregarAlCarrito</servlet-class>
     </servlet>
@@ -33,25 +29,24 @@
         <servlet-class>Paquete_Clases.borrarCuenta</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
-        <servlet-name>AgregarAlCarrito</servlet-name>
-        <servlet-class>Paquete_Clases.AgregarAlCarrito</servlet-class>
-=======
         <servlet-name>eliminarProducto</servlet-name>
         <servlet-class>Paquete_Clases.eliminarProducto</servlet-class>
->>>>>>> 4336761c3499c0ae2067cb842afea7d05e2fda45
+    </servlet>
+    <servlet>
+        <servlet-name>Cobrar</servlet-name>
+        <servlet-class>Paquete_Clases.Cobrar</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ejecutar_compra</servlet-name>
         <servlet-class>Paquete_Clases.ejecutar_compra</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
         <servlet-name>IniciarSesion</servlet-name>
-        <url-pattern>/IniciarSesion</url-pattern>
-    </servlet-mapping>
+        <servlet-class>Paquete_Clases.IniciarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AgregarAlCarrito</servlet-name>
-        <url-pattern>/AgregarAlCarrito</url-pattern>
+        <url-pattern>/AgregarCarrito</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Registrar_Usuario</servlet-name>
@@ -78,21 +73,28 @@
         <url-pattern>/borrarCuenta</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
-        <servlet-name>AgregarAlCarrito</servlet-name>
-        <url-pattern>/AgregarAlCarrito</url-pattern>
-=======
         <servlet-name>eliminarProducto</servlet-name>
         <url-pattern>/eliminarProducto</url-pattern>
->>>>>>> 4336761c3499c0ae2067cb842afea7d05e2fda45
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarAlCarrito</servlet-name>
+        <url-pattern>/AgregarCarrito</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cobrar</servlet-name>
+        <url-pattern>/Cobrar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ejecutar_compra</servlet-name>
         <url-pattern>/ejecutar_compra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IniciarSesion</servlet-name>
+        <url-pattern>/IniciarSesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-</web-app>
+    </web-app>

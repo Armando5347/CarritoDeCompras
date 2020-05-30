@@ -119,37 +119,29 @@
                         <!-- Elementos del carrito -->
                         <ul id="carrito" class="list-group">
                         <!-- Aqui iran los elementos de pago -->
-                        <%! double total_neto = 0; 
-                            ArrayList<Double> total = new ArrayList<Double>();
-                        %>
+                        <%! double total_neto = 0;%>
+                        <%! ArrayList<Double> total = new ArrayList<Double>(); %>
                         <%
-                        Iterator lista_dp_i = lista_dp.iterator();
-                        while(lista_dp_i.hasNext()){
-                            String id_producto = lista_dp_i.next().toString();
-                            DPapel papel = new DPapel();
-                            papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
-                            total.add(papel.getPrecio());
+                        try{
+                            Iterator lista_dp_i = lista_dp.iterator();
+                            while(lista_dp_i.hasNext()){
+                                String id_producto = lista_dp_i.next().toString();
+                                DPapel papel = new DPapel();
+                                papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
+                                total.add(papel.getPrecio());                            
                         %>
                         <li class="list-group-item text-right mx-2">Precio:<%= papel.getPrecio() %></li>
                         <%
+                            }
+                        }catch(Exception e){
+                            e.printStackTrace();
+                            System.out.println(e.getMessage());
+                            System.out.println(e.getLocalizedMessage());
                         }
                         %>
                         </ul>
                         <hr>
                         <!-- Precio total -->
-                        <%
-                        try{
-                            Iterator total_i = total.iterator();
-                            while(total_i.hasNext()){
-                                total_neto += (double)total_i.next();
-                            }                            
-                        }catch(Exception e){
-                            System.out.println("chale pero tampoco quiero que truene, algo paso con el precio");
-                            System.out.println(e.getMessage());
-                            System.out.println(e.getLocalizedMessage());
-                            e.printStackTrace();
-                        }
-                        %>
                         <p class="text-right">Total: <span id="total"><%= total_neto %></span>$</p>
                         <a href="<%= request.getContextPath() %>/Cobrar?total=<%= total_neto %>">Cobrar</a>
                     </aside>
