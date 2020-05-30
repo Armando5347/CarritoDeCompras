@@ -40,13 +40,13 @@
         <servlet-name>ejecutar_compra</servlet-name>
         <servlet-class>Paquete_Clases.ejecutar_compra</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
         <servlet-name>IniciarSesion</servlet-name>
-        <url-pattern>/IniciarSesion</url-pattern>
-    </servlet-mapping>
+        <servlet-class>Paquete_Clases.IniciarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AgregarAlCarrito</servlet-name>
-        <url-pattern>/AgregarAlCarrito</url-pattern>
+        <url-pattern>/AgregarCarrito</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Registrar_Usuario</servlet-name>
@@ -88,9 +88,13 @@
         <servlet-name>ejecutar_compra</servlet-name>
         <url-pattern>/ejecutar_compra</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IniciarSesion</servlet-name>
+        <url-pattern>/IniciarSesion</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-</web-app>
+    </web-app>
