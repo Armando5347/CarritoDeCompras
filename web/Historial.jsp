@@ -23,7 +23,7 @@
         */
     }
 %>
-<html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Historial de compras</title>
@@ -97,5 +97,10 @@
                 Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
             </small>
         </footer>
-    </body>
+    </body> <br>
+    <footer class="container-fluid bg-secondary">
+            <small class="contanier font-italic">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
+            </small>
+        </footer>
 </html>
