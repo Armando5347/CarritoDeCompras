@@ -4,6 +4,7 @@
     Author     : maste
 --%>
 
+<%@page import="Paquete_Clases.Empleado"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Paquete_Clases.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
@@ -39,6 +40,45 @@
         
     </head>
     <body>
+        <div class="container-fluid">
+            <header class="d-flex">
+                <div class="col-md-8 d-flex centrar">
+                    <a href="index.jsp" class="col-md-2"><img class="img-fluid" src="img/papel.png"></a>
+                    <h1>¡Papelilandia!</h1>
+                </div>
+                <% 
+                if(tipo_user == null){ %>
+                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right align-middle">
+                    <a href="InicioSesion.jsp" class="btn btn-primary btn-sm flex align-middle">Iniciar Sesión</a>
+                    <a href="Registro.jsp" class="btn btn-primary btn-sm flex align-middle">Registrarse</a>
+                </div>
+                <%}else{
+                %>
+                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right align-middle">
+                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm flex align-middle">Cerrar Sesión</a>
+                    <a href="Registro.jsp" class="btn btn-primary btn-sm flex align-middle">Registrarse</a>
+                </div>
+                <%}%>
+                
+            </header>
+            <nav>
+                <ul class="nav nav-tabs">
+                    <%
+                    if(tipo_user=="cliente"){
+                    %>
+                    <li class="nav-item">
+                        <a href="Historial.jsp" class="nav-link">Historial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
+                    </li>
+                    <%}else response.sendRedirect("error.jsp"); %>
+                </ul>
+            </nav>
+        </div><br>
         <main class="container-fluid">
             <h1 class="container-fluid bg-primary ">Historial de compras de <%=cli.getAppat_cli() + " " +cli.getApmat_cli() +" "+cli.getNombre_cli()%></h1>
             <div class="container card-deck">
