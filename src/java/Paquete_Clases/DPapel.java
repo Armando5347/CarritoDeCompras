@@ -29,7 +29,7 @@ public class DPapel {
         this.cRollosIncluidos_id = cRollosIncluidos_id;
     }
     
-    DPapel(){}
+    public DPapel(){}
     
     public static int  guardarNuevoDetallePapel(DPapel new_detallePapel){
         int id_nuevo_detalle = 0;

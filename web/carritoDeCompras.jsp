@@ -4,6 +4,8 @@
     Author     : maste
 --%>
 
+<%@page import="Paquete_Clases.DPapel"%>
+<%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" import="java.util.ArrayList" session="true"%>
 <!DOCTYPE html>
 <%--Aquise debe traer un arrayList de todos los productos--%>
@@ -89,15 +91,16 @@
                         <%
                          Cookie cookie = null;
                          Cookie[] cookies = null;
-
+                         ArrayList<String> lista_dp = null;
                          // Obtenemos 
                          cookies = request.getCookies();
-
                          if( cookies != null ) {
                             for (int i = 0; i < cookies.length; i++) {
                                cookie = cookies[i];
                                if (cookie.getName().equals("ListaProductos")){
                                    System.out.println(cookie.getValue());
+                                   Object a = cookie.getValue();
+                                   lista_dp = (ArrayList<String>)a;
                                }else{
                                    %>
                                     <h3>Su carrito de compras esta vacio</h3>
@@ -114,11 +117,40 @@
                     <aside class="col-sm-4">
                         <h2>Carrito</h2>
                         <!-- Elementos del carrito -->
-                        <ul id="carrito" class="list-group"></ul>
+                        <ul id="carrito" class="list-group">
+                        <!-- Aqui iran los elementos de pago -->
+                        <%
+                        Iterator lista_dp_i = lista_dp.iterator();
+                        ArrayList total = new ArrayList<>();
+                        while(lista_dp_i.hasNext()){
+                            String id_producto = lista_dp_i.next().toString();
+                            DPapel papel = new DPapel();
+                            papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
+                            total.add(papel.getPrecio());
+                        %>
+                        <li class="list-group-item text-right mx-2">Precio:<%= papel.getPrecio() %></li>
+                        <%
+                        }
+                        %>
+                        </ul>
                         <hr>
                         <!-- Precio total -->
-                        <p class="text-right">Total: <span id="total"></span>$</p>
-                        
+                        <%! double total_neto = 0; %>
+                        <%
+                        try{
+                            Iterator total_i = total.iterator();
+                            while(total_i.hasNext()){
+                                total_neto += (double)total_i.next();
+                            }                            
+                        }catch(Exception e){
+                            System.out.println("chale pero tampoco quiero que truene, algo paso con el precio");
+                            System.out.println(e.getMessage());
+                            System.out.println(e.getLocalizedMessage());
+                            e.printStackTrace();
+                        }
+                        %>
+                        <p class="text-right">Total: <span id="total"><%= total_neto %></span>$</p>
+                        <a href="<%= request.getContextPath() %>/Cobrar">Cobrar</a>
                     </aside>
                     <%}%>
                 </div>
