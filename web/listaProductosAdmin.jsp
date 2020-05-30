@@ -152,5 +152,10 @@
             </table>
                 <div class="text-center"><a href='GuardarProductos.jsp'>Agregar papeles al almacen</a> || <a href='index.jsp'>Regresar al index</a></div>
         </main>
+        <footer class="container-fluid bg-secondary">
+            <small class="contanier font-italic">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
+            </small>
+        </footer>
     </body>
 </html>
