@@ -207,8 +207,27 @@ public class Entradas {
         return true;
     }
 
-    static boolean esNumeroEnteroMaxExtricto(int cvv, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    static boolean esNumeroEnteroMaxExtricto(int enteroTestear, int max) {
+       if(enteroTestear < 0) return false;
+        
+        String verPorIteracion = "0123456789";
+        String intConvertido = String.valueOf(enteroTestear);
+        if(intConvertido.length() != max) return false;
+        for (int i = 0; i < intConvertido.length(); i++) {
+            char numero_validar = intConvertido.charAt(i);
+            boolean validado = false;
+            for(int j = 0; j < verPorIteracion.length(); j++){
+                char validador = verPorIteracion.charAt(j);
+                if(validador == numero_validar){
+                    validado = true;
+                    break;
+                }
+            }
+            if(!validado){
+                return false;
+            }
+        }
+        return true;
     }
     
 }
