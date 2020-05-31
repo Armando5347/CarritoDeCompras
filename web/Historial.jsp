@@ -4,6 +4,7 @@
     Author     : maste
 --%>
 
+<%@page import="Paquete_Clases.Historial"%>
 <%@page import="Paquete_Clases.Empleado"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Paquete_Clases.Cliente"%>
@@ -12,12 +13,18 @@
 <%
     HttpSession sesion_usuario = request.getSession();
     String tipo_user = (String)sesion_usuario.getAttribute("tipo_user");
-    ArrayList historal = new ArrayList();
     Cliente cli = null;
+    ArrayList<Historial> historial = new ArrayList<Historial>();
     if(tipo_user.isEmpty() || tipo_user == null ||!tipo_user.equals("cliente")){
         response.sendRedirect("error.jsp");
     }else{
         cli = (Cliente)sesion_usuario.getAttribute("usuario");
+        int id_busqueda = cli.getId_cli();
+        try{
+            historial = Historial.obtenerHistorialCliente(id_busqueda);
+        }catch(NullPointerException e){
+            response.sendRedirect("error.jsp");
+        }
         /*Aquí deberá obtenerse el historial ,aún no c como le vamos a hacer
         historial = objetoHistorial.obtenerHistorial(cli.getId_cli());
         */
@@ -82,14 +89,17 @@
         <main class="container-fluid">
             <h1 class="container-fluid bg-primary ">Historial de compras de <%=cli.getAppat_cli() + " " +cli.getApmat_cli() +" "+cli.getNombre_cli()%></h1>
             <div class="container card-deck">
-            <%-- insertar forEach for(ObjetoHistorial h:historial). --%>
+            <%for(Historial h:historial){ %>
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Compra del <%--historial.getFechaCompra() --%></h2>
+                        <h2 class="card-title">Compra del <%=h.getFecha()%></h2>
                     </div>
-                    <div class="card-body"></div>
+                    <div class="card-body">
+                        Total pagado: <%=h.getPrecio()%> <br>
+                        
+                    </div>
                 </div>
-            <%--}--%>
+            <%}%>
             </div>
         </main><br>
         <footer class="container-fluid bg-secondary">
@@ -97,10 +107,6 @@
                 Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
             </small>
         </footer>
-    </body> <br>
-    <footer class="container-fluid bg-secondary">
-            <small class="contanier font-italic">
-                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
-            </small>
-        </footer>
+    </body> 
+    
 </html>

@@ -112,8 +112,8 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`dcarritodecompras` (
   `MPapel_ID` INT(11) NOT NULL,
   `MCarritoCompras_ID` INT(11) NOT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_DCarritoDeCompras_MPapel1_idx` (`MPapel_ID` ASC) VISIBLE,
-  INDEX `fk_DCarritoDeCompras_MCarritoCompras1_idx` (`MCarritoCompras_ID` ASC) VISIBLE,
+  INDEX `fk_DCarritoDeCompras_MPapel1_idx` (`MPapel_ID` ASC) ,
+  INDEX `fk_DCarritoDeCompras_MCarritoCompras1_idx` (`MCarritoCompras_ID` ASC) ,
   CONSTRAINT `fk_DCarritoDeCompras_MCarritoCompras1`
     FOREIGN KEY (`MCarritoCompras_ID`)
     REFERENCES `carritocompras`.`mcarritocompras` (`ID`)
@@ -137,8 +137,8 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`Dcompracliente` (
   `cliente_ID_cli` INT(11) NOT NULL,
   `fecha` DATE NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_CompraCliente_DCarritoDeCompras1_idx` (`DCarritoDeCompras_ID` ASC) VISIBLE,
-  INDEX `fk_compracliente_cliente1_idx` (`cliente_ID_cli` ASC) VISIBLE,
+  INDEX `fk_CompraCliente_DCarritoDeCompras1_idx` (`DCarritoDeCompras_ID` ASC),
+  INDEX `fk_compracliente_cliente1_idx` (`cliente_ID_cli` ASC) ,
   CONSTRAINT `fk_CompraCliente_DCarritoDeCompras1`
     FOREIGN KEY (`DCarritoDeCompras_ID`)
     REFERENCES `carritocompras`.`dcarritodecompras` (`ID`)
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`empleado` (
   `password_em` VARCHAR(20) NOT NULL,
   `CPrivilegio_Empleado_ID` INT(11) NOT NULL,
   PRIMARY KEY (`ID_em`),
-  INDEX `fk_Empleado_CPrivilegio_Empleado1_idx` (`CPrivilegio_Empleado_ID` ASC) VISIBLE,
+  INDEX `fk_Empleado_CPrivilegio_Empleado1_idx` (`CPrivilegio_Empleado_ID` ASC),
   CONSTRAINT `fk_Empleado_CPrivilegio_Empleado1`
     FOREIGN KEY (`CPrivilegio_Empleado_ID`)
     REFERENCES `carritocompras`.`cprivilegio_empleado` (`ID`)
@@ -244,9 +244,9 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`dordenservicio` (
   `Empleado_ID` INT(11) NOT NULL,
   `COrdenServicio_ID` INT(11) NOT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_DOrdenServicio_Cliente1_idx` (`Cliente_ID` ASC) VISIBLE,
-  INDEX `fk_DOrdenServicio_Empleado1_idx` (`Empleado_ID` ASC) VISIBLE,
-  INDEX `fk_DOrdenServicio_COrdenServicio1_idx` (`COrdenServicio_ID` ASC) VISIBLE,
+  INDEX `fk_DOrdenServicio_Cliente1_idx` (`Cliente_ID` ASC),
+  INDEX `fk_DOrdenServicio_Empleado1_idx` (`Empleado_ID` ASC),
+  INDEX `fk_DOrdenServicio_COrdenServicio1_idx` (`COrdenServicio_ID` ASC),
   CONSTRAINT `fk_DOrdenServicio_COrdenServicio1`
     FOREIGN KEY (`COrdenServicio_ID`)
     REFERENCES `carritocompras`.`cordenservicio` (`ID`)
@@ -280,12 +280,12 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`dpapel` (
   `CTipo_Hojas_ID` INT(11) NOT NULL,
   `CHojasxRollo_ID` INT(11) NOT NULL,
   PRIMARY KEY (`ID_dp`),
-  INDEX `fk_Papel_CMaterial` (`CMaterial_ID` ASC) VISIBLE,
-  INDEX `fk_Papel_CTipos1` (`CTipos_ID` ASC) VISIBLE,
-  INDEX `fk_DPapel_Aromas1` (`Aromas_ID` ASC) VISIBLE,
-  INDEX `fk_DPapel_CRollosIncluidos1` (`CRollosIncluidos_ID` ASC) VISIBLE,
-  INDEX `fk_DPapel_CTipo_Hojas1` (`CTipo_Hojas_ID` ASC) VISIBLE,
-  INDEX `fk_DPapel_CHojasxRollo1` (`CHojasxRollo_ID` ASC) VISIBLE,
+  INDEX `fk_Papel_CMaterial` (`CMaterial_ID` ASC) ,
+  INDEX `fk_Papel_CTipos1` (`CTipos_ID` ASC) ,
+  INDEX `fk_DPapel_Aromas1` (`Aromas_ID` ASC) ,
+  INDEX `fk_DPapel_CRollosIncluidos1` (`CRollosIncluidos_ID` ASC) ,
+  INDEX `fk_DPapel_CTipo_Hojas1` (`CTipo_Hojas_ID` ASC),
+  INDEX `fk_DPapel_CHojasxRollo1` (`CHojasxRollo_ID` ASC) ,
   CONSTRAINT `fk_DPapel_Aromas1`
     FOREIGN KEY (`Aromas_ID`)
     REFERENCES `carritocompras`.`caromas` (`ID`)
@@ -332,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`motrdenservicio` (
   `ID` INT(11) NOT NULL,
   `DOrdenServicio_ID` INT(11) NOT NULL,
   PRIMARY KEY (`ID`),
-  INDEX `fk_MOtrdenServicio_DOrdenServicio1_idx` (`DOrdenServicio_ID` ASC) VISIBLE,
+  INDEX `fk_MOtrdenServicio_DOrdenServicio1_idx` (`DOrdenServicio_ID` ASC),
   CONSTRAINT `fk_MOtrdenServicio_DOrdenServicio1`
     FOREIGN KEY (`DOrdenServicio_ID`)
     REFERENCES `carritocompras`.`dordenservicio` (`ID`)
@@ -349,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`Dhistorial` (
   `id_Dhistorial` INT NOT NULL AUTO_INCREMENT,
   `Dcompracliente_ID` INT(11) NOT NULL,
   PRIMARY KEY (`id_Dhistorial`),
-  INDEX `fk_Dhistorial_Dcompracliente1_idx` (`Dcompracliente_ID` ASC) VISIBLE,
+  INDEX `fk_Dhistorial_Dcompracliente1_idx` (`Dcompracliente_ID` ASC),
   CONSTRAINT `fk_Dhistorial_Dcompracliente1`
     FOREIGN KEY (`Dcompracliente_ID`)
     REFERENCES `carritocompras`.`Dcompracliente` (`ID`)
@@ -406,6 +406,31 @@ select carritocompras.CMaterial.ID, carritocompras.CTipos.ID, carritocompras.CAr
         carritocompras.CHojasxRollo.no_hojas = hojas_rollos$$
 
 DELIMITER ;
+
+insert into carritocompras.CMaterial (ID, Material) values(1, "CELULOSA"),(2,"FIBRA VEGETAL");
+
+insert into carritocompras.CAromas (ID, Aroma) values(1, "SIN AROMA"),(2,"ALMENDRAS");
+
+insert into carritocompras.CTipos (ID, Tipos) values(1, "Residencial"),(2,"Institucional");
+
+insert into carritocompras.CRollosIncluidos (ID, rollos) values(1, 4), (2, 12), (3,18), (4,24), (5,32);
+
+insert into carritocompras.CTipo_Hojas (ID, tipo_hojas) values(1, "Doble"),(2, "Triple"),(3,"Cuadruple");
+
+insert into carritocompras.CHojasxRollo (ID, no_hojas) values (1, 180),(2,200),(3,240),(4,320),(5,400),(6,500); 
+
+insert into carritocompras.CPrivilegio_Empleado (ID, tipo_privilegio) values (1, "Empleado"), (2,"Gerente"), (3,"Admin");
+
+insert into Mpapel values(1, "Papel Marca patito", 1);
+insert into MPapel values(2, "Papel DOWNY para universidad",2);
+
+insert into DPapel values(1,50.00,5,1,1,1,1,1,1);
+insert into DPapel values(2, 499.99,2,1,2,2,2,3,6);
+
+insert into Empleado values
+(1,"Armando", "Jarillo", "Torres","1968-07-27","53521328","55667788","root","n0m3l0", 3),
+(2,"Denilson", "Soto", "Luna","2003-01-07","12345678","19898989","UnSaludo","111111", 2),
+(3,"Gerardo", "Rivera", "Y ya","1980-12-17","53521328","53456706","root","12345678", 1);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
