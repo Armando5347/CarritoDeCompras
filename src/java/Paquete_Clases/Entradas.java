@@ -169,4 +169,25 @@ public class Entradas {
         }
         return true;
     }
+
+    static boolean exepcionDireccion(String direccion) {
+        if(direccion.isEmpty()) return false;
+        String todo_lo_que_puede_tener = "QWERTYUIOPASDFGHJKLÑZXCVBNMÁÉÍÓÚqwertyuiopasdfghjklñzxcvbnmáéíóú °.0123456789";
+        for (int i = 0; i < direccion.length(); i++) {
+            char numero_validar = direccion.charAt(i);
+            boolean validado = false;
+            for(int j = 0; j < todo_lo_que_puede_tener.length(); j++){
+                char validador = todo_lo_que_puede_tener.charAt(j);
+                if(validador == numero_validar){
+                    validado = true;
+                    break;
+                }
+            }
+            if(!validado){
+                return false;
+            }
+        }
+        return true;
+    }
+    
 }

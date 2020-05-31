@@ -4,6 +4,8 @@
     Author     : maste
 --%>
 
+<%@page import="Paquete_Clases.Empleado"%>
+<%@page import="Paquete_Clases.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
 <!DOCTYPE html>
 <html lang="es">
@@ -197,6 +199,12 @@
                             </select>
                         </div>
                         <br>
+                        <div class="input-group">    
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Ingrese la direccion de la sucursal de su agrado:</span>
+                            </div>
+                            <input class="form-control" name="direccion_sucursal" type="text" onclick="quieroTeclearNumeros(this,false)" onchange="quieroNumeros(this,false)">
+                        </div>
                         <input type="submit" class="btn btn-primary" value="efectuar compra">
                     </form>
                 </div>
