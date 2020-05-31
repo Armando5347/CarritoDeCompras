@@ -54,7 +54,8 @@
                                 <span class="input-group-text">Contraseña:</span>
                             </div>
                             <input type="password"  class="form-control" name="pass" onchange="return soloNumerosYletras(this)">
-                        </div>
+                        </div><br>
+                        <input type="submit" class="btn btn-primary" value="efectuar compra">
                     </form>
 
                 </div>
@@ -84,13 +85,14 @@
                                 <span class="input-group-text">Ingrese la fecha de vencimiento</span>
                             </div>
                             <input type="number"  class="form-control" size="2" min="1" max="12" name="fecha_vencimiento_mes" onchange="return quieroNumerosEnteros(this)" onkeypress="return quieroTeclearNumerosEnteros(event)"> / <input type="number" class="form-control" size="4" name="fecha_vencimiento_ano" onkeypress=" return quieroTeclearNumerosEnteros(event)" onchange=" return quieroNumerosEnteros(this)"> 
-                        </div>
+                        </div><br>
                         <div class="input-group">    
                             <div class="input-group-prepend">
                                 <span class="input-group-text">CVV</span>
                             </div>
                             <input type="password"  name="cvv" class="form-control" name="3numeros" size ="3" onkeypress=" return quieroTeclearNumerosEnteros(event)" onchange=" return quieroNumerosEnteros(this)">
                         </div>
+                        <br><input type="submit" class="btn btn-primary" value="efectuar compra">
                     </form>
                 </div>
 
@@ -115,6 +117,8 @@
                                 <option>Circle k</option>
                             </select>
                         </div>
+                        <br>
+                        <input type="submit" class="btn btn-primary" value="efectuar compra">
                     </form>
                 </div>
             </div>
