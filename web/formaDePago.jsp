@@ -96,25 +96,24 @@
 
                 <div class="card centrar w-75" style="opacity: 0;" id="efectivo" >
                     <div class="card-header bg-secondary">
-                        <h2 class="card-title">En efectivo</h2>
+                        <h2 class="card-title">En efectivo por tienda de conveniencia</h2>
                     </div>
                     <form method="post" class="card-body" action='ejecutar_compra'>
                         <input type="hidden" name="metodo" value="efectivo">
+                        <p>Si desea hacer un pago por efectivo en alguna tienda de conveniencia, seleccione alguna de las sucursales compatibles</p>
                         <div class="input-group">    
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Ingrese la sucursal de su preferencia:</span>
                             </div>
                             <select readonly="readonly" name="sucursal">
+                                <option>--Tiendas compatibles--</option>
                                 <option>OXXO</option>
-                                <option>Eleven</option>
+                                <option>Seven Eleven</option>
+                                <option>Faramcias del Ahorro</option>
+                                <option>Extra</option>
+                                <option>Operama</option>
+                                <option>Circle k</option>
                             </select>
-                        </div>
-                        <br>
-                        <div class="input-group">    
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Ingrese la dirección de la sucursal:</span>
-                            </div>
-                            <input type="text" name="dir_sucursal" class="from-control" onkeypress="return (this)" onchange="return (this)">
                         </div>
                     </form>
                 </div>

@@ -79,17 +79,10 @@ public class ejecutar_compra extends HttpServlet {
             case "efectivo":
                 try{
                     String sucursal = request.getParameter("sucursal");
-                    String direccion_sucursal = request.getParameter("dir_sucursal");
-                    boolean validaciones[] = new boolean[2];
-                    validaciones[0] = Entradas.esString(sucursal);
-                    validaciones[1] = Entradas.esString(direccion_sucursal);
-                    for(boolean bool:validaciones){
-                        if(!bool){
-                            redirect = "formaDePago.jsp";
-                            break;
-                        }else{
-                            redirect = "ticket.jsp";
-                        }
+                    if(!Entradas.esString(sucursal) || sucursal.equalsIgnoreCase("--Tiendas compatibles--")){
+                        redirect = "formaDePago.jsp";
+                    }else{
+                        redirect = "ticket.jsp";
                     }
                 }catch(Exception e){
                     redirect ="formaDePago.jsp";
