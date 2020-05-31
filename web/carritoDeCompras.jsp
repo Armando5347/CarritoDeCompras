@@ -97,11 +97,28 @@
                          if( cookies != null ) {
                             for (int i = 0; i < cookies.length; i++) {
                                cookie = cookies[i];
-                               if (cookie.getName().equals("ListaProductos")){
-                                   System.out.println(cookie.getValue());
-                                   Object a = cookie.getValue();
-                                   lista_dp = (ArrayList<String>)a;
-                               }else{
+                                    if (cookie.getName().equals("ListaProductos")){
+                                        System.out.println(cookie.getValue());
+                                        Object a = cookie.getValue();
+                                        lista_dp = (ArrayList<String>)a;
+                                        Iterator lista_dp_i = lista_dp.iterator();
+                                        while(lista_dp_i.hasNext()){
+                                            String id_producto = lista_dp_i.next().toString();
+                                            DPapel papel = new DPapel();
+                                            papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
+                                        %>
+                                        <div class="card col-sm-4">
+                                            <div class="card-body">
+                                                <!-- Aqui seria una buena idea laterar la base de datos para la ruta -->
+                                                <img class="img-fluid" src="https://source.unsplash.com/random/500x500/?zucchini&amp;sig=3" alt="<%= papel.getId_papel() %>">
+                                                <h5 class="card-title"> <%= papel.getId_papel() %> </h5>
+                                                <p class="card-text"> <%= papel.getPrecio() %> </p>
+                                                <button class="btn btn-primary">+</button>
+                                            </div>
+                                        </div>
+                                        <%
+                                        }
+                                    }else{
                                    %>
                                     <h3>Su carrito de compras esta vacio</h3>
                                    <%
@@ -120,15 +137,13 @@
                         <ul id="carrito" class="list-group">
                         <!-- Aqui iran los elementos de pago -->
                         <%! double total_neto = 0;%>
-                        <%! ArrayList<Double> total = new ArrayList<Double>(); %>
                         <%
                         try{
                             Iterator lista_dp_i = lista_dp.iterator();
                             while(lista_dp_i.hasNext()){
                                 String id_producto = lista_dp_i.next().toString();
                                 DPapel papel = new DPapel();
-                                papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
-                                total.add(papel.getPrecio());                            
+                                papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));                          
                         %>
                         <li class="list-group-item text-right mx-2">
                             Precio:<%= papel.getPrecio() %>
