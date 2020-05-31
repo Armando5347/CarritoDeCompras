@@ -72,7 +72,7 @@ public class Registrar_Usuario extends HttpServlet {
                 validaciones[1] = Entradas.esString(appat);
                 validaciones[2] = Entradas.esString(apmat);
                 validaciones[3] = Entradas.esDate(fecha_nac);
-                validaciones[4] = Entradas.esNumeroEntero(telefono);
+                validaciones[4] = Entradas.esNumeroEntero(telefono,8);
                 validaciones[5] = Entradas.esNumeroEntero(celular);
                 validaciones[6] = Entradas.formatoUser(username);
                 validaciones[7] = Entradas.formatoUser(password);

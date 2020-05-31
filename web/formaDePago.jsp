@@ -151,7 +151,9 @@
                                 <span class="input-group-text">Tarjetas validas:</span>
                             </div>
                             <select name="select_tarjeta" readonly="true" class="custom-select">
+                                <option>Ver tarjetas</option>
                                 <option>MasterCard</option>
+                                <option>America express</option>
                                 <option>VISA</option>
                             </select>
                         </div> <br>

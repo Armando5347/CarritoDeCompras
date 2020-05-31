@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`cliente` (
   `username_cli` VARCHAR(20) NOT NULL,
   `password_cli` VARCHAR(20) NOT NULL,
   `cel_cli` INT(11) NULL DEFAULT NULL,
-  `tel_cli` INT(11) NULL DEFAULT NULL,
+  `tel_cli` BIGINT(12) NULL DEFAULT NULL,
   PRIMARY KEY (`ID_cli`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`empleado` (
   `Apmat_em` VARCHAR(45) NOT NULL,
   `fecha_nacimiento_em` DATE NULL DEFAULT NULL,
   `cel_em` INT(11) NULL DEFAULT NULL,
-  `tel_em` INT(11) NULL DEFAULT NULL,
+  `tel_em` BIGINT(12) NULL DEFAULT NULL,
   `username_em` VARCHAR(20) NOT NULL,
   `password_em` VARCHAR(20) NOT NULL,
   `CPrivilegio_Empleado_ID` INT(11) NOT NULL,

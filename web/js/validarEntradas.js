@@ -15,7 +15,7 @@ function quieroNumeros(input, boolean){
     }
    
     if(!sirve){
-        alert("Campo "+input.name+" es my largo");
+        alert("Campo "+input.name+" es muy largo");
         input.focus();
         return false;
     }
@@ -38,7 +38,7 @@ function soloNumerosYletras(input){
     console.log("Validando");
     var contenido = input.value;
     var sirve = false;
-    sirve = verMaximoCaracteres(contenido, 25); //20 de manera temporal
+    sirve = verMaximoCaracteres(contenido, 20); //20 de manera temporal
     if(!sirve){
         alert("Campo "+contenido.name+" es deamsiado largo");
         input.focus();
@@ -54,6 +54,7 @@ function soloNumerosYletras(input){
 function quieroNumerosEnteros(input){
     var enterotest = input.value;
     var enteros = /[0-9]/;
+    if(verMaximoCaracteres(enterotest,16)) return null
     return (enteros.test(enterotest));
 }
 
@@ -85,10 +86,10 @@ function quieroTeclearNumerosEnteros(e){
 }
 
 function noDefault(select){
-    console.log("Validando");
+    
     var indice = select.selectedIndex;
-    var seleccionado = select.options[indice].value;
-    if(seleccionado === "Seleccione alguna opción" || indice===0){
+    console.log(indice);
+    if(indice===0){
         alert("Debe de seleccionar algún elemento del campo: " +select.name);
         select.focus();
         return false;

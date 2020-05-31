@@ -75,12 +75,12 @@ public class registrarPapel extends HttpServlet {
         //Ahora validamos por si perosnas feas hacen cosas feas
         try{
         validaciones[0] = Entradas.esString(nombre_pap);
-        validaciones[1] = Entradas.esNumeroEntero(stock_ini);
+        validaciones[1] = Entradas.esNumeroEntero(stock_ini,10);
         validaciones[2] = Entradas.esDouble(precio);
         validaciones[3] = Entradas.esString(aroma);
         validaciones[4] = Entradas.esString(material);
-        validaciones[5] = Entradas.esNumeroEntero(hojasXrollos);
-        validaciones[6] = Entradas.esNumeroEntero(rollos);
+        validaciones[5] = Entradas.esNumeroEntero(hojasXrollos,3);
+        validaciones[6] = Entradas.esNumeroEntero(rollos,2);
         validaciones[7] = Entradas.esString(tipo_papel);
         validaciones[8] = Entradas.esString(tipo_hojas);
         }catch(NullPointerException e){
