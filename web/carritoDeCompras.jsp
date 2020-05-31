@@ -111,12 +111,13 @@
                                             MPapel mpapel = MPapel.obtenerPapelPorIdDPapel(Integer.parseInt(id_producto));
                                         %>
                                         <div class="card col-sm-4">
-                                            <div class="card-body">
-                                                <!-- Aqui seria una buena idea laterar la base de datos para la ruta -->
+                                            <div class="card-body" id="<%= papel.getId_papel() %>">
+                                                <!-- Aqui seria una buena idea laterar la base de datos para la ruta 
+                                                pdt: dicho y hehco-->
                                                 <img class="img-fluid" src="https://source.unsplash.com/random/500x500/?zucchini&amp;sig=3" alt="<%= papel.getId_papel() %>">
                                                 <h5 class="card-title"> <%= mpapel.getNombre_pap() %> </h5>
                                                 <p class="card-text"> <%= papel.getPrecio() %> </p>
-                                                <button class="btn btn-primary">+</button>
+                                                <button class="btn btn-primary btn-agregar">+</button>
                                             </div>
                                         </div>
                                         <%
@@ -148,8 +149,9 @@
                                 papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));                          
                         %>
                         <li class="list-group-item text-right mx-2">
-                            Precio:<%= papel.getPrecio() %>
-                            <button class="btn btn-danger mx-5" style="margin-left: 1rem;">X</button>
+                            <p>Precio:<%= papel.getPrecio() %></p>
+                            <p class="catidad-<%= papel.getId_papel() %>">Cantidad:</p>
+                            <button class="btn btn-danger mx-5 btn-eliminar" style="margin-left: 1rem;">X</button>
                         </li>
                         <%
                             }
@@ -175,5 +177,20 @@
                 Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
             </small>
         </footer>
+        <script>
+            var btn_eliminar = Array.prototype.slice.call(document.getElementsByClassName("btn-eliminar"));
+            var btn_agregar = Array.prototype.slice.call(document.getElementsByClassName("btn-agregar"));
+            var ids = [];
+            btn_eliminar.forEach(element => {
+                element.addEventListener("click", function () {
+                    element.parentNode.remove();
+                })
+            });
+            btn_agregar.forEach(element => {
+                element.addEventListener("click", function () {
+                    element.parentNode.remove();
+                })
+            });
+        </script>
     </body>
 </html>
