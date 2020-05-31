@@ -67,31 +67,38 @@ public class Registrar_Usuario extends HttpServlet {
             String password = request.getParameter("pass");
             String ver_pass = request.getParameter("ver_pass");
             //Ahova validamos
-            validaciones[0] = Entradas.esString(nombre);
-            validaciones[1] = Entradas.esString(appat);
-            validaciones[2] = Entradas.esString(apmat);
-            validaciones[3] = Entradas.esDate(fecha_nac);
-            validaciones[4] = Entradas.esNumeroEntero(telefono);
-            validaciones[5] = Entradas.esNumeroEntero(celular);
-            validaciones[6] = Entradas.formatoUser(username);
-            validaciones[7] = Entradas.formatoUser(password);
-            validaciones[8] = Entradas.formatoUser(ver_pass);
-            if(password.equals(ver_pass)) validaciones[9]= true;
-            else validaciones[9] = false;
-            int i = 0;
-            for(boolean bool: validaciones){
-                i+=1;
-                if(!bool){
-                    System.out.println("Boolean " + i + " " + bool);
-                    progreso_alterado = true;
-                    if(esEmpleado){
-                        redirect = "RegistrarEmpleados.jsp";
-                    }else{
-                        redirect = "Registro.jsp";
+            try{
+                validaciones[0] = Entradas.esString(nombre);
+                validaciones[1] = Entradas.esString(appat);
+                validaciones[2] = Entradas.esString(apmat);
+                validaciones[3] = Entradas.esDate(fecha_nac);
+                validaciones[4] = Entradas.esNumeroEntero(telefono);
+                validaciones[5] = Entradas.esNumeroEntero(celular);
+                validaciones[6] = Entradas.formatoUser(username);
+                validaciones[7] = Entradas.formatoUser(password);
+                validaciones[8] = Entradas.formatoUser(ver_pass);
+                if(password.equals(ver_pass)) validaciones[9]= true;
+                else validaciones[9] = false;
+                int i = 0;
+                for(boolean bool: validaciones){
+                    i+=1;
+                    if(!bool){
+                        System.out.println("Boolean " + i + " " + bool);
+                        progreso_alterado = true;
+                        if(esEmpleado){
+                            redirect = "RegistrarEmpleados.jsp";
+                        }else{
+                            redirect = "Registro.jsp";
+                        }
+
                     }
-                    
                 }
+            }catch(NullPointerException e){
+                progreso_alterado = true;
+                redirect = "error.jsp";
             }
+            
+            
             if(!progreso_alterado){
                 if(esEmpleado){
                     int priv = 0;
