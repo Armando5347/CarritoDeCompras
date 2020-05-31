@@ -138,6 +138,35 @@ public class MPapel {
         return papel_mostrar;
     }
     
+        public static MPapel obtenerPapelPorIdDPapel(int id_dp){
+        MPapel papel_mostrar = null;
+        try{
+            con = Conexion.obtenerConexion();
+            //Para esto sería buenp un procedimiento almacenado
+            q = "Select * from MPapel WHERE Id_DPapel = ?";
+            ps = con.prepareStatement(q);
+            ps.setInt(1, id_dp);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                papel_mostrar = new MPapel(rs.getInt("ID_mp"),rs.getInt("id_DPapel"),rs.getString("Nombre_producto"));
+                break;
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            papel_mostrar = null;
+        }finally{
+            q = "";
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            }catch(SQLException e){
+                
+            }
+        }if(papel_mostrar == null) System.out.println("No se ejecuto la query"); 
+        return papel_mostrar;
+    }
+    
     
     public static boolean guardarNuevoPapel(String nombrePapel, DPapel detalle_respectivo){
         boolean guardadoExitoso = false;

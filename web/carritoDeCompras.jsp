@@ -4,6 +4,7 @@
     Author     : maste
 --%>
 
+<%@page import="Paquete_Clases.MPapel"%>
 <%@page import="Paquete_Clases.DPapel"%>
 <%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" import="java.util.ArrayList" session="true"%>
@@ -88,6 +89,7 @@
                     <% }else{ %>
                     <!-- Elementos generados a partir de la lista -->
                     <section id="items" class="col-sm-8 row">
+                        <%! double total_neto = 0;%>
                         <%
                          Cookie cookie = null;
                          Cookie[] cookies = null;
@@ -97,11 +99,29 @@
                          if( cookies != null ) {
                             for (int i = 0; i < cookies.length; i++) {
                                cookie = cookies[i];
-                               if (cookie.getName().equals("ListaProductos")){
-                                   System.out.println(cookie.getValue());
-                                   Object a = cookie.getValue();
-                                   lista_dp = (ArrayList<String>)a;
-                               }else{
+                                    if (cookie.getName().equals("ListaProductos")){
+                                        System.out.println(cookie.getValue());
+                                        Object a = cookie.getValue();
+                                        lista_dp = (ArrayList<String>)a;
+                                        Iterator lista_dp_i = lista_dp.iterator();
+                                        while(lista_dp_i.hasNext()){
+                                            String id_producto = lista_dp_i.next().toString();
+                                            DPapel papel = new DPapel();
+                                            papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
+                                            MPapel mpapel = MPapel.obtenerPapelPorIdDPapel(Integer.parseInt(id_producto));
+                                        %>
+                                        <div class="card col-sm-4">
+                                            <div class="card-body">
+                                                <!-- Aqui seria una buena idea laterar la base de datos para la ruta -->
+                                                <img class="img-fluid" src="https://source.unsplash.com/random/500x500/?zucchini&amp;sig=3" alt="<%= papel.getId_papel() %>">
+                                                <h5 class="card-title"> <%= mpapel.getNombre_pap() %> </h5>
+                                                <p class="card-text"> <%= papel.getPrecio() %> </p>
+                                                <button class="btn btn-primary">+</button>
+                                            </div>
+                                        </div>
+                                        <%
+                                        }
+                                    }else{
                                    %>
                                     <h3>Su carrito de compras esta vacio</h3>
                                    <%
@@ -119,20 +139,17 @@
                         <!-- Elementos del carrito -->
                         <ul id="carrito" class="list-group">
                         <!-- Aqui iran los elementos de pago -->
-                        <%! double total_neto = 0;%>
-                        <%! ArrayList<Double> total = new ArrayList<Double>(); %>
                         <%
                         try{
                             Iterator lista_dp_i = lista_dp.iterator();
                             while(lista_dp_i.hasNext()){
                                 String id_producto = lista_dp_i.next().toString();
                                 DPapel papel = new DPapel();
-                                papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
-                                total.add(papel.getPrecio());                            
+                                papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));                          
                         %>
                         <li class="list-group-item text-right mx-2">
                             Precio:<%= papel.getPrecio() %>
-                            <button class="btn btn-danger mx-5" style="margin-left: 1rem;" item="3">X</button>
+                            <button class="btn btn-danger mx-5" style="margin-left: 1rem;">X</button>
                         </li>
                         <%
                             }
