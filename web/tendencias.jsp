@@ -46,7 +46,9 @@ map = new HashMap<Object,Object>(); map.put("x", 170);  map.put("y", 24);list.ad
 map = new HashMap<Object,Object>(); map.put("x", 180);  map.put("y", 33);list.add(map);
 map = new HashMap<Object,Object>(); map.put("x", 190);  map.put("y", 28);list.add(map);
 map = new HashMap<Object,Object>(); map.put("x", 200);  map.put("y", 42);list.add(map);	
-String dataPoints = gsonObj.toJson(list);
+String semana = gsonObj.toJson(list);
+String mes = gsonObj.toJson(list);
+String quincena = gsonObj.toJson(list);
 %>
 
 <!DOCTYPE html>
@@ -183,7 +185,7 @@ String dataPoints = gsonObj.toJson(list);
                 data: [{
                     type: "line",
                     toolTipContent: "<b>{label}</b>: {y}%",
-                    dataPoints: <%out.print(dataPoints);%>
+                    dataPoints: <%out.print(semana);%>
                 }]
             });
             chart.render();
@@ -214,7 +216,7 @@ String dataPoints = gsonObj.toJson(list);
                 data: [{
                     type: "line",
                     toolTipContent: "<b>{label}</b>: {y}%",
-                    dataPoints: <%out.print(dataPoints);%>
+                    dataPoints: <%out.print(mes);%>
                 }]
             });
             chart.render();
@@ -245,7 +247,7 @@ String dataPoints = gsonObj.toJson(list);
                 data: [{
                     type: "line",
                     toolTipContent: "<b>y</b>: {y}%",
-                    dataPoints: <%out.print(dataPoints);%>
+                    dataPoints: <%out.print( quincena );%>
                 }]
             });
             chart.render();

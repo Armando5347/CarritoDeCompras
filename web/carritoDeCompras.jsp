@@ -130,7 +130,10 @@
                                 papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
                                 total.add(papel.getPrecio());                            
                         %>
-                        <li class="list-group-item text-right mx-2">Precio:<%= papel.getPrecio() %></li>
+                        <li class="list-group-item text-right mx-2">
+                            Precio:<%= papel.getPrecio() %>
+                            <button class="btn btn-danger mx-5" style="margin-left: 1rem;" item="3">X</button>
+                        </li>
                         <%
                             }
                         }catch(Exception e){
