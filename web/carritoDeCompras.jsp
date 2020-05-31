@@ -150,7 +150,7 @@
                         %>
                         <li class="list-group-item text-right mx-2">
                             <p>Precio:<%= papel.getPrecio() %></p>
-                            <p class="catidad-<%= papel.getId_papel() %>">Cantidad:</p>
+                            <p class="catidad-<%= papel.getId_papel() %>">Cantidad:<span id=can-"<%= papel.getId_papel() %>" >0</span></p>
                             <button class="btn btn-danger mx-5 btn-eliminar" style="margin-left: 1rem;">X</button>
                         </li>
                         <%
@@ -165,7 +165,7 @@
                         <hr>
                         <!-- Precio total -->
                         <p class="text-right">Total: <span id="total"><%= total_neto %></span>$</p>
-                        <a href="<%= request.getContextPath() %>/Cobrar?total=<%= total_neto %>">Cobrar</a>
+                        <a href="<%= request.getContextPath() %>/formaDePago?total=<%= total_neto %>">Cobrar</a>
                     </aside>
                     <%}%>
                 </div>
@@ -188,7 +188,9 @@
             });
             btn_agregar.forEach(element => {
                 element.addEventListener("click", function () {
-                    element.parentNode.remove();
+                    var id = element.parentNode.id;
+                    var contenedor = document.getElementById("cant-" + id);
+                    contenedor.value += 1;
                 })
             });
         </script>
