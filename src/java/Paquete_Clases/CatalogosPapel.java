@@ -14,7 +14,60 @@ import java.util.ArrayList;
 
 public class CatalogosPapel {
     
-   
+    public static ArrayList obtenerCatalogo(String nom_cal){
+        ArrayList catalogo = new ArrayList();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String q = "";
+        try{
+            con = Conexion.obtenerConexion();
+            q = "Select ? FROM ?";
+            ps = con.prepareStatement(q);
+            ps.setString(2, nom_cal);
+            switch(nom_cal){
+                case "cmaterial":
+                    ps.setString(1, "material");
+                    break;
+                case "ctipos":
+                    ps.setString(1, "Tipos");
+                    break;
+                case "caromas":
+                    ps.setString(1, "aroma");
+                    break;
+                case "crollosincluidos":
+                    ps.setString(1, "rollos");
+                    break;    
+                case "ctipo_hojas":
+                    ps.setString(1, "tipo_hojas");
+                    break;    
+                case "chojasxrollo":
+                    ps.setString(1, "no_hojas");
+                    break;    
+            }
+            rs = ps.executeQuery();
+            while(rs.next()){
+                String valor = rs.getString(1);
+                catalogo.add(valor);
+            }
+        }catch (SQLException ex) {
+            System.out.println("Nulo por el esecuele");
+            ex.printStackTrace();
+            return null;
+        }finally{
+            q="";
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println("No se cerraron bien");
+            }
+        }
+        return catalogo;
+    }
+    
+    
     public static ArrayList obtenerValores(int id_mat, int id_tip, int id_ar, int id_roll, int id_th,int id_hr){
         ArrayList valores = new ArrayList();
         Connection con = null;

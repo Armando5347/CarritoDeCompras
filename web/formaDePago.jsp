@@ -191,7 +191,7 @@
                                 <span class="input-group-text">Ingrese la sucursal de su preferencia:</span>
                             </div>
                             <select readonly="readonly" name="sucursal">
-                                <option>--Tiendas compatibles--</option>
+                                <option >--Tiendas compatibles--</option>
                                 <option>OXXO</option>
                                 <option>Seven Eleven</option>
                                 <option>Faramcias del Ahorro</option>

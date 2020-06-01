@@ -122,6 +122,8 @@ function esCorreo(input){
     var patron_correos = /^\d{4}([\-/.])(0?[1-9]|1[1-2])\1(3[01]|[12][0-9]|0?[1-9])$/;
     if(!patron_correos.test(input.value)){
         alert("Correo invalido");
+        input.focus();
     }
+    
     return patron_correos.test(input.value);
 }

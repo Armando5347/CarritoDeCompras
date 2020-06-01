@@ -15,6 +15,18 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- -----------------------------------------------------
+-- Schema carritocompras
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `carritocompras` ;
+
+-- -----------------------------------------------------
+-- Schema carritocompras
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `carritocompras` DEFAULT CHARACTER SET utf8 ;
+USE `carritocompras`;
+
 --
 -- Table structure for table `caromas`
 --
@@ -493,6 +505,32 @@ LOCK TABLES `mpapel` WRITE;
 /*!40000 ALTER TABLE `mpapel` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mpapel` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+insert into carritocompras.CMaterial (ID, Material) values(1, "Celulosa"),(2,"Fibra vegetal");
+
+insert into carritocompras.CAromas (ID, Aroma) values(1, "Sin aroma"),(2,"almendras");
+
+insert into carritocompras.CTipos (ID, Tipos) values(1, "Residencial"),(2,"Institucional");
+
+insert into carritocompras.CRollosIncluidos (ID, rollos) values(1, 4), (2, 12), (3,18), (4,24), (5,32);
+
+insert into carritocompras.CTipo_Hojas (ID, tipo_hojas) values(1, "Doble"),(2, "Triple"),(3,"Cuadruple");
+
+insert into carritocompras.CHojasxRollo (ID, no_hojas) values (1, 180),(2,200),(3,240),(4,320),(5,400),(6,500); 
+
+insert into carritocompras.CPrivilegio_Empleado (ID, tipo_privilegio) values (1, "Empleado"), (2,"Gerente"), (3,"Admin");
+
+insert into Mpapel values(1, "Papel Marca patito", 1);
+insert into MPapel values(2, "Papel DOWNY para universidad",2);
+
+insert into DPapel values(1,50.00,5,1,1,1,1,1,1,null);
+insert into DPapel values(2, 499.99,2,1,2,2,2,3,6,null);
+
+insert into Empleado values
+(1,"Armando", "Jarillo", "Torres","1968-07-27","53521328","55667788","root","n0m3l0", 3),
+(2,"Denilson", "Soto", "Luna","2003-01-07","12345678","19898989","UnSaludo","111111", 2),
+(3,"Gerardo", "Rivera", "Y ya","1980-12-17","53521328","53456706","root","12345678", 1);
 
 --
 -- Dumping events for database 'carritocompras'
