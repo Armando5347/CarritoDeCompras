@@ -14,9 +14,10 @@
         <group>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/index.jsp</file>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/formaDePago.jsp</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/Registrar_Usuario.java</file>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/ejecutar_compra.java</file>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/Entradas.java</file>
-            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/js/validarMetodosPago.js</file>
+            <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/src/java/Paquete_Clases/registrarPapel.java</file>
             <file>file:/C:/Users/maste/OneDrive/Documentos/GitHub/CarritoDeCompras/web/js/validarEntradas.js</file>
         </group>
     </open-files>
