@@ -144,7 +144,7 @@
                         <td><%=dp.getStock()%></td>
                         <td>
                             <a href="actualizarProducto.jsp?id=<%=mp.getId_MPapel()%>" class=" btn btn-info">Actualizar precio/stock</a> <br>
-                            <a href="eliminarProducto?id=<%=mp.getId_MPapel()%>" class="btn btn-danger">Retirar de la venta</a>
+                            <a href="eliminarProducto?id=<%=mp.getId_MPapel()%>&causa='despido'" class="btn btn-danger">Retirar de la venta</a>
                         </td>
                     </tr>
                     <% } %>

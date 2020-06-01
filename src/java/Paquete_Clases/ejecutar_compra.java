@@ -54,15 +54,25 @@ public class ejecutar_compra extends HttpServlet {
                 try{
                     String tarjeta = request.getParameter("select_targeta");
                     int fecha_vencimiento_mes = Integer.parseInt(request.getParameter("fecha_vencimiento_mes"));
+                    long codigo = Long.parseLong(request.getParameter("codigo"));
                     int fecha_vencimiento_ano = Integer.parseInt(request.getParameter("fecha_vencimiento_ano"));
                     int cvv = Integer.parseInt(request.getParameter("cvv"));
-                    boolean validaciones[] = new boolean[4];
+                    boolean validaciones[] = new boolean[6];
 
                     validaciones[0] = Entradas.esString(tarjeta);
+                    validaciones[1] = Entradas.esNumeroEntero(codigo);
                     validaciones[2] = Entradas.esNumeroEntero(fecha_vencimiento_mes,2);
-                    validaciones[3] = Entradas.esNumeroEntero(fecha_vencimiento_ano, 4);
-                    validaciones[4] = Entradas.esNumeroEntero(cvv, 3);
-
+                    validaciones[3] = Entradas.esNumeroEnteroMaxExtricto(fecha_vencimiento_ano,4);
+                    validaciones[4] = Entradas.esNumeroEnteroMaxExtricto(cvv, 3);
+                    
+                    if(fecha_vencimiento_ano >2100
+                            || fecha_vencimiento_ano < 2019
+                            || fecha_vencimiento_mes > 12
+                            || fecha_vencimiento_mes < 0
+                            || (fecha_vencimiento_ano == 2020 && fecha_vencimiento_mes <5)
+                            ){
+                        validaciones[5] = false;
+                    }
                     for(boolean bool:validaciones){
                         if(!bool){
                             redirect = "formaDePago.jsp";
@@ -79,7 +89,8 @@ public class ejecutar_compra extends HttpServlet {
             case "efectivo":
                 try{
                     String sucursal = request.getParameter("sucursal");
-                    if(!Entradas.esString(sucursal) || sucursal.equalsIgnoreCase("--Tiendas compatibles--")){
+                    String direccion = request.getParameter("direccion_sucursal");
+                    if(!Entradas.esString(sucursal) || sucursal.equalsIgnoreCase("--Tiendas compatibles--") || !Entradas.exepcionDireccion(direccion)){
                         redirect = "formaDePago.jsp";
                     }else{
                         redirect = "ticket.jsp";

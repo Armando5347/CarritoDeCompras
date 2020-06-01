@@ -8,14 +8,22 @@
 function quieroNumeros(input, boolean){
     var contenido = input.value;
     var sirve = false;
-    sirve = verMaximoCaracteres(contenido, 20); //20 de manera temporal
+    if(boolean){
+        sirve = verMaximoCaracteres(contenido, 10);
+    }else{
+        sirve = verMaximoCaracteres(contenido, 45); //20 de manera temporal
+    }
+   
     if(!sirve){
-        alert("Campo "+input.name+" No es valido");
+        alert("Campo "+input.name+" es muy largo");
+        input.focus();
         return false;
     }
-    var patron_numeritos = /[0-9]/;
+    var patron_numeritos = /[0-9\.]/;
     if(!boolean){ //Este e sde que no lo quiero números
-         sirve = !patron_numeritos.test(contenido);
+        sirve = !patron_numeritos.test(contenido);
+        var patron_extra = /[A-Za-zÑñáéíóúÁÉÍÓÚ\s]/
+        sirve = patron_extra.test(contenido);
     }else{ //Este de que si quiero números
         if(contenido < 0 ) return false;
         sirve = patron_numeritos.test(contenido);
@@ -33,6 +41,7 @@ function soloNumerosYletras(input){
     sirve = verMaximoCaracteres(contenido, 20); //20 de manera temporal
     if(!sirve){
         alert("Campo "+contenido.name+" es deamsiado largo");
+        input.focus();
         return false;
     }
     var patron_numeritos = /[A-Za-z0-9\.\_]/;
@@ -45,6 +54,7 @@ function soloNumerosYletras(input){
 function quieroNumerosEnteros(input){
     var enterotest = input.value;
     var enteros = /[0-9]/;
+    if(verMaximoCaracteres(enterotest,16)) return null
     return (enteros.test(enterotest));
 }
 
@@ -76,10 +86,10 @@ function quieroTeclearNumerosEnteros(e){
 }
 
 function noDefault(select){
-    console.log("Validando");
+    
     var indice = select.selectedIndex;
-    var seleccionado = select.options[indice].value;
-    if(seleccionado === "Seleccione alguna opción" || indice===0){
+    console.log(indice);
+    if(indice===0){
         alert("Debe de seleccionar algún elemento del campo: " +select.name);
         select.focus();
         return false;

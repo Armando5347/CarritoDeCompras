@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`cliente` (
   `username_cli` VARCHAR(20) NOT NULL,
   `password_cli` VARCHAR(20) NOT NULL,
   `cel_cli` INT(11) NULL DEFAULT NULL,
-  `tel_cli` INT(11) NULL DEFAULT NULL,
+  `tel_cli` BIGINT(12) NULL DEFAULT NULL,
   PRIMARY KEY (`ID_cli`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `carritocompras`.`empleado` (
   `Apmat_em` VARCHAR(45) NOT NULL,
   `fecha_nacimiento_em` DATE NULL DEFAULT NULL,
   `cel_em` INT(11) NULL DEFAULT NULL,
-  `tel_em` INT(11) NULL DEFAULT NULL,
+  `tel_em` BIGINT(12) NULL DEFAULT NULL,
   `username_em` VARCHAR(20) NOT NULL,
   `password_em` VARCHAR(20) NOT NULL,
   `CPrivilegio_Empleado_ID` INT(11) NOT NULL,
@@ -406,6 +406,31 @@ select carritocompras.CMaterial.ID, carritocompras.CTipos.ID, carritocompras.CAr
         carritocompras.CHojasxRollo.no_hojas = hojas_rollos$$
 
 DELIMITER ;
+
+insert into carritocompras.CMaterial (ID, Material) values(1, "CELULOSA"),(2,"FIBRA VEGETAL");
+
+insert into carritocompras.CAromas (ID, Aroma) values(1, "SIN AROMA"),(2,"ALMENDRAS");
+
+insert into carritocompras.CTipos (ID, Tipos) values(1, "Residencial"),(2,"Institucional");
+
+insert into carritocompras.CRollosIncluidos (ID, rollos) values(1, 4), (2, 12), (3,18), (4,24), (5,32);
+
+insert into carritocompras.CTipo_Hojas (ID, tipo_hojas) values(1, "Doble"),(2, "Triple"),(3,"Cuadruple");
+
+insert into carritocompras.CHojasxRollo (ID, no_hojas) values (1, 180),(2,200),(3,240),(4,320),(5,400),(6,500); 
+
+insert into carritocompras.CPrivilegio_Empleado (ID, tipo_privilegio) values (1, "Empleado"), (2,"Gerente"), (3,"Admin");
+
+insert into Mpapel values(1, "Papel Marca patito", 1);
+insert into MPapel values(2, "Papel DOWNY para universidad",2);
+
+insert into DPapel values(1,50.00,5,1,1,1,1,1,1);
+insert into DPapel values(2, 499.99,2,1,2,2,2,3,6);
+
+insert into Empleado values
+(1,"Armando", "Jarillo", "Torres","1968-07-27","53521328","55667788","root","n0m3l0", 3),
+(2,"Denilson", "Soto", "Luna","2003-01-07","12345678","19898989","UnSaludo","111111", 2),
+(3,"Gerardo", "Rivera", "Y ya","1980-12-17","53521328","53456706","root","12345678", 1);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

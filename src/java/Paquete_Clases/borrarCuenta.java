@@ -41,6 +41,11 @@ public class borrarCuenta extends HttpServlet {
                 redirect = "error.jsp";
                 proceso_alterado = true;
             }
+            String origen = request.getParameter("causa");
+            if(origen == null){
+                redirect = "error.jsp";
+                proceso_alterado = true;
+            }
             if(!proceso_alterado){
                 if(tipo_usuario.equals("cliente")){
                     Cliente cli = (Cliente)sesion_usuario_a_borrar.getAttribute("usuario");
@@ -54,8 +59,7 @@ public class borrarCuenta extends HttpServlet {
                         redirect = "error.jsp";
                     }
 
-                }
-                else if(tipo_usuario.equals("empleado")){
+                }else if(tipo_usuario.equals("empleado") && origen.equals("despido")){
                     Empleado emp = (Empleado)sesion_usuario_a_borrar.getAttribute("usuario");
                     int id_priv = emp.getCprivilegio_id();
                     if((id_priv != 2) && (id_priv != 3)){
@@ -82,6 +86,16 @@ public class borrarCuenta extends HttpServlet {
                             redirect = "error.jsp";
                         }
                     }
+                }else if(tipo_usuario.equals("empleado") && origen.equals("manual")){
+                    Empleado emp = (Empleado)sesion_usuario_a_borrar.getAttribute("usuario");
+                    
+                    int id_borrar = emp.getId_emp();
+                    if(Empleado.despedirEmpleado(id_borrar)){
+                        redirect = "listaEmpleados.jsp";
+                    }else{
+                        redirect = "error.jsp";
+                    }
+
                 }
             }
             response.sendRedirect(redirect);

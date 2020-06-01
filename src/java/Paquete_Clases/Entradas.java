@@ -67,6 +67,8 @@ public class Entradas {
         String verPorIteracion = "QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnmáéíóúÁÉÍÚÓ ";
         
         boolean esString = true;
+        String ver_noespuroesapcio = stringTestear.replaceAll("\\s","");
+        if(ver_noespuroesapcio.isEmpty()) return false;
         
         for(int i = 0; i< stringTestear.length(); i++){
             char verCaracter = stringTestear.charAt(i);
@@ -133,8 +135,21 @@ public class Entradas {
     public static boolean esDate(String fecha_nac_testear) {
         
         if(fecha_nac_testear.isEmpty()) return false;
+        
+        char carcAnos[] = new char[4];
+        carcAnos[1] = fecha_nac_testear.charAt(0);
+        carcAnos[2] = fecha_nac_testear.charAt(1);
+        carcAnos[3] = fecha_nac_testear.charAt(2);
+        carcAnos[4] = fecha_nac_testear.charAt(3);
+        
+        String ano = String.valueOf(carcAnos);
+        System.out.println(ano);
+        int ano_test = Integer.parseInt(ano);
+        if(ano_test > 2020) return false;
+        
         Pattern patron_fecha = Pattern.compile("^\\d{4}([\\-/.])(0?[1-9]|1[1-2])\\1(3[01]|[12][0-9]|0?[1-9])$");
         Matcher esDate = patron_fecha.matcher(fecha_nac_testear);
+        
         return esDate.matches();
         
     }
@@ -169,4 +184,50 @@ public class Entradas {
         }
         return true;
     }
+
+    static boolean exepcionDireccion(String direccion) {
+        if(direccion.isEmpty()) return false;
+        String todo_lo_que_puede_tener = "QWERTYUIOPASDFGHJKLÑZXCVBNMÁÉÍÓÚqwertyuiopasdfghjklñzxcvbnmáéíóú °.0123456789";
+        String ver_noespuroesapcio = direccion.replaceAll("\\s","");
+        if(ver_noespuroesapcio.isEmpty()) return false;
+        for (int i = 0; i < direccion.length(); i++) {
+            char numero_validar = direccion.charAt(i);
+            boolean validado = false;
+            for(int j = 0; j < todo_lo_que_puede_tener.length(); j++){
+                char validador = todo_lo_que_puede_tener.charAt(j);
+                if(validador == numero_validar){
+                    validado = true;
+                    break;
+                }
+            }
+            if(!validado){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static boolean esNumeroEnteroMaxExtricto(int enteroTestear, int max) {
+       if(enteroTestear < 0) return false;
+        
+        String verPorIteracion = "0123456789";
+        String intConvertido = String.valueOf(enteroTestear);
+        if(intConvertido.length() != max) return false;
+        for (int i = 0; i < intConvertido.length(); i++) {
+            char numero_validar = intConvertido.charAt(i);
+            boolean validado = false;
+            for(int j = 0; j < verPorIteracion.length(); j++){
+                char validador = verPorIteracion.charAt(j);
+                if(validador == numero_validar){
+                    validado = true;
+                    break;
+                }
+            }
+            if(!validado){
+                return false;
+            }
+        }
+        return true;
+    }
+    
 }

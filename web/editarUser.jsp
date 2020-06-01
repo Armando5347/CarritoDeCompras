@@ -206,7 +206,7 @@
                 </div>
                     <br>
                 
-                <div class="btn-group"><input type="submit" class="btn-primary" value="Actualizar Datos"> || <a href="borrarCuenta" class="btn btn-danger">Eliminar Cuenta</a> || <a href="index.jsp" class="btn btn-info">Regresar al index.</a></div>
+                <div class="btn-group"><input type="submit" class="btn-primary" value="Actualizar Datos"> || <a href="borrarCuenta?causa='manual'" class="btn btn-danger">Eliminar Cuenta</a> || <a href="index.jsp" class="btn btn-info">Regresar al index.</a></div>
                 
             </form>
         </main>

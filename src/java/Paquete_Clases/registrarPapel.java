@@ -73,15 +73,20 @@ public class registrarPapel extends HttpServlet {
         material = request.getParameter("material");
         System.out.println(material);
         //Ahora validamos por si perosnas feas hacen cosas feas
+        try{
         validaciones[0] = Entradas.esString(nombre_pap);
-        validaciones[1] = Entradas.esNumeroEntero(stock_ini);
+        validaciones[1] = Entradas.esNumeroEntero(stock_ini,10);
         validaciones[2] = Entradas.esDouble(precio);
         validaciones[3] = Entradas.esString(aroma);
         validaciones[4] = Entradas.esString(material);
-        validaciones[5] = Entradas.esNumeroEntero(hojasXrollos);
-        validaciones[6] = Entradas.esNumeroEntero(rollos);
+        validaciones[5] = Entradas.esNumeroEntero(hojasXrollos,3);
+        validaciones[6] = Entradas.esNumeroEntero(rollos,2);
         validaciones[7] = Entradas.esString(tipo_papel);
         validaciones[8] = Entradas.esString(tipo_hojas);
+        }catch(NullPointerException e){
+            procesoAdecuado = false;
+            redirect = "error.jsp";
+        }
         for(boolean bool:validaciones){
             if(!bool){
                 System.out.println("Ingreso no valido detectado");
@@ -90,41 +95,42 @@ public class registrarPapel extends HttpServlet {
                 break;
             }
         }
-        ArrayList valores = new ArrayList();
-        valores.add(material);
-        valores.add(tipo_papel);
-        valores.add(aroma);
-        valores.add(rollos);
-        valores.add(tipo_hojas);
-        valores.add(hojasXrollos);
-        System.out.println(valores);
-        int []lista_ides = new int[6];
-        lista_ides = CatalogosPapel.obtenerIdes(valores);
-        if(lista_ides==null){
-            System.out.println("NO hay ides");
-            redirect = "error.jsp";
-        }
-        try{
-            id_material = lista_ides[0];
-            id_tipo_pal = lista_ides[1];
-            id_aroma = lista_ides[2];
-            id_rollos = lista_ides[3];
-            id_tipo_hojas = lista_ides[4];
-            id_hojas_rollos = lista_ides[5];
-            
-            DPapel dpap = new DPapel(stock_ini, id_material,  id_aroma, id_rollos, id_tipo_pal,  id_tipo_hojas, id_hojas_rollos, precio);
-       
-            procesoAdecuado = MPapel.guardarNuevoPapel(nombre_pap, dpap);
+        if(procesoAdecuado){
+            ArrayList valores = new ArrayList();
+            valores.add(material);
+            valores.add(tipo_papel);
+            valores.add(aroma);
+            valores.add(rollos);
+            valores.add(tipo_hojas);
+            valores.add(hojasXrollos);
+            System.out.println(valores);
+            int []lista_ides = new int[6];
+            lista_ides = CatalogosPapel.obtenerIdes(valores);
+            if(lista_ides==null){
+                System.out.println("NO hay ides");
+                redirect = "error.jsp";
+            }
+            try{
+                id_material = lista_ides[0];
+                id_tipo_pal = lista_ides[1];
+                id_aroma = lista_ides[2];
+                id_rollos = lista_ides[3];
+                id_tipo_hojas = lista_ides[4];
+                id_hojas_rollos = lista_ides[5];
 
-          if(procesoAdecuado){
-              redirect = "listaProductosAdmin.jsp";
-          }else{
-              redirect = "error.jsp";
-          }
-        }catch(Exception e){
-            redirect = "error.jsp";
+                DPapel dpap = new DPapel(stock_ini, id_material,  id_aroma, id_rollos, id_tipo_pal,  id_tipo_hojas, id_hojas_rollos, precio);
+
+                procesoAdecuado = MPapel.guardarNuevoPapel(nombre_pap, dpap);
+
+              if(procesoAdecuado){
+                  redirect = "listaProductosAdmin.jsp";
+              }else{
+                  redirect = "error.jsp";
+              }
+            }catch(Exception e){
+                redirect = "error.jsp";
+            }
         }
-        
         
         response.sendRedirect(redirect);
         

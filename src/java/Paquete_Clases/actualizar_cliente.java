@@ -54,22 +54,27 @@ public class actualizar_cliente extends HttpServlet {
             String username = request.getParameter("username");
             String pass = request.getParameter("pass");
             
-            validaciones[0] = Entradas.esString(nombre);
-            validaciones[1] = Entradas.esString(appat);
-            validaciones[2] = Entradas.esString(apmat);
-            validaciones[3] = Entradas.esDate(fecha_naci);
-            validaciones[4] = Entradas.esNumeroEntero(tel);
-            validaciones[5] = Entradas.esNumeroEntero(cel);
-            validaciones[6] = Entradas.formatoUser(username);
-            validaciones[7] = Entradas.formatoUser(pass);
-            int i = 0;
-            for (boolean bool:validaciones){
-                i ++;
-                if(!bool){
-                    System.out.println("Boolean "+i+bool);
-                    redirect = "editarUser.jsp";
-                    progreso_alterado = true;
+            try{
+                validaciones[0] = Entradas.esString(nombre);
+                validaciones[1] = Entradas.esString(appat);
+                validaciones[2] = Entradas.esString(apmat);
+                validaciones[3] = Entradas.esDate(fecha_naci);
+                validaciones[4] = Entradas.esNumeroEntero(tel);
+                validaciones[5] = Entradas.esNumeroEntero(cel);
+                validaciones[6] = Entradas.formatoUser(username);
+                validaciones[7] = Entradas.formatoUser(pass);
+                int i = 0;
+                for (boolean bool:validaciones){
+                    i ++;
+                    if(!bool){
+                        System.out.println("Boolean "+i+bool);
+                        redirect = "editarUser.jsp";
+                        progreso_alterado = true;
+                    }
                 }
+            }catch(NullPointerException e){
+                redirect ="editarUser.jsp";
+                progreso_alterado = true;
             }
             if(!progreso_alterado){
                 HttpSession sesion_a_cambiar = request.getSession();
