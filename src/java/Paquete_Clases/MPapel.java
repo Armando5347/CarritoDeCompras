@@ -138,7 +138,7 @@ public class MPapel {
         return papel_mostrar;
     }
     
-        public static MPapel obtenerPapelPorIdDPapel(int id_dp){
+    public static MPapel obtenerPapelPorIdDPapel(int id_dp){
         MPapel papel_mostrar = null;
         try{
             con = Conexion.obtenerConexion();

@@ -1,4 +1,5 @@
 
+<%@page import="Paquete_Clases.Tendencias"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
@@ -23,32 +24,26 @@
     
     //Vamos a jugar un rato
 Gson gsonObj = new Gson();
-Map<Object,Object> map = null;
-List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
+String[] ventas_semana = new String[3];
+String[] ventas_mes = new String[3];
+String[] ventas_quincena = new String[3];
 
-map = new HashMap<Object,Object>(); map.put("x", 10);  map.put("y", 71);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 20);  map.put("y", 55);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 30);  map.put("y", 50);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 40);  map.put("y", 65);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 50);  map.put("y", 95);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 60);  map.put("y", 68);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 70);  map.put("y", 28);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 80);  map.put("y", 34);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 90);  map.put("y", 14);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 100);  map.put("y", 33);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 110);  map.put("y", 42);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 120);  map.put("y", 62);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 130);  map.put("y", 70);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 140);  map.put("y", 85);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 150);  map.put("y", 58);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 160);  map.put("y", 34);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 170);  map.put("y", 24);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 180);  map.put("y", 33);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 190);  map.put("y", 28);list.add(map);
-map = new HashMap<Object,Object>(); map.put("x", 200);  map.put("y", 42);list.add(map);	
+ventas_semana[0] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("semana", "algo1"));
+ventas_mes[1] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("mes", "algo2"));
+ventas_quincena[2] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("quincena", "algo3"));
+
+ventas_semana[0] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("semana", "algo1"));
+ventas_mes[1] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("mes", "algo2"));
+ventas_quincena[2] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("quincena", "algo3"));
+
+ventas_semana[0] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("semana", "algo1"));
+ventas_mes[1] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("mes", "algo2"));
+ventas_quincena[2] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("quincena", "algo3"));
+/**
 String semana = gsonObj.toJson(list);
 String mes = gsonObj.toJson(list);
 String quincena = gsonObj.toJson(list);
+*/
 %>
 
 <!DOCTYPE html>
@@ -185,7 +180,17 @@ String quincena = gsonObj.toJson(list);
                 data: [{
                     type: "line",
                     toolTipContent: "<b>{label}</b>: {y}%",
-                    dataPoints: <%out.print(semana);%>
+                    dataPoints: <%out.print( ventas_semana[0] );%>
+                }, 
+                {
+                    type: "line",
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    dataPoints: <%out.print(ventas_semana[1]);%>
+                },
+                {
+                    type: "line",
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    dataPoints: <%out.print(ventas_semana[2]);%>
                 }]
             });
             chart.render();
@@ -216,7 +221,17 @@ String quincena = gsonObj.toJson(list);
                 data: [{
                     type: "line",
                     toolTipContent: "<b>{label}</b>: {y}%",
-                    dataPoints: <%out.print(mes);%>
+                    dataPoints: <%out.print( ventas_mes[0] );%>
+                }, 
+                {
+                    type: "line",
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    dataPoints: <%out.print(ventas_mes[1]);%>
+                },
+                {
+                    type: "line",
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    dataPoints: <%out.print(ventas_mes[2]);%>
                 }]
             });
             chart.render();
@@ -246,8 +261,18 @@ String quincena = gsonObj.toJson(list);
                 },
                 data: [{
                     type: "line",
-                    toolTipContent: "<b>y</b>: {y}%",
-                    dataPoints: <%out.print( quincena );%>
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    dataPoints: <%out.print( ventas_quincena[0] );%>
+                }, 
+                {
+                    type: "line",
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    dataPoints: <%out.print(ventas_quincena[1]);%>
+                },
+                {
+                    type: "line",
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    dataPoints: <%out.print(ventas_quincena[2]);%>
                 }]
             });
             chart.render();
