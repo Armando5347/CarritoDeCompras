@@ -109,7 +109,7 @@ function switchCampos(id_camp){
 }
 
 function esFecha(input){
-    var patron_fechas = /^[0-9]{4}\\-[0-9]{1,2}\\-[0-9]{1,2}$/;
+    var patron_fechas = /^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$/;
     
     if(!patron_fechas.test(input.value)){
         alert("Ingeso de fecha invalido");
@@ -119,7 +119,7 @@ function esFecha(input){
 }
 
 function esCorreo(input){
-    var patron_correos = /^\d{4}([\-/.])(0?[1-9]|1[1-2])\1(3[01]|[12][0-9]|0?[1-9])$/;
+    var patron_correos = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     if(!patron_correos.test(input.value)){
         alert("Correo invalido");
         input.focus();
