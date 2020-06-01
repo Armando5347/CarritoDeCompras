@@ -18,7 +18,7 @@
     try{
         catalogoMaterial = CatalogosPapel.obtenerCatalogo("cmaterial");
         catalogoTipos = CatalogosPapel.obtenerCatalogo("ctipos");
-        catalogoAromas = CatalogosPapel.obtenerCatalogo("caroma");
+        catalogoAromas = CatalogosPapel.obtenerCatalogo("caromas");
         catalogoRollos = CatalogosPapel.obtenerCatalogo("crollosincluidos");
         catalogoHojas = CatalogosPapel.obtenerCatalogo("ctipo_hojas");
         catalogoHojasXRollo = CatalogosPapel.obtenerCatalogo("chojasxrollo");
@@ -202,8 +202,8 @@
                         <option>Seleccione alguna opción</option>
                         <%
                             for(int i = 0; i< catalogoHojasXRollo.size(); i++){
-                                String vhr = (int)catalogoHojasXRollo.get(i);
-                            
+                                String vhrs = (String)catalogoHojasXRollo.get(i);
+                                int vhr = Integer.parseInt(vhrs);
                         %>
                         <option><%=vhr%></option>
                         <%}%>
@@ -234,8 +234,8 @@
                         <option>Seleccione alguna opción</option>
                         <%
                             for(int i = 0; i< catalogoRollos.size(); i++){
-                                String vr = (String)catalogoRollos.get(i);
-                            
+                                String vrs = (String)catalogoRollos.get(i);
+                                int vr = Integer.parseInt(vrs);
                         %>
                         <option><%=vr%></option>
                         <%}%>

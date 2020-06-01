@@ -6,7 +6,9 @@
 
 <%@page import="Paquete_Clases.MPapel"%>
 <%@page import="Paquete_Clases.DPapel"%>
+<%@page import="Paquete_Clases.Empleado"%>
 <%@page import="java.util.Iterator"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" import="java.util.ArrayList" session="true"%>
 <!DOCTYPE html>
 <%--Aquise debe traer un arrayList de todos los productos--%>

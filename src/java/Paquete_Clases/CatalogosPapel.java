@@ -20,36 +20,61 @@ public class CatalogosPapel {
         PreparedStatement ps = null;
         ResultSet rs = null;
         String q = "";
+        boolean esintreturn = false;
         try{
             con = Conexion.obtenerConexion();
-            q = "Select ? FROM ?";
+            q = "Select * FROM " + nom_cal;
             ps = con.prepareStatement(q);
-            ps.setString(2, nom_cal);
             switch(nom_cal){
                 case "cmaterial":
-                    ps.setString(1, "material");
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        String valor = rs.getString("material");
+                        catalogo.add(valor);
+                    }
                     break;
                 case "ctipos":
-                    ps.setString(1, "Tipos");
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        String valor = rs.getString("tipos");
+                        catalogo.add(valor);
+                    }
                     break;
                 case "caromas":
-                    ps.setString(1, "aroma");
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        String valor = rs.getString("aroma");
+                        catalogo.add(valor);
+                    }
                     break;
                 case "crollosincluidos":
-                    ps.setString(1, "rollos");
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        int val = rs.getInt("rollos");
+                        String valor = String.valueOf(val);
+                        catalogo.add(valor);
+                    }
                     break;    
                 case "ctipo_hojas":
-                    ps.setString(1, "tipo_hojas");
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        String valor = rs.getString("tipo_hojas");
+                        catalogo.add(valor);
+                    }
                     break;    
                 case "chojasxrollo":
-                    ps.setString(1, "no_hojas");
-                    break;    
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        int val = rs.getInt("no_hojas");
+                        String valor = String.valueOf(val);
+                        catalogo.add(valor);
+                    }
+                    break;  
+                default:
+                    System.out.println("Pasaste mal algo");
+                    break;
             }
-            rs = ps.executeQuery();
-            while(rs.next()){
-                String valor = rs.getString(1);
-                catalogo.add(valor);
-            }
+            
         }catch (SQLException ex) {
             System.out.println("Nulo por el esecuele");
             ex.printStackTrace();
