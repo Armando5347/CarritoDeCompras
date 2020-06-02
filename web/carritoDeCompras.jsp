@@ -187,7 +187,7 @@
                                             <div class="card-body" id="<%= papel.getId_papel() %>">
                                                 <!-- Aqui seria una buena idea laterar la base de datos para la ruta 
                                                 pdt: dicho y hehco-->
-                                                <img class="img-fluid" src="https://source.unsplash.com/random/500x500/?zucchini&amp;sig=3" alt="<%= papel.getId_papel() %>">
+                                                <img class="img-fluid" src="img/papel.png" alt="<%= papel.getId_papel() %>">
                                                 <h5 class="card-title"> <%= mpapel.getNombre_pap() %> </h5>
                                                 <p class="card-text"> <%= papel.getPrecio() %> </p>
                                                 <button class="btn btn-primary btn-agregar">+</button>
@@ -195,6 +195,7 @@
                                         </div>
                                         <%
                                         }
+                                        break;
                                     }else{
                                    %>
                                     <h3>Su carrito de compras esta vacio</h3>
