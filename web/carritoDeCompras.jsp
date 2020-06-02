@@ -159,7 +159,7 @@
                     <!-- Elementos generados a partir de la lista -->
                     <section id="items" class="col-sm-8 row">
                         <%! double total_neto = 0;%>
-                        <%! Pattern twopart = Pattern.compile("[^\\[\\]\\']"); %>
+                        <%! Pattern twopart = Pattern.compile("\\d"); %>
                         <%
                          Cookie cookie = null;
                          Cookie[] cookies = null;
@@ -171,9 +171,11 @@
                                cookie = cookies[i];
                                     if (cookie.getName().equals("ListaProductos")){
                                         System.out.println("valor de la cookie: " + cookie.getValue());
-                                        String[] str = twopart.split(cookie.getValue());
-                                        System.out.println(str[0]);
-                                        lista_dp = new ArrayList<String>(Arrays.asList(str));
+                                        String replace = cookie.getValue().replace("['","");
+                                        System.out.println(replace);
+                                        String replace1 = replace.replace("']","");
+                                        System.out.println(replace1);
+                                        lista_dp = new ArrayList<String>(Arrays.asList(replace1.split(",")));
                                         Iterator lista_dp_i = lista_dp.iterator();
                                         while(lista_dp_i.hasNext()){
                                             String id_producto = lista_dp_i.next().toString();
