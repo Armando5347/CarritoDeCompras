@@ -4,6 +4,9 @@
     Author     : maste
 --%>
 
+<%@page import="java.util.*"%>
+<%@page import="java.util.regex.Matcher"%>
+<%@page import="java.util.regex.Pattern"%>
 <%@page import="Paquete_Clases.MPapel"%>
 <%@page import="Paquete_Clases.DPapel"%>
 <%@page import="Paquete_Clases.Empleado"%>
@@ -156,6 +159,7 @@
                     <!-- Elementos generados a partir de la lista -->
                     <section id="items" class="col-sm-8 row">
                         <%! double total_neto = 0;%>
+                        <%! Pattern twopart = Pattern.compile("[^\\[\\]\\']"); %>
                         <%
                          Cookie cookie = null;
                          Cookie[] cookies = null;
@@ -166,9 +170,10 @@
                             for (int i = 0; i < cookies.length; i++) {
                                cookie = cookies[i];
                                     if (cookie.getName().equals("ListaProductos")){
-                                        System.out.println(cookie.getValue());
-                                        Object a = cookie.getValue();
-                                        lista_dp = (ArrayList<String>)a;
+                                        System.out.println("valor de la cookie: " + cookie.getValue());
+                                        String[] str = twopart.split(cookie.getValue());
+                                        System.out.println(str[0]);
+                                        lista_dp = new ArrayList<String>(Arrays.asList(str));
                                         Iterator lista_dp_i = lista_dp.iterator();
                                         while(lista_dp_i.hasNext()){
                                             String id_producto = lista_dp_i.next().toString();
