@@ -29,6 +29,8 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+        
+        <link rel="stylesheet" href="css/estilos.css">
        
     </head>
     <body> 
@@ -139,9 +141,9 @@
         </div>  
         <%}%>
         </main>
-        <footer class="container-fluid bg-secondary">
-            <small class="contanier font-italic">
-                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.
+        <footer class="container-fluid bg-secondary text-center fixed-bottom footer">
+            <small class="contanier font-italic text-white-50 ">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.&copy
             </small>
         </footer>
     </body>
