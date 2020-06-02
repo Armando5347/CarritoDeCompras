@@ -37,23 +37,25 @@
         <h1></h1>
         <div class="container-fluid">
             <header class="d-flex">
-                <div class="col-md-8 d-flex centrar">
-                    <a href="index.jsp" class="col-md-2"><img src="img/papel.png"></a>
+                <div class="col-md-8 d-flex centrar align-items-center">
+                    <a href="index.jsp" class="col-md-2"><img class="img-fluid" src="img/papel.png"></a>
                     <h1>¡Papelilandia!</h1>
                 </div>
                 <% HttpSession sesion_actual = request.getSession();
-                String tipo_user = (String)sesion_actual.getAttribute("tipo_user");
+                    String tipo_user = (String)sesion_actual.getAttribute("tipo_user");
                 if(tipo_user == null){ %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
-                    <a href="InicioSesion.jsp" class="btn btn-primary btn-sm">Iniciar Sesión</a>
-                    <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
+                <div class="btn-group d-flex col-md-4 float-md-right align-middle align-items-center">
+                    <a href="InicioSesion.jsp" class="btn btn-primary btn-sm align-middle h-2rem">Iniciar Sesión</a>
+                    <a href="Registro.jsp" class="btn btn-primary btn-sm align-middle h-2rem">Registrarse</a>
                 </div>
-                <%}else{%>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
-                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
-                    <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
+                <%}else{
+                %>
+                <div class="btn-group d-flex col-md-4  float-md-right align-middle h-2rem align-items-center">
+                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm flex align-middle h-2rem">Cerrar Sesión</a>
+                    <a href="Registro.jsp" class="btn btn-primary btn-sm flex align-middle h-2rem">Registrarse</a>
                 </div>
                 <%}%>
+                
             </header>
              <nav>
                 <!-- ok ya vi que paso con el nav bar basicamente se nos olvido meter al guest-->

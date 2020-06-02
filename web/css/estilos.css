@@ -9,11 +9,11 @@ and open the template in the editor.
 */
 
 
-.footer {
-    bottom: 0;
+.h-2rem{
+    max-height: 2.5rem;
 }
 
-#sticky-footer {
-  flex-shrink: none;
+.ali-center{
+    align-items: center;
 }
 

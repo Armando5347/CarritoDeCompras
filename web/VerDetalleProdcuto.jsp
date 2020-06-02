@@ -47,27 +47,28 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
         <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/estilos.css">
     </head>
     <body>
         <div class="container-fluid">
             <header class="d-flex">
-                <div class="col-md-8 d-flex centrar">
+                <div class="col-md-8 d-flex centrar align-items-center">
                     <a href="index.jsp" class="col-md-2"><img class="img-fluid" src="img/papel.png"></a>
                     <h1>¡Papelilandia!</h1>
                 </div>
                 <% HttpSession sesion_actual = request.getSession();
                     String tipo_user = (String)sesion_actual.getAttribute("tipo_user");
                 if(tipo_user == null){ %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right align-middle">
-                    <a href="InicioSesion.jsp" class="btn btn-primary btn-sm flex align-middle">Iniciar Sesión</a>
-                    <a href="Registro.jsp" class="btn btn-primary btn-sm flex align-middle">Registrarse</a>
+                <div class="btn-group d-flex col-md-4 float-md-right align-middle align-items-center">
+                    <a href="InicioSesion.jsp" class="btn btn-primary btn-sm align-middle h-2rem">Iniciar Sesión</a>
+                    <a href="Registro.jsp" class="btn btn-primary btn-sm align-middle h-2rem">Registrarse</a>
                 </div>
                 <%}else{
                 %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right align-middle">
-                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm flex align-middle">Cerrar Sesión</a>
-                    <a href="Registro.jsp" class="btn btn-primary btn-sm flex align-middle">Registrarse</a>
+                <div class="btn-group d-flex col-md-4  float-md-right align-middle h-2rem align-items-center">
+                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm flex align-middle h-2rem">Cerrar Sesión</a>
+                    <a href="Registro.jsp" class="btn btn-primary btn-sm flex align-middle h-2rem">Registrarse</a>
                 </div>
                 <%}%>
                 
