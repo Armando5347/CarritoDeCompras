@@ -40,8 +40,10 @@
                 <div class="col-md-8 d-flex centrar">
                     <a href="index.jsp" class="col-md-2"><img src="img/papel.png"></a>
                     <h1>¡Papelilandia!</h1>
-                </div>                <% HttpSession sesion_actual = request.getSession();
-                if(sesion_actual==null){ %>
+                </div>
+                <% HttpSession sesion_actual = request.getSession();
+                String tipo_user = (String)sesion_actual.getAttribute("tipo_user");
+                if(tipo_user == null){ %>
                 <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
                     <a href="InicioSesion.jsp" class="btn btn-primary btn-sm">Iniciar Sesión</a>
                     <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
@@ -53,17 +55,77 @@
                 </div>
                 <%}%>
             </header>
-            <nav>
+             <nav>
+                <!-- ok ya vi que paso con el nav bar basicamente se nos olvido meter al guest-->
                 <ul class="nav nav-tabs">
+                    <%
+                    if(tipo_user=="cliente"){
+                    %>
                     <li class="nav-item">
-                        <a href="historial.jsp" class="nav-link">Historial</a>
+                        <a href="Historial.jsp" class="nav-link">Historial</a>
                     </li>
                     <li class="nav-item">
                         <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
                     </li>
-                    <li clas="carrito nav-item">
+                    <li class="carrito nav-item">
                         <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
                     </li>
+                    <li class="carrito nav-item">
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                    </li>
+                    <%}else if(tipo_user == "empleado"){
+                        int privilegio =((Empleado)sesion_actual.getAttribute("usuario")).getCprivilegio_id();
+                        if(privilegio == 3){%>
+                    <li class="nav-item">
+                        <a class="nav-link" href='listaProductosAdmin.jsp'>Ver inventario de productos</a></li>
+                    <li class="carrito nav-item">
+                        <a href="listaEmpleados.jsp" class="nav-link">Ver empleados</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="listaClientes.jsp" class="nav-link">Ver clientes</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
+                    </li>
+                    <%}else if(privilegio==2){%>
+                    <li class="carrito nav-item">
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="listaEmpleados.jsp" class="nav-link">Ver empleados</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="listaClientes.jsp" class="nav-link">Ver clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
+                    </li>
+                    <%}else if(privilegio == 1){ %>
+                    <li class="carrito nav-item">
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
+                    </li>
+                    <%}
+                    }else{
+                        //Este es el guest
+                    %>
+                        <li class="carrito nav-item">
+                            <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
+                        </li>
+                        <li class="carrito nav-item">
+                            <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                        </li>
+                        <li class="carrito nav-item">
+                            <a href="Registro.jsp" class="nav-link">Registrarse</a>
+                        </li>
+                    <%
+                    }
+                    %>
                 </ul>
             </nav>
         </div>

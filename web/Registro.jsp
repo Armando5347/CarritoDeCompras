@@ -174,6 +174,11 @@
                     <input class="btn-primary"  type="submit" value="Registrarse"><input type="reset" value="Vaciar Campos." class="btn-secondary">
                 </div>
             </form>
-        </main>
+        </main>}
+        <footer class="container-fluid bg-secondary text-center fixed-bottom footer">
+            <small class="contanier font-italic text-white-50 ">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.&copy
+            </small>
+        </footer>
     </body>
 </html>

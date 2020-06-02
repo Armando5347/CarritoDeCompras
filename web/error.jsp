@@ -97,6 +97,19 @@
                         <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
                     </li>
                     <%}
+                    }else{
+                        //Este es el guest
+                    %>
+                        <li class="carrito nav-item">
+                            <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
+                        </li>
+                        <li class="carrito nav-item">
+                            <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                        </li>
+                        <li class="carrito nav-item">
+                            <a href="Registro.jsp" class="nav-link">Registrarse</a>
+                        </li>
+                    <%
                     }
                     %>
                 </ul>
@@ -114,5 +127,10 @@
             <a href="index.jsp" class="btn btn-info">Regresar a la página principal</a>
             </p>
         </main>
+        <footer class="container-fluid bg-secondary text-center fixed-bottom footer">
+            <small class="contanier font-italic text-white-50 ">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.&copy
+            </small>
+        </footer>
     </body>
 </html>

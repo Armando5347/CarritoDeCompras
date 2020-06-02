@@ -108,7 +108,21 @@ String quincena = gsonObj.toJson(list);
                     <a href="listaClientes.jsp" class="btn btn-primary btn-sm">Ver clientes</a>
                 </div>
                 <%}
-                }%>
+                }else{
+                    //Este es el guest
+                %>
+                    <li class="carrito nav-item">
+                        <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="Registro.jsp" class="nav-link">Registrarse</a>
+                    </li>
+                <%
+                }
+                %>
             </header>
             <nav>
                 <ul class="nav nav-tabs">
@@ -153,6 +167,11 @@ String quincena = gsonObj.toJson(list);
                 </div>
             </div>  
         </main>
+        <footer class="container-fluid bg-secondary text-center fixed-bottom footer">
+            <small class="contanier font-italic text-white-50 ">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.&copy
+            </small>
+        </footer>
     </body>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript">

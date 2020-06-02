@@ -57,6 +57,7 @@
                 
             </header>
             <nav>
+                <!-- ok ya vi que paso con el nav bar basicamente se nos olvido meter al guest-->
                 <ul class="nav nav-tabs">
                     <%
                     if(tipo_user=="cliente"){
@@ -69,6 +70,9 @@
                     </li>
                     <li class="carrito nav-item">
                         <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
                     </li>
                     <%}else if(tipo_user == "empleado"){
                         int privilegio =((Empleado)sesion_actual.getAttribute("usuario")).getCprivilegio_id();
@@ -108,6 +112,19 @@
                         <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
                     </li>
                     <%}
+                    }else{
+                        //Este es el guest
+                    %>
+                        <li class="carrito nav-item">
+                            <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
+                        </li>
+                        <li class="carrito nav-item">
+                            <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                        </li>
+                        <li class="carrito nav-item">
+                            <a href="Registro.jsp" class="nav-link">Registrarse</a>
+                        </li>
+                    <%
                     }
                     %>
                 </ul>
