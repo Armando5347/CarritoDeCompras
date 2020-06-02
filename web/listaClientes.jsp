@@ -77,7 +77,7 @@
                         <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
                     </li>
                     <%}else if(tipo_user == "empleado"){
-                        int privilegio =((Empleado)sesion_actual.getAttribute("usuario")).getCprivilegio_id();
+                        int privilegio =((Empleado)sesion_empleado.getAttribute("usuario")).getCprivilegio_id();
                         if(privilegio == 3){%>
                     <li class="nav-item">
                         <a class="nav-link" href='listaProductosAdmin.jsp'>Ver inventario de productos</a></li>

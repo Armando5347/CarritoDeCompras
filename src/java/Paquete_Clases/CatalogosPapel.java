@@ -14,7 +14,85 @@ import java.util.ArrayList;
 
 public class CatalogosPapel {
     
-   
+    public static ArrayList obtenerCatalogo(String nom_cal){
+        ArrayList catalogo = new ArrayList();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String q = "";
+        boolean esintreturn = false;
+        try{
+            con = Conexion.obtenerConexion();
+            q = "Select * FROM " + nom_cal;
+            ps = con.prepareStatement(q);
+            switch(nom_cal){
+                case "cmaterial":
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        String valor = rs.getString("material");
+                        catalogo.add(valor);
+                    }
+                    break;
+                case "ctipos":
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        String valor = rs.getString("tipos");
+                        catalogo.add(valor);
+                    }
+                    break;
+                case "caromas":
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        String valor = rs.getString("aroma");
+                        catalogo.add(valor);
+                    }
+                    break;
+                case "crollosincluidos":
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        int val = rs.getInt("rollos");
+                        String valor = String.valueOf(val);
+                        catalogo.add(valor);
+                    }
+                    break;    
+                case "ctipo_hojas":
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        String valor = rs.getString("tipo_hojas");
+                        catalogo.add(valor);
+                    }
+                    break;    
+                case "chojasxrollo":
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        int val = rs.getInt("no_hojas");
+                        String valor = String.valueOf(val);
+                        catalogo.add(valor);
+                    }
+                    break;  
+                default:
+                    System.out.println("Pasaste mal algo");
+                    break;
+            }
+            
+        }catch (SQLException ex) {
+            System.out.println("Nulo por el esecuele");
+            ex.printStackTrace();
+            return null;
+        }finally{
+            q="";
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println("No se cerraron bien");
+            }
+        }
+        return catalogo;
+    }
+    
+    
     public static ArrayList obtenerValores(int id_mat, int id_tip, int id_ar, int id_roll, int id_th,int id_hr){
         ArrayList valores = new ArrayList();
         Connection con = null;

@@ -59,7 +59,7 @@ public class actualizar_cliente extends HttpServlet {
                 validaciones[1] = Entradas.esString(appat);
                 validaciones[2] = Entradas.esString(apmat);
                 validaciones[3] = Entradas.esDate(fecha_naci);
-                validaciones[4] = Entradas.esNumeroEntero(tel);
+                validaciones[4] = Entradas.esNumeroEntero(tel,8);
                 validaciones[5] = Entradas.esNumeroEntero(cel);
                 validaciones[6] = Entradas.formatoUser(username);
                 validaciones[7] = Entradas.formatoUser(pass);

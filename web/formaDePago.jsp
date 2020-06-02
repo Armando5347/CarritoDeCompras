@@ -115,6 +115,7 @@
                 <div  onclick="seleccionMetodo('tarjeta')" class="btn btn-info w-25"><img src="img/targeta_credito.png" class="img-fluid" alt="imagen targeta"></div>
                 <div onclick="seleccionMetodo('efectivo')" class="btn btn-info w-25" ><img src="img/efectivo.png" class="img-fluid" alt="imagen efectivo"></div>
             </div>
+            <hr>
         <div id="info">Total a pagar: <input type="number" readonly="readonly" name="precio_a_pagar"></div>
             <div id="metodos" class="container">
                 <div class="card centrar w-75" style="opacity: 0;" id="paypal">
@@ -191,7 +192,7 @@
                                 <span class="input-group-text">Ingrese la sucursal de su preferencia:</span>
                             </div>
                             <select readonly="readonly" name="sucursal">
-                                <option>--Tiendas compatibles--</option>
+                                <option >--Tiendas compatibles--</option>
                                 <option>OXXO</option>
                                 <option>Seven Eleven</option>
                                 <option>Faramcias del Ahorro</option>

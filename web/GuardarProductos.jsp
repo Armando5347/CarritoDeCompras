@@ -4,8 +4,28 @@
     Author     : maste
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Paquete_Clases.CatalogosPapel"%>
 <%@page import="Paquete_Clases.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" %>
+<%
+    ArrayList catalogoMaterial = new ArrayList();
+    ArrayList catalogoTipos = new ArrayList();
+    ArrayList catalogoAromas = new ArrayList();
+    ArrayList catalogoRollos = new ArrayList();
+    ArrayList catalogoHojas = new ArrayList();
+    ArrayList catalogoHojasXRollo = new ArrayList();
+    try{
+        catalogoMaterial = CatalogosPapel.obtenerCatalogo("cmaterial");
+        catalogoTipos = CatalogosPapel.obtenerCatalogo("ctipos");
+        catalogoAromas = CatalogosPapel.obtenerCatalogo("caromas");
+        catalogoRollos = CatalogosPapel.obtenerCatalogo("crollosincluidos");
+        catalogoHojas = CatalogosPapel.obtenerCatalogo("ctipo_hojas");
+        catalogoHojasXRollo = CatalogosPapel.obtenerCatalogo("chojasxrollo");
+    }catch(Exception e){
+        response.sendRedirect("error.jsp");
+    }
+    %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -132,8 +152,13 @@
                     </div>
                     <select name="material" onchange="return noDefault(this)" class="custom-select">
                         <option>Seleccione alguna opción</option>
-                        <option>CELULOSA</option>
-                        <option>FIBRA VEGETAL</option>
+                        <%
+                            for(int i = 0; i<catalogoMaterial.size(); i++){
+                                String vm = (String)catalogoMaterial.get(i);
+                            
+                        %>
+                        <option><%=vm%></option>
+                        <%}%>
                     </select>
                 </div>
                 <br>
@@ -143,8 +168,13 @@
                     </div>
                     <select name="aroma" onchange="return noDefault(this)" class="custom-select">
                         <option>Seleccione alguna opción</option>
-                        <option>SIN AROMA</option>
-                        <option>ALMENDRAS</option>
+                        <%
+                            for(int i = 0; i<catalogoAromas.size(); i++){
+                                String va = (String)catalogoAromas.get(i);
+                            
+                        %>
+                        <option><%=va%></option>
+                        <%}%>
                     </select>
                 </div>
                 <br>
@@ -154,8 +184,13 @@
                     </div>
                     <select name="tipo_papel" onchange="return noDefault(this)" class="custom-select">
                         <option>Seleccione alguna opción</option>
-                        <option>Residencial</option>
-                        <option>Institucional</option>
+                        <%
+                            for(int i = 0; i< catalogoTipos.size(); i++){
+                                String vt = (String)catalogoTipos.get(i);
+                            
+                        %>
+                        <option><%=vt%></option>
+                        <%}%>
                     </select>
                 </div>
                 <br>
@@ -165,12 +200,13 @@
                     </div>
                     <select name="hojasRollo" onchange="return noDefault(this)" class="custom-select">
                         <option>Seleccione alguna opción</option>
-                        <option>180</option>
-                        <option>200</option>
-                        <option>240</option>
-                        <option>320</option>
-                        <option>400</option>
-                        <option>500</option>
+                        <%
+                            for(int i = 0; i< catalogoHojasXRollo.size(); i++){
+                                String vhrs = (String)catalogoHojasXRollo.get(i);
+                                int vhr = Integer.parseInt(vhrs);
+                        %>
+                        <option><%=vhr%></option>
+                        <%}%>
                     </select>
                 </div>
                 <br>
@@ -180,9 +216,13 @@
                     </div>
                     <select name="tipo_hojas" onchange="return noDefault(this)" class="custom-select">
                         <option>Seleccione alguna opción</option>
-                        <option>Doble</option>
-                        <option>Triple</option>
-                        <option>Cuadruple</option>
+                        <%
+                            for(int i = 0; i< catalogoHojas.size(); i++){
+                                String vh = (String)catalogoHojas.get(i);
+                            
+                        %>
+                        <option><%=vh%></option>
+                        <%}%>
                     </select>
                 </div>
                 <br>
@@ -192,11 +232,13 @@
                     </div>
                     <select name="rollos" onchange="return noDefault(this)" class="custom-select">
                         <option>Seleccione alguna opción</option>
-                        <option>4</option>
-                        <option>12</option>
-                        <option>18</option>
-                        <option>24</option>
-                        <option>32</option>
+                        <%
+                            for(int i = 0; i< catalogoRollos.size(); i++){
+                                String vrs = (String)catalogoRollos.get(i);
+                                int vr = Integer.parseInt(vrs);
+                        %>
+                        <option><%=vr%></option>
+                        <%}%>
                     </select>
                 </div>
                 <br>

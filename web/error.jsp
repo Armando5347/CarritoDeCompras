@@ -4,6 +4,7 @@
     Author     : maste
 --%>
 
+<%@page import="Paquete_Clases.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" session="true" isErrorPage="true"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -110,7 +111,7 @@
                     <li>Se realizó una solicitud no autorizada</li>
                 </ul>
             <br>
-            <a href="index.html" class="btn btn-info">Regresar a la página principal</a>
+            <a href="index.jsp" class="btn btn-info">Regresar a la página principal</a>
             </p>
         </main>
     </body>

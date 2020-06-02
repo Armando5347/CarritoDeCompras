@@ -90,7 +90,7 @@ public class Entradas {
     
     public static boolean formatoUser (String formatoTestear){
         
-        String er = "QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnmáéíóúÁÉÍÚÓ 0123456789_.";
+        String er = "QWERTYUIOPASDFGHJKLÑZXCVBNMqwertyuiopasdfghjklñzxcvbnmáéíóúÁÉÍÚÓ0123456789_.";
         
         for(int i = 0; i< formatoTestear.length(); i++){
             char verCaracter = formatoTestear.charAt(i);
