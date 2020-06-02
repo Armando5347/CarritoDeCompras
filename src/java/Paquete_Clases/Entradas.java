@@ -137,10 +137,10 @@ public class Entradas {
         if(fecha_nac_testear.isEmpty()) return false;
         
         char carcAnos[] = new char[4];
-        carcAnos[1] = fecha_nac_testear.charAt(0);
-        carcAnos[2] = fecha_nac_testear.charAt(1);
-        carcAnos[3] = fecha_nac_testear.charAt(2);
-        carcAnos[4] = fecha_nac_testear.charAt(3);
+        carcAnos[0] = fecha_nac_testear.charAt(0);
+        carcAnos[1] = fecha_nac_testear.charAt(1);
+        carcAnos[2] = fecha_nac_testear.charAt(2);
+        carcAnos[3] = fecha_nac_testear.charAt(3);
         
         String ano = String.valueOf(carcAnos);
         System.out.println(ano);
