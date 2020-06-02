@@ -222,10 +222,12 @@
                                 DPapel papel = new DPapel();
                                 papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));                          
                         %>
-                        <li class="list-group-item text-right mx-2">
-                            <p>Precio:<%= papel.getPrecio() %></p>
-                            <p class="catidad-<%= papel.getId_papel() %>">Cantidad:<span id=can-"<%= papel.getId_papel() %>" >0</span></p>
-                            <button class="btn btn-danger mx-5 btn-eliminar" style="margin-left: 1rem;">X</button>
+                        <li class="list-group-item text-right mx-2 d-flex">
+                            <div>
+                                <p>Precio:<%= papel.getPrecio() %></p>
+                                <p class="catidad-<%= papel.getId_papel() %>">Cantidad:<span id=can-"<%= papel.getId_papel() %>" >0</span></p>
+                            </div>
+                            <button class="btn btn-danger mx-5 btn-eliminar h-25" style="margin-left: 1rem;">X</button>
                         </li>
                         <%
                             }
@@ -239,7 +241,7 @@
                         <hr>
                         <!-- Precio total -->
                         <p class="text-right">Total: <span id="total"><%= total_neto %></span>$</p>
-                        <a href="<%= request.getContextPath() %>/formaDePago?total=<%= total_neto %>">Cobrar</a>
+                        <a class="btn btn-primary btn-sm" href="<%= request.getContextPath() %>/formaDePago?total=<%= total_neto %>">Cobrar</a>
                     </aside>
                     <%}%>
                 </div>
