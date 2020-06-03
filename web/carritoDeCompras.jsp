@@ -254,7 +254,7 @@
                         <hr>
                         <!-- Precio total -->
                         <p class="text-right">Total: <span id="total"><%= total_neto %></span>$</p>
-                        <a class="btn btn-primary btn-sm" href="<%= request.getContextPath() %>/formaDePago?total=<%= total_neto %>">Cobrar</a>
+                        <a class="btn btn-primary btn-sm" href="<%= request.getContextPath() %>/formaDePago.jsp?total=<%= total_neto %>">Cobrar</a>
                     </aside>
                     <%}%>
                 </div>
