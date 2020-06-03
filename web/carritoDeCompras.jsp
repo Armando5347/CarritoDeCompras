@@ -244,11 +244,15 @@
                         <%
                                 }
                             }
+                            String total = String.valueOf(total_neto);
+                            Cookie coo = new Cookie("Total", total);
+                            response.addCookie( coo );
                         }catch(Exception e){
                             e.printStackTrace();
                             System.out.println(e.getMessage());
                             System.out.println(e.getLocalizedMessage());
                         }
+                        
                         %>
                         </ul>
                         <hr>

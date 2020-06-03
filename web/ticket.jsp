@@ -4,6 +4,13 @@
     Author     : maste
 --%>
 
+<%@page import="Paquete_Clases.MPapel"%>
+<%@page import="Paquete_Clases.DPapel"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="Paquete_Clases.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" session="true" language="java"%>
 <%
@@ -108,18 +115,63 @@
                 </ul>
             </nav>
         </div>
-        <main class="container-fluid">
+        <main class="container-fluid"> 
+            <% Calendar c2 = new GregorianCalendar(); %>
             <h1 class="container-fluid bg-primary text-left">Compra realizada con exito!</h1>
             <hr>
             <div id="ticket" class="container w-75 border-dark">
                 <h2>Ticket de compra:</h2><br>
-                <article>
+                <article> 
                     <ul class="list-group">
-                        <li class="list-group-item">Nombre del servicio: <input readonly="readonly" class="list-group-item-text" value=""></li>
-                        <li class="list-group-item">Fecha de la Compra: <input readonly="readonly"  class="list-group-item-text" value=""></li>
-                        <li class="list-group-item">Productos Comprados: <input readonly="readonly"  class="list-group-item-text"value=""></li>
-                        <li class="list-group-item">Total a pagar: <input readonly="readonly" class="list-group-item-text" value=""></li>
-                        <li class="list-group-item">Número de Venta: <input readonly="readonly" class="list-group-item-text" value=""></li>
+                        <%
+                            Cookie cookie = null;
+                            Cookie[] cookies = null;
+                            ArrayList<String> lista_dp = null;
+                            ArrayList<String> lista_mp = new ArrayList<String>();
+                            DPapel papel = new DPapel();
+                            String total = null;
+                            try{
+                                cookies = request.getCookies();
+                                if( cookies != null ) {
+                                    for (int i = 0; i < cookies.length; i++) {
+                                       cookie = cookies[i];
+                                        if (cookie.getName().equals("ListaProductos")){
+                                            System.out.println("valor de la cookie: " + cookie.getValue());
+                                            String replace = cookie.getValue().replace("['","");
+                                            replace = replace.replace("[","");
+                                            replace = replace.replace("]","");
+                                            replace = replace.replace(" ","");
+                                            System.out.println(replace);
+                                            String replace1 = replace.replace("'","");
+                                            System.out.println(replace1);
+                                            lista_dp = new ArrayList<String>(Arrays.asList(replace1.split(",")));
+                                            Iterator lista_dp_i = lista_dp.iterator();
+                                            System.out.println(lista_dp);
+                                            while(lista_dp_i.hasNext()){
+                                                String id_producto = lista_dp_i.next().toString();
+                                                if(!id_producto.equals("")){
+                                                    papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
+                                                    MPapel mpapel = MPapel.obtenerPapelPorIdDPapel(Integer.parseInt(id_producto));
+                                                    lista_mp.add(mpapel.getNombre_pap());
+                                                }
+                                            }
+                                        }else if(cookie.getName().equals("Total")){
+                                            total = cookie.getValue();
+                                        }
+                                    }
+                                }
+                                
+                            }catch(Exception e){
+                                System.out.println(e.getMessage());
+                                System.out.println(e.getLocalizedMessage());
+                                e.printStackTrace();
+                            }
+                        %>
+                        <li class="list-group-item">Nombre del servicio: <input readonly="readonly" class="list-group-item-text" value="Compra"></li>
+                        <li class="list-group-item">Fecha de la Compra: <input readonly="readonly"  class="list-group-item-text" value="<%= c2.get(Calendar.DATE) %>-<%= c2.get(Calendar.MONTH)+1 %>-<%= c2.get(Calendar.YEAR)%>"></li>
+                        <li class="list-group-item">Productos Comprados: <input readonly="readonly"  class="list-group-item-text" value="<%= lista_mp.toString() %>"></li>
+                        <li class="list-group-item">Total a pagar: <input readonly="readonly" class="list-group-item-text" value="<%= total %>"></li>
+                        <li class="list-group-item">Número de Venta: <input readonly="readonly" class="list-group-item-text" value="<%= papel.getId_papel() %>"></li>
                     </ul>
                 </article>
             </div>
