@@ -67,68 +67,97 @@ String quincena = gsonObj.toJson(list);
     <body> 
         <div class="container-fluid">
             <header class="d-flex">
-                <div class="col-md-8 d-flex centrar">
-                    <a href="index.jsp" class="col-md-2"><img src="img/papel.png"></a>
+                <div class="col-md-8 d-flex centrar align-items-center">
+                    <a href="index.jsp" class="col-md-2"><img class="img-fluid" src="img/papel.png"></a>
                     <h1>¡Papelilandia!</h1>
                 </div>
                 <% HttpSession sesion_actual = request.getSession();
                     String tipo_user = (String)sesion_actual.getAttribute("tipo_user");
                 if(tipo_user == null){ %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
-                    <a href="InicioSesion.jsp" class="btn btn-primary btn-sm">Iniciar Sesión</a>
-                    <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
+                <div class="btn-group d-flex col-md-4 float-md-right align-middle align-items-center">
+                    <a href="InicioSesion.jsp" class="btn btn-primary btn-sm align-middle h-2rem">Iniciar Sesión</a>
+                    <a href="Registro.jsp" class="btn btn-primary btn-sm align-middle h-2rem">Registrarse</a>
                 </div>
-                <%}else if(tipo_user == "cliente"){
+                <%}else{
                 %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
-                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
-                    <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
+                <div class="btn-group d-flex col-md-4  float-md-right align-middle h-2rem align-items-center">
+                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm flex align-middle h-2rem">Cerrar Sesión</a>
+                    <a href="Registro.jsp" class="btn btn-primary btn-sm flex align-middle h-2rem">Registrarse</a>
                 </div>
-                <%}else if(tipo_user == "empleado"){
-                int privilegio =((Empleado)sesion_actual.getAttribute("usuario")).getCprivilegio_id();
-                if(privilegio == 1){
-                %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
-                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
-                    <a href="Registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
-                </div>
-                <%}else if(privilegio == 2){
-                %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
-                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
-                    <a href="RegistrarEmpleados.jsp" class="btn btn-primary btn-sm">Registrar nuevo Empleado</a>
-                    <a href="listaEmpleados.jsp" class="btn btn-primary btn-sm">Ver empleados</a>
-                </div>
-                <%}else if(privilegio == 3){
-                %>
-                <div class="btn-group d-flex col-md-4 centrar-derecha float-md-right">
-                    <a href="Cerrar_Sesion" class="btn btn-primary btn-sm">Cerrar Sesión</a>
-                    <a href="RegistrarEmpleados.jsp" class="btn btn-primary btn-sm">Registrar nuevo Empleado</a>
-                    <a href="listaEmpleados.jsp" class="btn btn-primary btn-sm">Ver empleados</a>
-                    <a href="listaClientes.jsp" class="btn btn-primary btn-sm">Ver clientes</a>
-                </div>
-                <%}
-                }%>
+                <%}%>
+                
             </header>
             <nav>
+                <!-- ok ya vi que paso con el nav bar basicamente se nos olvido meter al guest-->
                 <ul class="nav nav-tabs">
+                    <%
+                    if(tipo_user=="cliente"){
+                    %>
                     <li class="nav-item">
                         <a href="Historial.jsp" class="nav-link">Historial</a>
                     </li>
                     <li class="nav-item">
                         <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
                     </li>
-                    <%if(tipo_user == "empleado"){
-                        int privilegio =((Empleado)sesion_actual.getAttribute("usuario")).getCprivilegio_id();
-                        if(privilegio == 3){%>
-                    <li class="nav-item"><a href='listaProductosAdmin.jsp'>Ver inventario de productos</a></li>
-                    <%}}%>
                     <li class="carrito nav-item">
                         <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
                     </li>
-                    <li clas="carrito nav-item">
-                        <a href=tendencias.jsp" class="nav-link">Ver tendencias</a>
+                    <li class="carrito nav-item">
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
                     </li>
+                    <%}else if(tipo_user == "empleado"){
+                        int privilegio =((Empleado)sesion_actual.getAttribute("usuario")).getCprivilegio_id();
+                        if(privilegio == 3){%>
+                    <li class="nav-item">
+                        <a class="nav-link" href='listaProductosAdmin.jsp'>Ver inventario de productos</a></li>
+                    <li class="carrito nav-item">
+                        <a href="listaEmpleados.jsp" class="nav-link">Ver empleados</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="listaClientes.jsp" class="nav-link">Ver clientes</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
+                    </li>
+                    <%}else if(privilegio==2){%>
+                    <li class="carrito nav-item">
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="listaEmpleados.jsp" class="nav-link">Ver empleados</a>
+                    </li>
+                    <li class="carrito nav-item">
+                        <a href="listaClientes.jsp" class="nav-link">Ver clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
+                    </li>
+                    <%}else if(privilegio == 1){ %>
+                    <li class="carrito nav-item">
+                        <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="editarUser.jsp" class="nav-link">Sesion de usuario</a>
+                    </li>
+                    <%}
+                    }else{
+                        //Este es el guest
+                    %>
+                        <li class="carrito nav-item">
+                            <a href="carritoDeCompras.jsp" class="nav-link">Ver tu carrito de compras</a>
+                        </li>
+                        <li class="carrito nav-item">
+                            <a href="tendencias.jsp" class="nav-link">Ver tendencias</a>
+                        </li>
+                        <li class="carrito nav-item">
+                            <a href="Registro.jsp" class="nav-link">Registrarse</a>
+                        </li>
+                    <%
+                    }
+                    %>
                 </ul>
             </nav>
         </div>
@@ -153,6 +182,11 @@ String quincena = gsonObj.toJson(list);
                 </div>
             </div>  
         </main>
+        <footer class="container-fluid bg-secondary text-center fixed-bottom footer">
+            <small class="contanier font-italic text-white-50 ">
+                Carrito de compras elaborado por Jarillo Hernández Armando Damián y Tenorio Aspiros Luis Fernándo del grupo 4IV9.&copy
+            </small>
+        </footer>
     </body>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript">

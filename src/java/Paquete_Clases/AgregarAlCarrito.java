@@ -9,6 +9,7 @@ package Paquete_Clases;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -58,9 +59,13 @@ public class AgregarAlCarrito extends HttpServlet {
                       cookie = cookies[i];
                       if (cookie.getName().equals("ListaProductos")){
                         //Cuando necesitamos añadir un producto al carro y ya esta la cookie
-                        System.out.println(cookie.getValue());
-                        Object a = cookie.getValue();
-                        ArrayList<String> lista_dp = (ArrayList<String>)a;
+                        System.out.println("valor de la cookie: " + cookie.getValue());
+                        String replace = cookie.getValue().replace("['","");
+                        System.out.println(replace);
+                        String replace1 = replace.replace("']","");
+                        System.out.println(replace1);
+                        ArrayList<String> lista_dp = null;
+                        lista_dp = new ArrayList<String>(Arrays.asList(replace1.split(",")));
                         lista_dp.add(dp);
                         //matamos a la cookie para actualizarla
                         cookies[i].setMaxAge(0);
@@ -74,8 +79,37 @@ public class AgregarAlCarrito extends HttpServlet {
                         //Lo rompemos por que ya tenemos lo que mas necesitamos
                         break;
                       }else{
-                         //La creamos en el caso en que no exista
-                        System.out.println(cookie.getValue());
+                             //La creamos en el caso en que no exista
+                            System.out.println(cookie.getValue());
+                            if(verificarExistenciaCookie("ListaProductos", cookies)){
+                                Object a = cookie.getValue();
+                                System.out.println("valor de la cookie: " + cookie.getValue());
+                                String replace = cookie.getValue().replace("['","");
+                                System.out.println(replace);
+                                String replace1 = replace.replace("']","");
+                                System.out.println(replace1);
+                                ArrayList<String> lista_dp = (ArrayList<String>)a;
+                                lista_dp = new ArrayList<String>(Arrays.asList(replace1.split(",")));
+                                lista_dp.add(dp);
+                                //matamos a la cookie para actualizarla
+                                cookies[i].setMaxAge(0);
+
+                                // Cremaos una nueva cookie
+                                Cookie cookie2 = new Cookie("ListaProductos", lista_dp.toString());
+                                cookie2.setMaxAge(60*60*60);
+
+                                // La volvemos a settear
+                                response.addCookie(cookie2);
+                                break;
+                        }else{
+                            ArrayList<String> lista_dp = new ArrayList<String>();
+                            lista_dp.add(dp);
+                            Cookie co = new Cookie("ListaProductos", lista_dp.toString());
+                            co.setMaxAge(60*60*60);
+                            //Aqui es posible que se cree una paradoja
+                            response.addCookie(co);
+                            break;                            
+                        }
                       }
                     }
                 } else if (cookies != null && !verificarExistenciaCookie("ListaProductos", cookies)) {
@@ -103,13 +137,13 @@ public class AgregarAlCarrito extends HttpServlet {
                 System.out.println(e.getLocalizedMessage());
                 e.printStackTrace();
             }
+            response.sendRedirect(request.getContextPath() + "/carritoDeCompras.jsp");
         }catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println(e.getLocalizedMessage());
             e.printStackTrace();
-        }finally{
-            response.sendRedirect("carritoDeCompras.jsp");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
