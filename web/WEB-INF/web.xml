@@ -44,6 +44,10 @@
         <servlet-name>IniciarSesion</servlet-name>
         <servlet-class>Paquete_Clases.IniciarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BorrarEleCar</servlet-name>
+        <servlet-class>Paquete_Clases.BorrarEleCar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AgregarAlCarrito</servlet-name>
         <url-pattern>/AgregarCarrito</url-pattern>
@@ -92,9 +96,13 @@
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarEleCar</servlet-name>
+        <url-pattern>/BorrarEleCar</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    </web-app>
+</web-app>

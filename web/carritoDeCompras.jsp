@@ -158,8 +158,7 @@
                     <% }else{ %>
                     <!-- Elementos generados a partir de la lista -->
                     <section id="items" class="col-sm-8 row">
-                        <%! double total_neto = 0;%>
-                        <%! Pattern twopart = Pattern.compile("\\d"); %>
+                        <% double total_neto = 0;%>
                         <%
                          Cookie cookie = null;
                          Cookie[] cookies = null;
@@ -172,16 +171,27 @@
                                     if (cookie.getName().equals("ListaProductos")){
                                         System.out.println("valor de la cookie: " + cookie.getValue());
                                         String replace = cookie.getValue().replace("['","");
+                                        replace = replace.replace("[","");
+                                        replace = replace.replace("]","");
+                                        replace = replace.replace(" ","");
                                         System.out.println(replace);
-                                        String replace1 = replace.replace("']","");
+                                        String replace1 = replace.replace("'","");
                                         System.out.println(replace1);
+                                        if(replace1.equals("[]")){
+                                        %>
+                                            <h3>Su carrito de compras esta vacio</h3>
+                                        <%
+                                        }else{
                                         lista_dp = new ArrayList<String>(Arrays.asList(replace1.split(",")));
                                         Iterator lista_dp_i = lista_dp.iterator();
+                                        System.out.println(lista_dp);
                                         while(lista_dp_i.hasNext()){
                                             String id_producto = lista_dp_i.next().toString();
-                                            DPapel papel = new DPapel();
-                                            papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
-                                            MPapel mpapel = MPapel.obtenerPapelPorIdDPapel(Integer.parseInt(id_producto));
+                                            if(!id_producto.equals("")){
+                                                DPapel papel = new DPapel();
+                                                papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));
+                                                MPapel mpapel = MPapel.obtenerPapelPorIdDPapel(Integer.parseInt(id_producto));
+                                            
                                         %>
                                         <div class="card col-sm-4">
                                             <div class="card-body" id="<%= papel.getId_papel() %>">
@@ -190,13 +200,14 @@
                                                 <img class="img-fluid" src="img/papel.png" alt="<%= papel.getId_papel() %>">
                                                 <h5 class="card-title"> <%= mpapel.getNombre_pap() %> </h5>
                                                 <p class="card-text"> <%= papel.getPrecio() %> </p>
-                                                <button class="btn btn-primary btn-agregar">+</button>
                                             </div>
                                         </div>
                                         <%
+                                            }
+                                        }
                                         }
                                         break;
-                                    }else{
+                                    }else {
                                    %>
                                     <h3>Su carrito de compras esta vacio</h3>
                                    <%
@@ -219,17 +230,19 @@
                             Iterator lista_dp_i = lista_dp.iterator();
                             while(lista_dp_i.hasNext()){
                                 String id_producto = lista_dp_i.next().toString();
-                                DPapel papel = new DPapel();
-                                papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));                          
+                                if(!id_producto.equals("")){
+                                    DPapel papel = new DPapel();
+                                    papel = DPapel.obtenerDetallePapel(Integer.parseInt(id_producto));                          
                         %>
                         <li class="list-group-item text-right mx-2 d-flex">
                             <div>
                                 <p>Precio:<%= papel.getPrecio() %></p>
-                                <p class="catidad-<%= papel.getId_papel() %>">Cantidad:<span id=can-"<%= papel.getId_papel() %>" >0</span></p>
+                                <% total_neto += papel.getPrecio() * 1; %>
                             </div>
-                            <button class="btn btn-danger mx-5 btn-eliminar h-25" style="margin-left: 1rem;">X</button>
+                            <a href="BorrarEleCar?id=<%= papel.getId_papel() %>" class="btn btn-danger mx-5 btn-eliminar h-25" style="margin-left: 1rem;">X</a>
                         </li>
                         <%
+                                }
                             }
                         }catch(Exception e){
                             e.printStackTrace();
