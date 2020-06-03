@@ -523,9 +523,39 @@ insert into carritocompras.CPrivilegio_Empleado (ID, tipo_privilegio) values (1,
 
 insert into Mpapel values(1, "Papel Marca patito", 1);
 insert into MPapel values(2, "Papel DOWNY para universidad",2);
+insert into MPapel values(3, "Papel downy reciclable",3);
+insert into MPapel values(4, "Producto4",4);
+insert into MPapel values(5, "Producto5",5);
+insert into MPapel values(6, "Algo",6);
+insert into MPapel values(7, "Y no se como nombrarlos",7);
+insert into MPapel values(8, "Producto8",8);
+insert into MPapel values(9, "Producto9",9);
+insert into MPapel values(10, "P10",10);
+insert into MPapel values(11, "P11",11);
+insert into MPapel values(12, "P12",12);
+insert into MPapel values(13, "P13",13);
+insert into MPapel values(14, "P14",14);
+insert into MPapel values(15, "P15",15);
 
 insert into DPapel values(1,50.00,5,1,1,1,1,1,1,null);
-insert into DPapel values(2, 499.99,2,1,2,2,2,3,6,null);
+insert into DPapel values(2, 499.99,2,1,2,1,2,3,6,null);
+insert into DPapel values(3, 499.99,2,2,1,2,2,2,5,null);
+insert into DPapel values(4, 499.99,2,1,2,1,2,3,4,null);
+insert into DPapel values(5, 499.99,2,2,2,2,2,3,3,null);
+insert into DPapel values(6, 499.99,2,1,2,2,2,3,2,null);
+insert into DPapel values(7, 499.99,2,2,2,2,2,2,1,null);
+insert into DPapel values(8, 499.99,2,1,2,2,2,2,6,null);
+insert into DPapel values(9, 499.99,2,2,1,2,2,3,5,null);
+insert into DPapel values(10, 499.99,2,1,2,2,2,3,4,null);
+insert into DPapel values(11, 499.99,1,2,2,2,2,2,3,null);
+insert into DPapel values(12, 499.99,1,1,2,2,2,1,2,null);
+insert into DPapel values(13, 499.99,2,1,2,1,2,2,1,null);
+insert into DPapel values(14, 499.99,1,1,2,2,1,1,4,null);
+insert into DPapel values(15, 499.99,1,2,2,1,2,3,5,null);
+
+insert into Cliente values
+(1,"Armando","Jarillo","Hernandez","2003-10-31","Armando5347","5347",53521328,5510295732),
+(2,"Luis","Tenorio","Aspiros","2003-06-12","Suspiros01","123456",57342568,5564539312);
 
 insert into Empleado values
 (1,"Armando", "Jarillo", "Torres","1968-07-27","53521328","55667788","root","n0m3l0", 3),
