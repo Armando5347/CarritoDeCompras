@@ -535,7 +535,7 @@ insert into MPapel values(11, "P11",11);
 insert into MPapel values(12, "P12",12);
 insert into MPapel values(13, "P13",13);
 insert into MPapel values(14, "P14",14);
-insert into MPapel values(15, "P15,15);
+insert into MPapel values(15, "P15",15);
 
 insert into DPapel values(1,50.00,5,1,1,1,1,1,1,null);
 insert into DPapel values(2, 499.99,2,1,2,1,2,3,6,null);
