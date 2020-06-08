@@ -28,9 +28,9 @@ String[] ventas_semana = new String[3];
 String[] ventas_mes = new String[3];
 String[] ventas_quincena = new String[3];
 
-ventas_semana[0] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("semana", "algo1"));
-ventas_mes[1] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("mes", "algo2"));
-ventas_quincena[2] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("quincena", "algo3"));
+ventas_semana[0] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("semana", "Papel Marca patito"));
+ventas_mes[1] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("mes", "Papel Marca patito"));
+ventas_quincena[2] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("quincena", "Papel Marca patito"));
 
 ventas_semana[0] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("semana", "algo1"));
 ventas_mes[1] = gsonObj.toJson(Tendencias.obtenerTendenciaBy("mes", "algo2"));
