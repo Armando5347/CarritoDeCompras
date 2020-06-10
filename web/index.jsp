@@ -176,6 +176,7 @@
             controlador+=1;
         %>
         </section>
+        <br>
         <%
             }
         %>

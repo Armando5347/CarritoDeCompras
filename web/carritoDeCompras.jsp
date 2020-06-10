@@ -208,9 +208,6 @@
                                         }
                                         break;
                                     }else {
-                                   %>
-                                    <h3>Su carrito de compras esta vacio</h3>
-                                   <%
                                    System.out.println(cookie.getValue());
                                }
                             }

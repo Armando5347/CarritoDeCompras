@@ -169,7 +169,22 @@
                         %>
                         <li class="list-group-item">Nombre del servicio: <input readonly="readonly" class="list-group-item-text" value="Compra"></li>
                         <li class="list-group-item">Fecha de la Compra: <input readonly="readonly"  class="list-group-item-text" value="<%= c2.get(Calendar.DATE) %>-<%= c2.get(Calendar.MONTH)+1 %>-<%= c2.get(Calendar.YEAR)%>"></li>
-                        <li class="list-group-item">Productos Comprados: <input readonly="readonly"  class="list-group-item-text" value="<%= lista_mp.toString() %>"></li>
+                        <li class="list-group-item">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                  Lista de los Productos Comprados
+                                </button>
+                                <div class="dropdown-menu">
+                                <%
+                                   for(int i = 0; i < lista_mp.size(); i++){
+                                       %>
+                                       <a class="dropdown-item"><%= lista_mp.get(i) %></a>
+                                       <%
+                                   }
+                                %>
+                               </div>
+                            </div>
+                        </li>
                         <li class="list-group-item">Total a pagar: <input readonly="readonly" class="list-group-item-text" value="<%= total %>"></li>
                         <li class="list-group-item">Número de Venta: <input readonly="readonly" class="list-group-item-text" value="<%= papel.getId_papel() %>"></li>
                     </ul>
