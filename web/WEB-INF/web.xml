@@ -54,7 +54,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AgregarAlCarrito</servlet-name>
-        <url-pattern>/AgregarCarrito</url-pattern>
+        <url-pattern>/AgregarAlCarrito</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Registrar_Usuario</servlet-name>
@@ -86,7 +86,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AgregarAlCarrito</servlet-name>
-        <url-pattern>/AgregarCarrito</url-pattern>
+        <url-pattern>/AgregarAlCarrito</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Cobrar</servlet-name>
