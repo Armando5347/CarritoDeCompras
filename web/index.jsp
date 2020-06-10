@@ -131,7 +131,7 @@
             </nav>
         </div>
                     <br>
-            <main class="container card-deck">
+            <main class="container">
         <% 
             /*Tuve que comentar las lineas de codigo por que no podia trabajar
             no hay pex equis de
@@ -141,9 +141,21 @@
             //Pos si las dudas
             
             //Un for clasico para poder trabajar adecuadamente
-        for(int i=0;i<lista_Productos.size();i++){
-            MPapel mp = lista_Productos.get(i);
-            DPapel dp = detalles_Productos.get(i);
+            
+            //pd me acobo de dar cuenta de que esto terminara siendo una matriz
+            double tamanno = lista_Productos.size();
+            System.out.println(tamanno/6.0);
+            int u = (int)Math.round(tamanno/6.0); 
+            System.out.println(lista_Productos.size());
+            int controlador = 1;
+        for(int i=0;i<=u;i++){
+        %>
+        <section class="container card-deck">
+        <%
+            for(int j=0;j<=5;j++){
+                if(6*i+j+1 <= lista_Productos.size()){
+                    MPapel mp = lista_Productos.get((j+1)* controlador);
+                    DPapel dp = detalles_Productos.get((j+1)* controlador);                    
         %>
         <!--Se debe mostrar el nombre, precio-->
         
@@ -156,7 +168,18 @@
                 <p><a class="card-link" href="VerDetalleProdcuto.jsp?id=<%=mp.getId_MPapel()%>">Ver Producto</a></p>
             </div>
         </div>  
-        <%}%>
+        <%
+            }else{
+                    break;
+                }
+            }
+            controlador+=1;
+        %>
+        </section>
+        <br>
+        <%
+            }
+        %>
         </main>
         <footer class="container-fluid bg-secondary text-center fixed-bottom footer">
             <small class="contanier font-italic text-white-50 ">

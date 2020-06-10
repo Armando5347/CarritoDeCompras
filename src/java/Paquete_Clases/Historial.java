@@ -26,16 +26,16 @@ public class Historial {
         String q = "";
         try{
             con = Conexion.obtenerConexion();
-            q = "SELECT Dcompracliente.ID,Dcompracliente.DCarritoDeCompras_ID, Dcompracliente.cliente_ID_cli, Dcompracliente.fecha, dcarritodecompras.total"
+            q = "SELECT Dcompracliente.ID,Dcompracliente.DCarritoDeCompras_ID, Dcompracliente.cliente_ID, Dcompracliente.fecha, dcarritodecompras.total"
                     + " FROM Dcompracliente JOIN dcarritodecompras ON Dcompracliente.DCarritoDeCompras_ID = dcarritodecompras.ID"
-                    + "WHERE Dcompracliente.cliente_ID_cli = ?";
+                    + " WHERE Dcompracliente.cliente_ID = ?";
             ps = con.prepareStatement(q);
             ps.setInt(1, id_cliente);
             rs = ps.executeQuery();
             while(rs.next()){
                 Historial ingreso = new Historial(
                         rs.getInt("ID"),
-                        rs.getInt("cliente_ID_cli"),
+                        rs.getInt("cliente_ID"),
                         rs.getInt("DCarritoDeCompras_ID"),
                         rs.getDouble("total"),
                         rs.getString("fecha")

@@ -48,6 +48,10 @@
         <servlet-name>BorrarEleCar</servlet-name>
         <servlet-class>Paquete_Clases.BorrarEleCar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MatarCookies</servlet-name>
+        <servlet-class>Paquete_Clases.MatarCookies</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AgregarAlCarrito</servlet-name>
         <url-pattern>/AgregarCarrito</url-pattern>
@@ -99,6 +103,10 @@
     <servlet-mapping>
         <servlet-name>BorrarEleCar</servlet-name>
         <url-pattern>/BorrarEleCar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MatarCookies</servlet-name>
+        <url-pattern>/MatarCookies</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
