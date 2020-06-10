@@ -9,7 +9,7 @@
     Cliente cli = null;
     Empleado emp = null;
     String nombre = "", appat = "", apmat = "", fecha_n = "", username = "", pass = "";
-    int tel = 0;
+    long tel = 0;
     long cel= 0;
     try{
     tipo_user = (String)sesion_actual.getAttribute("tipo_user");

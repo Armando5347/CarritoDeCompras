@@ -68,11 +68,12 @@ public class Registrar_Usuario extends HttpServlet {
             String ver_pass = request.getParameter("ver_pass");
             //Ahova validamos
             try{
+                System.out.println(fecha_nac);
                 validaciones[0] = Entradas.esString(nombre);
                 validaciones[1] = Entradas.esString(appat);
                 validaciones[2] = Entradas.esString(apmat);
                 validaciones[3] = Entradas.esDate(fecha_nac);
-                validaciones[4] = Entradas.esNumeroEntero(telefono,8);
+                validaciones[4] = Entradas.esNumeroEntero(telefono);
                 validaciones[5] = Entradas.esNumeroEntero(celular);
                 validaciones[6] = Entradas.formatoUser(username);
                 validaciones[7] = Entradas.formatoUser(password);

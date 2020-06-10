@@ -27,7 +27,7 @@ public class Cliente {
             ps.setString(2, nuevo_cliente.getAppat_cli());
             ps.setString(3, nuevo_cliente.getApmat_cli());
             ps.setString(4, nuevo_cliente.getFecha_nacimiento_cli());
-            ps.setInt(5, nuevo_cliente.getTel_cli());
+            ps.setLong(5, nuevo_cliente.getTel_cli());
             ps.setLong(6, nuevo_cliente.getCel_cli());
             ps.setString(7, nuevo_cliente.getUsername_cli());
             ps.setString(8, nuevo_cliente.getPass_cli());
@@ -62,7 +62,7 @@ public class Cliente {
             while(rs.next()){
                 Cliente cli = new Cliente(
                         rs.getInt("ID_cli"),
-                        rs.getInt("tel_cli"),
+                        rs.getLong("tel_cli"),
                         rs.getLong("cel_cli"),
                         rs.getString("nombre_cli"),
                         rs.getString("appat_cli"),
@@ -88,7 +88,7 @@ public class Cliente {
         }
     }
 
-    public Cliente(int id_cli, int tel_cli, long cel_cli, String nombre_cli, String appat_cli, String apmat_cli, String fecha_nacimiento_cli, String username_cli, String pass_cli) {
+    public Cliente(int id_cli, long tel_cli, long cel_cli, String nombre_cli, String appat_cli, String apmat_cli, String fecha_nacimiento_cli, String username_cli, String pass_cli) {
         this.id_cli = id_cli;
         this.tel_cli = tel_cli;
         this.cel_cli = cel_cli;
@@ -106,7 +106,7 @@ public class Cliente {
             con = Conexion.obtenerConexion();
             q = "UPDATE CLIENTE SET tel_cli = ?, cel_cli = ?, nombre_cli = ?, appat_cli = ?, apmat_cli = ?, fecha_nacimiento_cli = ?,username_cli = ?, password_cli = ? WHERE ID_cli = ?";
             ps = con.prepareStatement(q);
-            ps.setInt(1, nuevos_parametros.getTel_cli());
+            ps.setLong(1, nuevos_parametros.getTel_cli());
             ps.setLong(2, nuevos_parametros.getCel_cli());
             ps.setString(3, nuevos_parametros.getNombre_cli());
             ps.setString(4, nuevos_parametros.getAppat_cli());
@@ -176,7 +176,7 @@ public class Cliente {
             while(rs.next()){
                 cliente_a_ingresar = new Cliente(
                         rs.getInt("ID_cli"),
-                        rs.getInt("tel_cli"),
+                        rs.getLong("tel_cli"),
                         rs.getLong("cel_cli"), 
                         rs.getString("nombre_cli"), 
                         rs.getString("appat_cli"),
@@ -210,15 +210,15 @@ public class Cliente {
     static PreparedStatement ps = null;
     static String q = "";
     
-    private int id_cli, tel_cli;
-    private long cel_cli;
+    private int id_cli;
+    private long cel_cli, tel_cli;
     private String nombre_cli, appat_cli, apmat_cli, fecha_nacimiento_cli, username_cli, pass_cli;
 
     
     public Cliente() {
     }
 
-    public Cliente(int tel_cli, long cel_cli, String nombre_cli, String appat_cli, String apmat_cli, String username_cli, String pass_cli, String fecha_nacimiento_cli) {
+    public Cliente(long tel_cli, long cel_cli, String nombre_cli, String appat_cli, String apmat_cli, String username_cli, String pass_cli, String fecha_nacimiento_cli) {
         this.tel_cli = tel_cli;
         this.cel_cli = cel_cli;
         this.nombre_cli = nombre_cli;
@@ -237,11 +237,11 @@ public class Cliente {
         this.id_cli = id_cli;
     }
 
-    public int getTel_cli() {
+    public long getTel_cli() {
         return tel_cli;
     }
 
-    public void setTel_cli(int tel_cli) {
+    public void setTel_cli(long tel_cli) {
         this.tel_cli = tel_cli;
     }
 
