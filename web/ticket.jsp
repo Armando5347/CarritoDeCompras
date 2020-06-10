@@ -134,7 +134,7 @@
                                 cookies = request.getCookies();
                                 if( cookies != null ) {
                                     for (int i = 0; i < cookies.length; i++) {
-                                       cookie = cookies[i];
+                                        cookie = cookies[i];
                                         if (cookie.getName().equals("ListaProductos")){
                                             System.out.println("valor de la cookie: " + cookie.getValue());
                                             String replace = cookie.getValue().replace("['","");
@@ -189,6 +189,8 @@
                         <li class="list-group-item">Número de Venta: <input readonly="readonly" class="list-group-item-text" value="<%= papel.getId_papel() %>"></li>
                     </ul>
                 </article>
+                <!--vamos a matar a todas las galletitas Unu-->
+                <a class="btn btn-primary" href="MatarCookies">Finalizar</a>
             </div>
         </main><br>
         <footer class="container-fluid bg-secondary text-center fixed-bottom footer">
